@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue index</title>
+    <style>        
+        * {margin:0; padding:0;}
+        #app {margin: 40px auto; width:1280px; }
+        table {border-collapse: collapse; width:100%}
+        caption {position:absolute; left:-9999px; opacity:0;}
+        .tbl-type01 th {padding:10px 0; background:#eee}
+        .tbl-type01 td {padding:10px 0; border-right:1px solid #ddd;border-bottom:1px solid #ddd;text-align:center;}
+        .tbl-type01 td:last-child {border-right:none}
+    </style>
+</head>
+<body>
+    <!-- for문으로 테이블 작성 -->
+    <div id="app">
+        <div class="tbl-type01">
+            <table>
+                <caption>테이블</caption>
+                <thead>
+                    <tr>
+                        <th colspan="row" v-for="title in headers">{{title}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in document">
+                        <td>{{index+1}}</td>
+                        <td>{{item.sort}}</td>
+                        <td>{{item.title}}</td>
+                        <td><a v-bind:href="`html/${item.title}.html`" target="_blank">{{item.title}}</a></td>
+                        <td>{{item.endDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- script -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data: {
+                headers : ["NO","Depth1","Depth2","File Name","End Date"],
+                document :[
+                    {
+                        "sort" : "Layout",
+                        "title" : "table",
+                        "endDate" : ""                        
+                    },
+                    {
+                        "Sort" : "",
+                        "title" : "accordion",
+                        "endDate" : ""                        
+                    },
+                    {
+                        "Sort" : "",
+                        "title" : "login",
+                        "endDate" : ""                        
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

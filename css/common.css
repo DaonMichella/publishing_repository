@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); 
+
+* {margin:0; padding:0;}
+body {font-family:'Noto Sans KR','Courier New', Courier, monospace, sans-serif; color:#111; }
+button {background:none; border:none; cursor:pointer}
+#wrap {margin: 40px auto; width:980px;}
+.title {text-align:center; margin-bottom:10px; }
+.memo-box {background:lightgoldenrodyellow; padding:20px 15px 20px 10px; text-align:center; margin-bottom:30px; }
+.memo-box .title {font-weight:bold; font-size:18px; margin-bottom:8px; }
+.example-box {background:#fafafa; padding: 20px; display:flex; justify-content: center; align-items:center; flex-direction:column; flex-wrap:wrap; gap: 10px;}
+.example-box + .example-box {margin:20px 0;}
+.inp-txt {position:relative;}
+.inp-txt.on input {border-color:red}
+.inp-txt.on .btn-del {display:block;}
+.inp-txt input {padding:11px 10px; min-width:300px; border-radius:4px; border:1px solid #ddd; font-family:inherit; color:inherit; box-sizing:border-box}
+.inp-txt label {display:inline-block; width:100px; font-size:14px; margin-right:4px;}
+.btn-del {display:none; position:absolute; right:10px; top:50%; transform:translateY(-50%); width:18px; height:18px; line-height:18px; background:#ddd; border-radius:50%; }        
+.btn-del .txt {position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(1px 1px 1px 1px); /* IE6, IE7 */ clip:rect(1px, 1px, 1px, 1px);}
+.btn-del:before,
+.btn-del:after {position:absolute; left:8px; top:5px; width:2px; height:9px; background:#fff; content:''}
+.btn-del:before {transform:rotate(-45deg);}
+.btn-del:after {transform:rotate(45deg);}

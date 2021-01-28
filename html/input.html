@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 앞에 아이콘, 뒤에 삭제 버튼, 하단 버튼과 연동</h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="inp-txt">
+                <label for="inp1">기본</label>
+                <input type="text" id="inp1" name="" placeholder="내용을 입력해주세요.">
+            </div>
+            <div class="inp-txt type2">
+                <label for="inp2">아이콘</label>
+                <input type="search" id="inp2" name="" placeholder="검색어를 입력해주세요.">
+            </div>
+            <div class="inp-txt type3">
+                <label for="inp3">삭제 버튼</label>
+                <input type="text" id="inp3" name="" placeholder="아이디를 입력해주세요.">
+                <button type="button" class="btn-del"><span class="txt">내용삭제</span></button>
+            </div>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="inp-txt">
+                <label for="inp1">기본</label>
+                <input type="text" id="inpvalina1" name="" placeholder="내용을 입력해주세요.">
+            </div>
+            <div class="inp-txt type3">
+                <label for="inp3">삭제 버튼</label>
+                <input type="text" id="inpvalina3" name="" placeholder="아이디를 입력해주세요.">
+                <button type="button" class="btn-del"><span class="txt">내용삭제</span></button>
+            </div>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="inp-txt">
+                <label for="inp1">기본</label>
+                <input type="text" name="" placeholder="내용을 입력해주세요.">
+            </div>
+            <div class="inp-txt type3" :class="{'on' : isActive}">
+                <label for="inp3">삭제 버튼</label>
+                <input type="text" name="" v-on:keyup="inputValChk"  placeholder="아이디를 입력해주세요.">
+                <button type="button" class="btn-del" v-on:click="valueRemove">
+                    <span class="txt">내용삭제</span>
+                </button>
+            </div>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                <li>input 은 body 의 font-family, font-color 상속 불가</li>
+                <li>input의 포커스 아웃라인은 항상 디자인쪽에서 삭제 요청/색 변경 요청 </li>
+                <li>IE: input 기본 기능에 내용 삭제 있음</li>
+                <li>chrome : input[type=search] 기본 기능에 내용 삭제 있음</li>
+                <li>input[type=search] 는 border-box 속성이 적용되어서 <br>
+                input 으로 width, min-width 설정 시, input 보다 작게 나옴. </li>
+                <li>-parentElement : 태그만 찾는다-parentNode : 빈공간.. 등 포함</li>
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            function inputValChk ($inp) {
+                var $checkflag = $inp.parent();
+                if($inp.val().length > 0) $checkflag.addClass("on")
+                else $checkflag.removeClass("on")
+            }
+            $(".jquery .inp-txt input").on("input",function(){
+                inputValChk ($(this))
+            })
+
+            $(".jquery .btn-del").on("click",function(){
+                $(this).prev().val('')
+                inputValChk ($(this).prev())
+            })
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $input = $scriptArea.querySelectorAll("input")
+
+        function inputValChkJS ($ele) {
+            var $checkflag = $ele.parentElement;
+            if($ele.value.length > 0) $checkflag.classList.add("on")
+            else $checkflag.classList.remove("on")
+        }
+
+        $input.forEach(function(ele,idx){
+            ele.addEventListener("keyup",e => {
+                inputValChkJS(ele)
+            })
+            if(ele.nextElementSibling == null)  return 
+
+            ele.nextElementSibling.addEventListener("click",e => {
+                e.currentTarget.previousElementSibling.value = ''
+                inputValChkJS(e.currentTarget)
+            })
+        })
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                isActive : false
+            },
+            methods : {
+                inputValChk : function (event) {                    
+                    if(event.target.value.length > 0) {
+                        this.isActive = true
+                        console.log(this)
+                    } else this.isActive = false
+                },
+                valueRemove : function (event) {
+                    //input 내부의 value 를 삭제함
+                    
+                }
+            },
+            watch :{
+                isActive: function(changeValue, isActive){
+                    this.changeValue = this.isActive
+                }
+            }
+        })
+    </script>
+</body>
+</html>
