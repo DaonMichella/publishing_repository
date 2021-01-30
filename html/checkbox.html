@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkbox</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 전체 동의 기능</h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="inp-chk">
+                <label for="chk1">동의함</label>
+                <input type="checkbox" id="chk1" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chk2">동의함</label>
+                <input type="checkbox" id="chk2" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chk3">동의함</label>
+                <input type="checkbox" id="chk3" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chk_all">전체 동의함</label>
+                <input type="checkbox" id="chk_all" name="">
+            </div>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="inp-chk">
+                <label for="chkV1">동의함</label>
+                <input type="checkbox" id="chkV1" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV2">동의함</label>
+                <input type="checkbox" id="chkV2" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV3">동의함</label>
+                <input type="checkbox" id="chkV3" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV_all">전체 동의함</label>
+                <input type="checkbox" id="chkV_all" name="">
+            </div>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="inp-chk" v-for="(item,index) in items" :key="item.index">
+                <label for=`chkVue{index}`>동의함</label>
+                <input type="checkbox" id=`chkVue{index}` v-model="item.selected">
+            </div>
+            <div class="inp-chk">
+                <label for="chkVue_all">전체 동의함</label>
+                <input type="checkbox" id="chkVue_all" v-model="checkedAll">
+            </div>
+            {{checked}}
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+          
+            // 모두 체크/해제
+            $("#chk_all").on("click",function(){//change 왜 안먹지?
+                $target = $(this).closest(".jquery").find("input[type=checkbox]")
+                if($(this).is(":checked")) $target.prop("checked",true)
+                else $target.prop("checked",false)
+            })
+            //개별 체크 박스 제어
+            $(".jquery input[type=checkbox]").on("change",function(){
+                var $target = $("#chk_all")
+                var $chk_num = $(".jquery input[type=checkbox]:not(#chk_all):checked")
+                
+                if($chk_num.length == $(".jquery input[type=checkbox]:not(#chk_all)").length) $target.prop("checked",true)
+                else $target.prop("checked",false)
+            })
+
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $chk = $scriptArea.querySelectorAll("input[type=checkbox]:not(#chkV_all)")
+        const $chk_all = $scriptArea.querySelector("#chkV_all")
+        // 모두 체크/해제
+        $chk_all.addEventListener("change",function(e){
+            
+            $chk.forEach(function(item){
+                if(e.target.checked) item.checked = true
+                else item.checked = false       
+            })
+        })
+        //개별 체크 박스 제어
+        $chk.forEach(function(item){
+            item.addEventListener("change",function(e){
+                let $chk_num = $scriptArea.querySelectorAll("input[type=checkbox]:not(#chkV_all):checked")                
+                if($chk_num.length == $chk.length) $chk_all.checked = true
+                else $chk_all.checked = false
+                
+            })
+ 
+        })
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                items: [
+                    {
+                        id: 1,
+                        name: '약관1동의',
+                        selected: false,
+                    },
+                    {
+                        id: 2,
+                        name: "약관2동의",
+                        selected: false,
+                    },
+                    {
+                        id: 3,
+                        name: "약관3동의",
+                        selected: false,
+                    },
+                    ]
+            },
+            computed :{
+                checkedAll : {
+                    set (selected) {
+                        this.items.forEach(function(item){
+                            item.selected = selected
+                        })
+                    },
+                    get () {
+                        return this.items.every(function(item){
+                            return item.selected;
+                        })
+                    }
+                }
+               
+            },
+            methods: {
+                getSelectedUsers () {
+                    let items = this.items.filter((item) => {
+                    return item.selected;
+                });
+                
+                }
+            }
+        })
+    </script>
+</body>
+</html>
