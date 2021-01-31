@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 양 input 값이 있으면 버튼 활성화</h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="inp-txt">
+                <label for="inp_id">기본</label>
+                <input type="text" id="inp_id" name="" placeholder="아이디를 입력해주세요.">
+            </div>
+            <div class="inp-txt type2">
+                <label for="inp_pw">아이콘</label>
+                <input type="text" id="inp_pw" name="" placeholder="비밀번호를 입력해주세요.">
+            </div>
+            <button type="button" class="btn login"><span class="txt">로그인</span></button>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="inp-txt">
+                <label for="inpV_id">기본</label>
+                <input type="text" id="inpV_id" name="" placeholder="아이디를 입력해주세요.">
+            </div>
+            <div class="inp-txt type2">
+                <label for="inpV_pw">아이콘</label>
+                <input type="text" id="inpV_pw" name="" placeholder="비밀번호를 입력해주세요.">
+            </div>
+            <button type="button" class="btn login"><span class="txt">로그인</span></button>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="inp-txt" :class="{'on' : isActive}">
+                <label for="inpVue_id">기본</label>
+                <input type="text" id="inpVue_id" name="" v-model="msg_id"  v-on:keyup="inputValChk" placeholder="아이디를 입력해주세요.">
+            </div>
+            <div class="inp-txt type2" :class="{'on' : isActive}">
+                <label for="inpVue_pw">아이콘</label>
+                <input type="text" id="inpVue_pw" name="" v-model="msg_pw" v-on:keyup="inputValChk" placeholder="비밀번호를 입력해주세요.">
+            </div>
+            <button type="button" class="btn login" :disabled="msg_id.length < 1 || msg_pw.length <1"><span class="txt">로그인</span></button>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                <li>자바스크립트는 어떤 이벤트를 줄 때,클릭한 대상이 있고, 그 클릭대상에서 타고타고 들어가서 이벤트를 부여할 엘리먼트를 찾아서 이벤트를 준다.
+                    근데 뷰는 조금 다른 것 같다. 클릭 타겟에서 찾는 게 아니라 대상이 클릭되면, 값이 바뀌고, 그 값에 따라서 이벤트를 부여할 엘리먼트에 직접 이벤트를 선언해줘야하는 방식인 것 같다.
+                    이벤트를 선언 할 때 자바스크립트/제이쿼리랑 다르게 접근을 해야할 것 같다.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            // 초기 진입 시, 로그인 버튼 비활성화. 
+            // ID/PW Input 두 개에 값이 있으면 로그인 버튼 활성화
+            // input에 값이 입력 되면 개별 input 활성화 표시
+            var $loginBtnFlag = [false,false];
+
+            function inputValChk ($inp) {//개별 인풋 활성화
+                var $checkflag = $inp.parent();
+                if($inp.val().length > 0) $checkflag.addClass("on")
+                else $checkflag.removeClass("on")
+                inputValLengthChk ()
+            }
+            function loginBtnDisabled () {
+                var $loginBtn = $(".jquery .btn.login");                
+                if($loginBtnFlag[0] && $loginBtnFlag[1]) $loginBtn.prop("disabled",false)
+                else $loginBtn.prop("disabled",true)
+            }
+            function inputValLengthChk () {
+                $(".jquery input[type=text]").each(function(idx, item){
+                    if($(this).val() != '') {
+                        $loginBtnFlag[idx] = true;                       
+                    } else {
+                        $loginBtnFlag[idx] = false;    
+                    }
+                    loginBtnDisabled()
+                })
+            }
+            $(".jquery .inp-txt input").on("keyup",function(){
+                inputValChk ($(this))
+            })
+            loginBtnDisabled ()
+
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $input = $scriptArea.querySelectorAll("input[type=text]")
+        var $loginBtnFlag = [false,false];
+
+        function inputValChkJS ($ele) {
+            var $checkflag = $ele.parentElement;
+            if($ele.value.length > 0) $checkflag.classList.add("on")
+            else $checkflag.classList.remove("on")
+            inputValLengthChk ()
+        }
+        function loginBtnDisabled () {     
+            const $loginBtn = $scriptArea.querySelector(".btn.login")
+            
+            if($loginBtnFlag[0] && $loginBtnFlag[1]) $loginBtn.disabled = false
+            else $loginBtn.disabled = true;
+        }
+        function inputValLengthChk () {
+            $input.forEach (function(item,idx){
+                if(item.value != '') {
+                    $loginBtnFlag[idx] = true;                       
+                } else {
+                    $loginBtnFlag[idx] = false;    
+                }
+
+                loginBtnDisabled()
+            })
+        }
+        $input.forEach(function(ele,idx){
+            ele.addEventListener("keyup", e => {
+                inputValChkJS(ele)
+                loginBtnDisabled()
+            })
+
+        })
+
+        loginBtnDisabled()
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                isActive : false
+            },
+            methods : {
+                inputValChk : function (event) {                    
+                    if(event.target.value.length > 0) {
+                        this.isActive = true            
+                    } else this.isActive = false
+                }
+            },
+            watch :{
+                isActive: function(changeValue, isActive){
+                    this.changeValue = this.isActive
+                }
+            }
+        })
+    </script>
+</body>
+</html>
