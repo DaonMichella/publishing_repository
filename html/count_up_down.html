@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>count up & down</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 양 input 값이 있으면 버튼 활성화</h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <span>상승/하강 UI</span>
+            <span class="tx-count up"><i></i><var>456</var></span>
+            <span class="tx-count down"><i></i><var>456</var></span>
+            <div class="count-wrap">
+                <span>
+                    <button type="button" class="btn btn-count up">Up</button>
+                </span>
+                <span class="count-box">count : <var class="num">0</var></span>
+                <span>
+                    <button type="button" class="btn btn-count down">Down</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="count-wrap">
+                <span>
+                    <button type="button" class="btn btn-count up">Up</button>
+                </span>
+                <span class="count-box">count : <var class="num">0</var></span>
+                <span>
+                    <button type="button" class="btn btn-count down">Down</button>
+                </span>
+            </div>
+            
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="count-wrap">
+                <span>
+                    <button type="button" class="btn btn-count" v-on:click="countUp">Up</button>
+                </span>
+                <span class="count-box">count : <var class="num">{{count}}</var></span>
+                <span>
+                    <button type="button" class="btn btn-count" v-on:click="countDown">Down</button>
+                </span>
+            </div>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>                
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            
+            function countFunc ($this) {
+                var $target = $(".count-box var")
+                
+                if($this.hasClass("up")) count++
+                else if($this.hasClass("down")) count--
+                $target.text(count)
+            }
+
+            var count = 0;
+            $(".jquery .btn-count").on("click",function(e){                
+                countFunc($(this)) 
+            })
+
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $target = $scriptArea.querySelector(".count-box var")
+        const $btn = $scriptArea.querySelectorAll(".btn-count")
+        let count = 0;
+
+        function countFunc ($this) {            
+            if($this.classList.contains("up")) count++
+            else if($this.classList.contains("down")) count--
+            
+            $target.innerText = count
+        }
+
+        $btn.forEach(function(item){
+            item.addEventListener("click",function(e){
+                countFunc(e.target) 
+            })
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                count : 0
+            },
+            methods : {
+                countUp : function () {
+                    this.count++                    
+                },
+                countDown : function () {
+                    this.count--
+                }
+            }
+        })
+    </script>
+</body>
+</html>
