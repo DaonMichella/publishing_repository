@@ -18,14 +18,14 @@ button {background:none; border:none; cursor:pointer}
 .inp-txt label {display:inline-block; width:100px; font-size:14px; margin-right:4px;}
 
 /* btn */
-.btn {width:100%; max-width:400px; padding:10px; line-height:20px; }
+.btn {width:100%; max-width:400px; padding:10px; line-height:20px; border-radius:4px;}
 .btn-del {display:none; position:absolute; right:10px; top:50%; transform:translateY(-50%); width:18px; height:18px; line-height:18px; background:#ddd; border-radius:50%; }        
 .btn-del .txt {position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(1px 1px 1px 1px); /* IE6, IE7 */ clip:rect(1px, 1px, 1px, 1px);}
 .btn-del:before,
 .btn-del:after {position:absolute; left:8px; top:5px; width:2px; height:9px; background:#fff; content:''}
 .btn-del:before {transform:rotate(-45deg);}
 .btn-del:after {transform:rotate(45deg);}
-.btn.login {background:rgb(0,56,168)    ; color:#fff;}
+.btn.login {background:rgb(0,56,168); color:#fff;}
 .btn:disabled {background:#eee; }
 
 .btn-count {display:inline-block; width:auto; background-color:#eee;}
@@ -36,3 +36,11 @@ button {background:none; border:none; cursor:pointer}
 .tx-count i {display:inline-block; width:0; height:0; border-style:solid; border-width:4px; margin-right:5px;}
 .tx-count.up i {border-color:transparent transparent red transparent; vertical-align:4px}
 .tx-count.down i {border-color:blue transparent transparent transparent; vertical-align:-1px}
+
+.dropdown-wrap {position: relative;}
+.dropdown-box {display:none; position:absolute; top:50px; left:-120px; width:300px; border-radius:10px; background:#fff; border:1px solid #ddd; z-index:1;
+font-size:14px; box-sizing:border-box;}
+.dropdown-box ul li button {width:100%; padding:5px 10px; border-bottom:1px solid #ddd}
+.dropdown-box ul li button:hover {background:#eee}
+.btn-tgl-list {background:tomato; color:#fff}
+.btn-tgl-list.open + .dropdown-box {display:block;}

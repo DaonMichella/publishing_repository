@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPLE CSS drop menu</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 버튼 클릭 시, 하단에 메뉴 오픈(CSS, Simple JS)</h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="dropdown-wrap">
+                <button type="button" class="btn btn-tgl-list">메뉴 오픈</button>
+                <div class="dropdown-box">
+                    <ul>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li> 
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="dropdown-wrap">
+                <button type="button" class="btn btn-tgl-list">메뉴 오픈</button>
+                <div class="dropdown-box">
+                    <ul>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="dropdown-wrap">
+                
+                <button type="button" class="btn btn-tgl-list" :class="{'open':isActive }" v-on:click="dropMenuShowHide">메뉴 오픈</button>
+                <div class="dropdown-box">
+                    <ul>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li>
+                        <li><button type="button">리스트 1234</button></li>                       
+                    </ul>
+                </div>
+            </div>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                <li>Vue : 클래스 바인딩은 static 클래스와 같이 사용 가능</li>
+                <li>
+                    Vue : Invalid handler for event "click": got undefined 오류 <br>
+                    methods 로 선언할 함수를 computed 에 선언했더니 발생한 오류                
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            
+            $(".jquery .btn-tgl-list").on("click",function(){
+                $(this).toggleClass("open")
+            })
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $btn = $scriptArea.querySelector(".btn-tgl-list");
+
+        $btn.addEventListener("click",function(e){
+            e.target.classList.toggle("open")
+        })
+       
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                isActive : false
+            },
+            methods : {
+                dropMenuShowHide : function (e) {
+                    if(e.target.classList.contains("open")) this.isActive = false
+                    else this.isActive = true
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>

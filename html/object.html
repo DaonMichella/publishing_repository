@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Destructuring</title>
+</head>
+<body>
+    <script>
+        const human = {
+            name : "soo",
+            lastName : "Michaela",
+            nationality : "korean"
+        }
+
+        const {name, nationality : difName} = human
+        const difLastName = human.lastName
+
+        //새로운 variable 은 object에 있는 것들을 기반으로 생성 {} 이 있으면 안으로 들어가라는 의미
+        console.log(name,difLastName, difName   )
+    </script>
+</body>
+</html>
