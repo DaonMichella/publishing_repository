@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress bar</title>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : </h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="progress-bar">
+                <div class="bar">
+                    <div class="fill">0%</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn small lightblue btn-fillbar" >클릭해주세요</button>            
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="progress-bar">
+                <div class="bar">
+                    <div class="fill">0%</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn small lightblue" onClick="progressFunc()">클릭해주세요</button>            
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="progress-bar">
+                <div class="bar">
+                    <div class="fill" :style="{'width':percent + '%'}">{{percent}}%</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn small lightblue" v-on:click="progressFunc()">클릭해주세요</button>            
+                </div>
+            </div>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btn-fillbar").on("click",function(){
+                progressFunc()
+            })
+            function progressFunc(){
+                var $fill=$('.jquery .fill'),
+                percent = 0,
+                time = 1000,
+                bar = setInterval(fillBar, time/100);
+
+                function fillBar(){
+                    if(percent>=100){
+                        clearInterval(bar);
+                    }else{
+                        percent ++;
+                        $fill.css('width', percent+"%");
+                        $fill.text(percent+"%");
+                    }
+                }
+            }
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        function progressFunc(){
+            var $fill=$scriptArea.querySelector('.fill'),
+            percent = 0,
+            time = 1000,
+            bar = setInterval(fillBar, time/100);
+
+            function fillBar(){
+                if(percent>=100){
+                    clearInterval(bar);
+                }else{
+                    percent ++;
+                    $fill.style.width=percent+"%";
+                    $fill.innerHTML=percent+"%";
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                percent : 0,
+                time : 1000
+            },
+            computed : {
+                percent () {
+                    return this.percent.toFixed();
+                }
+            },
+            methods : {
+                progressFunc : function () {
+                    bar = setInterval( () => {
+                        if(this.percent>=100){
+                            clearInterval(bar);
+                        }else{
+                            this.percent += 1;                                                        
+                        }
+                    }, this.time/100);
+
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>

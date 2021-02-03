@@ -19,6 +19,8 @@ button {background:none; border:none; cursor:pointer}
 
 /* btn */
 .btn {width:100%; max-width:400px; padding:10px; line-height:20px; border-radius:4px;}
+.btn.small {width:150px; }
+
 .btn-del {display:none; position:absolute; right:10px; top:50%; transform:translateY(-50%); width:18px; height:18px; line-height:18px; background:#ddd; border-radius:50%; }        
 .btn-del .txt {position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(1px 1px 1px 1px); /* IE6, IE7 */ clip:rect(1px, 1px, 1px, 1px);}
 .btn-del:before,
@@ -27,9 +29,10 @@ button {background:none; border:none; cursor:pointer}
 .btn-del:after {transform:rotate(45deg);}
 .btn.login {background:rgb(0,56,168); color:#fff;}
 .btn:disabled {background:#eee; }
-
+.btn.lightblue {background:#d3e0ea; color:#111;}
 .btn-count {display:inline-block; width:auto; background-color:#eee;}
 
+.btn-group {margin-top:10px; text-align: center;}
 /* sub */
 .count-wrap > * {display:inline-block;margin:0 10px;}
 .count-wrap:after {display:block; content:''; clear:both;}
@@ -37,6 +40,7 @@ button {background:none; border:none; cursor:pointer}
 .tx-count.up i {border-color:transparent transparent red transparent; vertical-align:4px}
 .tx-count.down i {border-color:blue transparent transparent transparent; vertical-align:-1px}
 
+/* dropdown */
 .dropdown-wrap {position: relative;}
 .dropdown-box {display:none; position:absolute; top:50px; left:-120px; width:300px; border-radius:10px; background:#fff; border:1px solid #ddd; z-index:1;
 font-size:14px; box-sizing:border-box;}
@@ -44,3 +48,9 @@ font-size:14px; box-sizing:border-box;}
 .dropdown-box ul li button:hover {background:#eee}
 .btn-tgl-list {background:tomato; color:#fff}
 .btn-tgl-list.open + .dropdown-box {display:block;}
+
+/* progress */
+.progress-bar{background: rgb(255, 254, 254);}
+.bar {width: 500px;background: rgb(189, 177, 177);}
+.bar .fill {width: 0; height: 50px; background: #fcd1d1;    color:#fff;
+text-align: center; line-height: 50px;}
