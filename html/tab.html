@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab</title>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/contents.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : </h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <section class="tab-wrap">
+                <article class="btn-container">
+                    <button type="button" class="tab-btn active" data-id="history1">history</button>
+                    <button type="button" class="tab-btn" data-id="vision1">vision</button>
+                    <button type="button" class="tab-btn" data-id="goals1">goals</button>
+                </article>
+                <article class="tab-content">
+                    <div class="content active" id="history1">
+                        <h2 class="tab-title">history</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div class="content" id="vision1">
+                        <h2 class="tab-title">vision</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div class="content" id="goals1">
+                        <h2 class="tab-title">goals</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <section class="tab-wrap">
+                <article class="btn-container">
+                    <button type="button" class="tab-btn active" data-id="history2">history</button>
+                    <button type="button" class="tab-btn" data-id="vision2">vision</button>
+                    <button type="button" class="tab-btn" data-id="goals2">goals</button>
+                </article>
+                <article class="tab-content">
+                    <div class="content active" id="history2">
+                        <h2 class="tab-title">history</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div class="content" id="vision2">
+                        <h2 class="tab-title">vision</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div class="content" id="goals2">
+                        <h2 class="tab-title">goals</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <section class="tab-wrap">
+                <article class="btn-container">
+                    <button v-for="(tab,index) in tabs" 
+                    type="button" class="tab-btn"
+                    :class="{active: currentTab == index }"
+                    v-on:click="currentTab = index">{{tab}}</button>                   
+                    
+                </article>
+                <article class="tab-content">
+                    <div v-show="currentTab==0" class="content">
+                        <h2 class="tab-title">history</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div v-show="currentTab==1" class="content">
+                        <h2 class="tab-title">vision</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                    <div v-show="currentTab==2" class="content">
+                        <h2 class="tab-title">goals</h2>
+                        <p class="paras">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero earum blanditiis quos beatae? Quia, sequi nostrum. Porro, magni iusto. Omnis sapiente vitae repellat corrupti odio minima ratione saepe sed eum.</p>
+                    </div>
+                </article>
+            </section>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                <li>초기 화면에서는 active 클래스를 하드코딩해서 선택하는 걸로 제작했는데, 함수 파라미터로 시작점 결정하는 걸로 나중에 바꾸기 </li>
+                <li>똑같아 보이는 탭도 이렇게 다른 방식으로 만들 수 있구나. 나였으면 이렇게 안 만들었을 것 같은데, 새로운 방식을 배우니 신선하고 좋다.</li>
+                <li>id로 제어하니까 하나의 페이지에 여러개 가 들어갔을때 중복되는 현상이 있었음.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(".jquery .tab-btn").on("click",function(){
+                var id = $(this).data("id")
+                $(this).addClass("active").siblings().removeClass("active")
+                $("#"+id).addClass("active").siblings().removeClass("active")
+            })
+
+        })
+    </script>
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const $tabWrap = $scriptArea.querySelector(".tab-wrap")
+        const $btns = $scriptArea.querySelectorAll(".tab-btn")
+        const $tabContent = $scriptArea.querySelectorAll(".content")
+
+        $tabWrap.addEventListener("click",function(e){
+            const id = e.target.dataset.id;
+            if(id) {
+                //remove active from other buttons
+                $btns.forEach(function (btn) {
+                    btn.classList.remove("active")
+                })
+                e.target.classList.add("active")
+                //hide other articles
+                $tabContent.forEach(function(tabContent){
+                    tabContent.classList.remove("active")                    
+                })
+                const element = document.getElementById(id);
+                element.classList.add("active");
+            }
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+               currentTab : 0,
+               tabs : ['history','vision','goals']       
+            },
+            methods : {
+            },
+            
+        })
+    </script>
+</body>
+</html>

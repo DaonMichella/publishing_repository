@@ -49,7 +49,7 @@ h1,h2,h3,h4,h5,h6{
 	font-weight:normal
 }
 body,input,textarea,keygen,select,button{
-	font:normal 12px/1.2 'Open Sans','Noto Sans',sans-serif
+	font:normal 16px/1.2 'Open Sans','Noto Sans',sans-serif
 }
 input,textarea,select,button{
 	margin:0;padding:0;border-radius:0;color:#333;outline:0;vertical-align:middle; background:none; border:none;

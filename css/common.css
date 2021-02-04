@@ -39,18 +39,3 @@ button {background:none; border:none; cursor:pointer}
 .tx-count i {display:inline-block; width:0; height:0; border-style:solid; border-width:4px; margin-right:5px;}
 .tx-count.up i {border-color:transparent transparent red transparent; vertical-align:4px}
 .tx-count.down i {border-color:blue transparent transparent transparent; vertical-align:-1px}
-
-/* dropdown */
-.dropdown-wrap {position: relative;}
-.dropdown-box {display:none; position:absolute; top:50px; left:-120px; width:300px; border-radius:10px; background:#fff; border:1px solid #ddd; z-index:1;
-font-size:14px; box-sizing:border-box;}
-.dropdown-box ul li button {width:100%; padding:5px 10px; border-bottom:1px solid #ddd}
-.dropdown-box ul li button:hover {background:#eee}
-.btn-tgl-list {background:tomato; color:#fff}
-.btn-tgl-list.open + .dropdown-box {display:block;}
-
-/* progress */
-.progress-bar{background: rgb(255, 254, 254);}
-.bar {width: 500px;background: rgb(189, 177, 177);}
-.bar .fill {width: 0; height: 50px; background: #fcd1d1;    color:#fff;
-text-align: center; line-height: 50px;}

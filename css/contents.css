@@ -1,0 +1,52 @@
+
+/* dropdown */
+.dropdown-wrap {position: relative;}
+.dropdown-box {display:none; position:absolute; top:50px; left:-120px; width:300px; border-radius:10px; background:#fff; border:1px solid #ddd; z-index:1;
+font-size:14px; box-sizing:border-box;}
+.dropdown-box ul li button {width:100%; padding:5px 10px; border-bottom:1px solid #ddd}
+.dropdown-box ul li button:hover {background:#eee}
+.btn-tgl-list {background:tomato; color:#fff}
+.btn-tgl-list.open + .dropdown-box {display:block;}
+
+/* progress */
+.progress-bar{background: rgb(255, 254, 254);}
+.bar {width: 500px;background: rgb(189, 177, 177);}
+.bar .fill {width: 0; height: 50px; background: #fcd1d1;    color:#fff;
+text-align: center; line-height: 50px;}
+
+/* tab */
+.btn-container {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.tab-btn:nth-child(1) {
+    border-top-left-radius: 3px;
+}
+.tab-btn:nth-child(3) {
+    border-top-right-radius: 3px;
+}
+.tab-btn {
+    padding: 1rem 0;
+    border: none;
+    text-transform: capitalize;
+    font-size: 1rem;
+    display: block;
+    background: #fff;
+    cursor: pointer;
+    transition: all 1s;
+}
+.tab-btn:hover:not(.active) {
+    background: orange;
+    color: #fff;
+}
+.tab-content {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 2rem 1.5rem;
+}
+/* hide content */
+.content {display: none;}
+.tab-btn.active {background:#fff;}
+.content.active {display: block;}
