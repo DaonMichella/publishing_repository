@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email option check</title>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/contents.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : 셀렉트 선택 시, 옵션 값에 따라서 input 변경 </h2>
+        <div class="example-box jquery">
+            <p class="txt-desc">제이쿼리</p>
+            <div class="email-wrap">
+                <label for="email1">사용자 이메일</label>
+                <span class="inp-txt">
+                    <input type="text" id="email1" title="이메일 아이디" style="width:100px;">
+                </span>
+                <span class="txt-form">@</span>
+                <span class="inp-select">
+                    <label for="select1">선택해주세요.</label>
+                    <select name="emailSelection" id="select1">
+                        <option value="0">선택해주세요.</option>
+                        <option value="naver">naver.com</option>
+                        <option value="hanmail">hanmail.net</option>
+                        <option value="custom">직접입력</option>
+                    </select>
+                </span>
+                <span class="inp-txt">
+                    <input type="text" id="email2" title="이메일 도메인" style="width:100px;">
+                </span>
+            </div>
+        </div>
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="email-wrap">
+                <label for="email3">사용자 이메일</label>
+                <span class="inp-txt">
+                    <input type="text" id="email3" title="이메일 아이디" style="width:100px;">
+                </span>
+                <span class="txt-form">@</span>
+                <span class="inp-select">
+                    <label for="select2">선택해주세요.</label>
+                    <select name="" id="select2">
+                        <option value="0">선택해주세요.</option>
+                        <option value="naver">naver.com</option>
+                        <option value="hanmail">hanmail.net</option>
+                        <option value="custom">직접입력</option>
+                    </select>
+                </span>
+                <span class="inp-txt">
+                    <input type="text" id="email4" title="이메일 도메인" style="width:100px;">
+                </span>
+            </div>
+        </div>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+            <div class="email-wrap">
+                <label for="email5">사용자 이메일</label>
+                <span class="inp-txt">
+                    <input type="text" id="email5" title="이메일 아이디" style="width:100px;">
+                </span>
+                <span class="txt-form">@</span>
+                <span class="inp-select">
+                    <label for="select3">선택해주세요.</label>
+                    <select name="" id="select3" v-model="selectData" @change="onChang($event)">
+                        <option value="0">선택해주세요.</option>
+                        <option value="naver">naver.com</option>
+                        <option value="hanmail">hanmail.net</option>
+                        <option value="custom">직접입력</option>
+                    </select>
+                </span>
+                <span class="inp-txt">
+                    <input type="text" id="email6" title="이메일 도메인" style="width:100px;">
+                </span>
+            </div>
+        </div>        
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                <li>집중이 안되서 마무리 하다가 중단. 2/6,7에 해결하기</li>
+                <li>아이디로 input/select 를 지칭하니, 동일 페이지 내 영역이 추가되었을 때 아이디를 바꿔줘야하는 번거로움이 있음.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $sel = $(".jquery .email-wrap .inp-select")
+            //초기에 custom box 숨김 처리
+            $sel.next().hide();
+
+            $("select[name=emailSelection]").change(function(){
+                if($(this).val() == "0") {
+                    $("#email2").val("");
+                } else if (($(this).val() == "custom")) {
+                    $sel.next().show()
+                } else {
+                    $("#email2").val($(this).val())
+                    $("#email2").attr("readonly",true)
+                }
+            })
+        })
+    </script>
+    <script>
+        
+        const $scriptArea = document.querySelector(".vanila");
+        const $sel2 = $scriptArea.querySelector(".email-wrap .inp-select")
+        const $emailDomain = $scriptArea.querySelector("#email4")
+            
+            //초기에 custom box 숨김 처리
+            $sel2.nextElementSibling.style.display= "none"
+
+            $sel2.querySelector('select').addEventListener("change",function(e){
+                if (($emailDomain.value == "custom")) {
+                    $sel2.nextElementSibling.style.display= "block"
+                } else {
+                    $emailDomain.value == e.target.value
+                    $emailDomain.setAttribute("readonly",true)
+                }
+            })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                selectData : ''
+            },
+            methods : {
+                onChange(e) {
+                    if (($emailDomain.value == "custom")) {
+                    $sel2.nextElementSibling.style.display= "block"
+                } else {
+                    $emailDomain.value == e.target.value
+                    $emailDomain.setAttribute("readonly",true)
+                }
+                }
+            },
+            
+        })
+    </script>
+</body>
+</html>

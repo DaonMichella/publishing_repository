@@ -48,5 +48,8 @@ text-align: center; line-height: 50px;}
 }
 /* hide content */
 .content {display: none;}
+.vue .content {display:block}
 .tab-btn.active {background:#fff;}
 .content.active {display: block;}
+
+/* email option chk */

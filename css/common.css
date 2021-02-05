@@ -14,7 +14,7 @@ button {background:none; border:none; cursor:pointer}
 .inp-txt {position:relative;}
 .inp-txt.on input {border-color:red}
 .inp-txt.on .btn-del {display:block;}
-.inp-txt input {padding:11px 10px; min-width:300px; border-radius:4px; border:1px solid #ddd; font-family:inherit; color:inherit; box-sizing:border-box}
+.inp-txt input {padding:11px 10px; border-radius:4px; border:1px solid #ddd; font-family:inherit; color:inherit; box-sizing:border-box}
 .inp-txt label {display:inline-block; width:100px; font-size:14px; margin-right:4px;}
 
 /* btn */
