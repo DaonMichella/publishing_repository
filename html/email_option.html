@@ -15,22 +15,21 @@
         <div class="example-box jquery">
             <p class="txt-desc">제이쿼리</p>
             <div class="email-wrap">
-                <label for="email1">사용자 이메일</label>
+                <label for="email1" class="label">사용자 이메일</label>
                 <span class="inp-txt">
-                    <input type="text" id="email1" title="이메일 아이디" style="width:100px;">
+                    <input type="text" id="email1" placeholder="이메일 아이디" title="이메일 아이디" style="width:150px;">
                 </span>
                 <span class="txt-form">@</span>
                 <span class="inp-select">
-                    <label for="select1">선택해주세요.</label>
                     <select name="emailSelection" id="select1">
-                        <option value="0">선택해주세요.</option>
+                        <option value="0" disabled selected>Select your option</option>
                         <option value="naver">naver.com</option>
                         <option value="hanmail">hanmail.net</option>
                         <option value="custom">직접입력</option>
                     </select>
                 </span>
                 <span class="inp-txt">
-                    <input type="text" id="email2" title="이메일 도메인" style="width:100px;">
+                    <input type="text" id="email2" title="이메일 도메인" placeholder="주소를 입력해주세요" style="width:150px;">
                 </span>
             </div>
         </div>
@@ -38,22 +37,21 @@
         <div class="example-box vanila">
             <p class="txt-desc">자바스크립트</p>
             <div class="email-wrap">
-                <label for="email3">사용자 이메일</label>
+                <label for="email3" class="label">사용자 이메일</label>
                 <span class="inp-txt">
-                    <input type="text" id="email3" title="이메일 아이디" style="width:100px;">
+                    <input type="text" id="email3" placeholder="이메일 아이디" title="이메일 아이디" style="width:150px;">
                 </span>
                 <span class="txt-form">@</span>
                 <span class="inp-select">
-                    <label for="select2">선택해주세요.</label>
                     <select name="" id="select2">
-                        <option value="0">선택해주세요.</option>
+                        <option value="0" disabled selected>Select your option</option>
                         <option value="naver">naver.com</option>
                         <option value="hanmail">hanmail.net</option>
                         <option value="custom">직접입력</option>
                     </select>
                 </span>
                 <span class="inp-txt">
-                    <input type="text" id="email4" title="이메일 도메인" style="width:100px;">
+                    <input type="text" id="email4" title="이메일 도메인" placeholder="주소를 입력해주세요" style="width:150px;">
                 </span>
             </div>
         </div>
@@ -61,29 +59,27 @@
         <div class="example-box vue">
             <p class="txt-desc">뷰</p>
             <div class="email-wrap">
-                <label for="email5">사용자 이메일</label>
+                <label for="email5" class="label">사용자 이메일</label>
                 <span class="inp-txt">
-                    <input type="text" id="email5" title="이메일 아이디" style="width:100px;">
+                    <input type="text" id="email5" placeholder="이메일 아이디" title="이메일 아이디" style="width:150px;">
                 </span>
                 <span class="txt-form">@</span>
                 <span class="inp-select">
-                    <label for="select3">선택해주세요.</label>
-                    <select name="" id="select3" v-model="selectData" @change="onChang($event)">
-                        <option value="0">선택해주세요.</option>
+                    <select name="" id="select3" v-on:change="onChange($event)">
+                        <option value="0" disabled selected>Select your option</option>
                         <option value="naver">naver.com</option>
                         <option value="hanmail">hanmail.net</option>
                         <option value="custom">직접입력</option>
                     </select>
                 </span>
-                <span class="inp-txt">
-                    <input type="text" id="email6" title="이메일 도메인" style="width:100px;">
+                <span class="inp-txt" v-show="customSelect">
+                    <input type="text" id="email6" title="이메일 도메인" placeholder="주소를 입력해주세요" style="width:150px;">
                 </span>
             </div>
         </div>        
         <div class="memo-box">
             <p class="title">메모</p>
             <ul>
-                <li>집중이 안되서 마무리 하다가 중단. 2/6,7에 해결하기</li>
                 <li>아이디로 input/select 를 지칭하니, 동일 페이지 내 영역이 추가되었을 때 아이디를 바꿔줘야하는 번거로움이 있음.</li>
             </ul>
         </div>
@@ -101,10 +97,7 @@
                     $("#email2").val("");
                 } else if (($(this).val() == "custom")) {
                     $sel.next().show()
-                } else {
-                    $("#email2").val($(this).val())
-                    $("#email2").attr("readonly",true)
-                }
+                } 
             })
         })
     </script>
@@ -117,13 +110,10 @@
             //초기에 custom box 숨김 처리
             $sel2.nextElementSibling.style.display= "none"
 
-            $sel2.querySelector('select').addEventListener("change",function(e){
-                if (($emailDomain.value == "custom")) {
-                    $sel2.nextElementSibling.style.display= "block"
-                } else {
-                    $emailDomain.value == e.target.value
-                    $emailDomain.setAttribute("readonly",true)
-                }
+            $sel2.querySelector('select').addEventListener("change",function(e){                
+                if ((e.target.value == "custom")) {
+                    $sel2.nextElementSibling.style.display= "inline-block"
+                } 
             })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -131,15 +121,12 @@
         var app = new Vue({
             el:".vue",
             data: {
-                selectData : ''
+                customSelect:false
             },
             methods : {
                 onChange(e) {
-                    if (($emailDomain.value == "custom")) {
-                    $sel2.nextElementSibling.style.display= "block"
-                } else {
-                    $emailDomain.value == e.target.value
-                    $emailDomain.setAttribute("readonly",true)
+                    if ((e.target.value == "custom")) {
+                    this.customSelect=true                    
                 }
                 }
             },

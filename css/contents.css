@@ -53,3 +53,4 @@ text-align: center; line-height: 50px;}
 .content.active {display: block;}
 
 /* email option chk */
+.email-wrap .label {display:inline-block; margin-right:10px; background:orange; border-radius:20px; padding:5px 10px; font-size:14px; color:#fff}
