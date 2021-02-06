@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); 
 
-* {margin:0; padding:0;}
-li {list-style: none;}
-body {font-family:'Noto Sans KR','Courier New', Courier, monospace, sans-serif; color:#111; }
-button {background:none; border:none; cursor:pointer}
+
+/* common */
+.clear:after {display:block; content:''; clear:both}
+.hide {overflow: hidden; display: inline-block; border: 0; margin: -1px; width: 1px; height: 1px; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);}
+
+/* layout */
 #wrap {margin: 40px auto; width:980px;}
 .title {text-align:center; margin-bottom:10px; }
 .memo-box {background:lightgoldenrodyellow; padding:20px 15px 20px 10px; text-align:center; margin-bottom:30px; }
