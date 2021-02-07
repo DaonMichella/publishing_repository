@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout</title>
-    <link rel="stylesheet" href="../css/reset.css"/>
-    <link rel="stylesheet" href="../css/common.css"/>
-    <link rel="stylesheet" href="../css/layout.css"/>
-    <link rel="stylesheet" href="../css/contents.css"/>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
 </head>
 <body>
     <div id="wrap">
        <header id="header" class="header">
            <div class="inbox clear">
                <nav id="gnb" class="gnb-wrap">
-                   <h1 class="logo"><img src="../images/logo.png" alt="로고"></h1>
+                   <h1 class="logo"><img src="../../images/logo.png" alt="로고"></h1>
                     <button type="button" class="btn-menu">메뉴 오픈</button>
                     <div class="gnb-box">
                         <ul class="clear">
@@ -38,5 +38,12 @@
            footer
        </footer>
     </div>
+
+    <script>
+        const btn = document.querySelector(".btn-menu");
+        btn.addEventListener("click",function(e){
+            e.target.classList.add("open")
+        })
+    </script>
 </body>
 </html>
