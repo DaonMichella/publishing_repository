@@ -20,6 +20,12 @@ html, body {height:100%; font-size:14px; color:#111}
 .fixed {position:fixed; top:0; left:0; z-index:150}
 
 .btn-menu {display:none; width:36px; height:36px; background:url(../images/ico_btn-menu.png) no-repeat center; text-indent:-9999px; }
+
+.layer-pop {display:none;position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5)}
+.layer-slider-cnt {position:absolute; left:0; bottom:-100%; transition:all 1s; padding:20px; border-top-left-radius:20px; border-top-right-radius: 20px; width:100%; height:60%;background:#fff; box-sizing:border-box;}
+.layer-pop.open {display:block}
+.layer-pop.open .layer-slider-cnt {bottom:0;}
+
 @media (max-width:640px) {
     .gnb-box {display:none; position:fixed; right:0; top:0; width:200px; height:100%; z-index:100}
     .gnb-wrap .btn-menu {display:block}

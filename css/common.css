@@ -21,6 +21,7 @@
 
 /* select */
 select {-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+
 .inp-select select {padding:11px 30px 11px 15px; border:1px solid #ddd; background:url("../images/ico_select.png") no-repeat right 10px top 55%/10px auto; }
 .ul-select select {}
 

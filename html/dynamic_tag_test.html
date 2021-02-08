@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 동적 태그 생성</title>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/layout.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/contents.css"/>
+</head>
+<body>
+    <div id="wrap">
+        <button type="button" class="btn btn-layer">레이어 버튼</button>
+        <div id="layer-slide" class="layer-pop">
+            <div class="layer-slider-cnt">
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        var $btnLayer = document.querySelectorAll(".btn-layer")
+        $btnLayer.forEach(function(item){
+            item.addEventListener("click",function(){
+                document.querySelector("#layer-slide").classList.add("open")
+                listGenerate ()
+            })
+        })
+
+        function listGenerate () {
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            var label = document.createElement("label");
+            label.setAttribute("for","radio1")
+            label.innerText = '라디오'
+
+            li.innerHTML = "<label for='radio1'>전화</label><input type='radio' id='radio1'></span> "
+            ul.appendChild(li)
+            li.appendChild(label)
+            document.querySelector(".layer-slider-cnt").appendChild(ul)
+
+            document.querySelector("label").addEventListener("click",function(){
+                alert()
+            })
+        }
+        /* 엘리먼트로 넣을 수 있고, 텍스트로 넣을 수가 있구나 */
+        //
+    </script>
+</body>
+</html>
