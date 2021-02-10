@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+  button {position:absolute; background:red; left:0; top:0; width:100px; height:100px;}
+	button.continue {
+	  transition: 1s;transition-timing-function:ease-in;
+	}
+  </style>
+ </head>
+ <body>
+	
+	<button type="button" class="continue">버튼</button>
+	<script type="text/javascript">
+		document.querySelector("button").addEventListener("click",function(){
+			document.querySelectorAll('button.continue').forEach(button => {
+				button.style.left ='100px'
+				button.style.top = '200px'
+			})
+		})
+		
+	</script>
+ </body>
+</html>
