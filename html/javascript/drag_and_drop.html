@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart drag and drop</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+    <style>
+        .content-box {display:flex; width:100%; justify-content: space-between;}
+        .drag-area {flex:2; background:orange}
+        .chart-add-list {flex:0.5; }
+        .chart-add-list a {display:block; margin-bottom:10px; padding:20px 5px; border:1px solid #ddd; text-align:center}
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+
+
+        <div class="example-box vanila">
+            <h2>요건 : 영역에 드래그해서 그래프 추가</h2>
+            <p class="txt-desc">자바스크립트</p>
+            
+            <div class="content-box">
+                <div class="drag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div id="chart"></div>
+                </div>
+                <ul class="chart-add-list">            
+                    <li><a href="#" draggable="true" ondragstart="drag(event)" >차트1</a></li>
+                    <li><a href="#">차트1</a></li>
+                    <li><a href="#">차트1</a></li>
+                    <li><a href="#">차트1</a></li>
+                    <li><a href="#">차트1</a></li>
+                    <li><a href="#">차트1</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+        
+    </div>
+    <!-- apex chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+            event.target.appendChild(chart);
+        }
+
+        var options = {
+          series: [{
+          name: 'Net Profit',
+          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+        }, {
+          name: 'Revenue',
+          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        }, {
+          name: 'Free Cash Flow',
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        },
+        yaxis: {
+          title: {
+            text: '$ (thousands)'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
+            }
+          }
+        }
+        };
+
+    </script>
+</body>
+</html>
