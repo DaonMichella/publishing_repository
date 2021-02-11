@@ -58,18 +58,25 @@
         }
         
         function drag(event,chartOption) {
+          document.querySelector("#chart").remove()
+          var chartElement = document.createElement("div")
+          chartElement.id = "chart"
+          document.querySelector(".drag-area").appendChild(chartElement)
+
+          //dataTransfer.setData(format, data);
+          chartOption = JSON.stringify(chartOption)
           event.dataTransfer.setData("text", chartOption);
         }
 
         function drop(event) {
-            event.preventDefault();
-            var chartOption = event.dataTransfer.getData("text");
-            
+            event.preventDefault();            
+            var chartOption = JSON.parse(event.dataTransfer.getData("text"));
+            console.log(chartOption)
             //선언된 object 불러오기
-            var chart = new ApexCharts(document.querySelector("#chart"), options1);
+            var chart = new ApexCharts(document.querySelector("#chart"), chartOption);
 
             chart.render();
-            event.target.appendChild(chart);
+            event.target.append(chart);
         }
 
         var options1 = {
