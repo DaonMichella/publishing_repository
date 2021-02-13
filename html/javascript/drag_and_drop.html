@@ -12,6 +12,8 @@
         .drag-area {flex:2; background:orange}
         .chart-add-list {flex:0.5; }
         .chart-add-list a {display:block; margin-bottom:10px; padding:20px 5px; border:1px solid #ddd; text-align:center}
+        .drag-area {display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows:115px 115px 115px; gap:10px;}
+        .drag-area .chart-box {background:red}
     </style>
 </head>
 <body>
@@ -25,7 +27,15 @@
             
             <div class="content-box">
                 <div class="drag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div id="chart"></div>
+                    <div id="chart1" class="chart-box"></div>
+                    <div id="chart2" class="chart-box"></div>
+                    <div id="chart3" class="chart-box"></div>
+                    <div id="chart4" class="chart-box"></div>
+                    <div id="chart5" class="chart-box"></div>
+                    <div id="chart6" class="chart-box"></div>
+                    <div id="chart7" class="chart-box"></div>
+                    <div id="chart8" class="chart-box"></div>
+                    <div id="chart9" class="chart-box"></div>
                 </div>
                 <ul class="chart-add-list">            
                     <li><a href="#" draggable="true" ondragstart="drag(event, options1)">bar 차트</a></li>
@@ -58,25 +68,19 @@
         }
         
         function drag(event,chartOption) {
-          document.querySelector("#chart").remove()
-          var chartElement = document.createElement("div")
-          chartElement.id = "chart"
-          document.querySelector(".drag-area").appendChild(chartElement)
-
           //dataTransfer.setData(format, data);
           chartOption = JSON.stringify(chartOption)
           event.dataTransfer.setData("text", chartOption);
         }
 
-        function drop(event) {
-            event.preventDefault();            
+        function drop(event) {          
             var chartOption = JSON.parse(event.dataTransfer.getData("text"));
-            console.log(chartOption)
+            
             //선언된 object 불러오기
-            var chart = new ApexCharts(document.querySelector("#chart"), chartOption);
+            var chart = new ApexCharts(event.target, chartOption);
 
+            event.currentTarget.append(chart);
             chart.render();
-            event.target.append(chart);
         }
 
         var options1 = {
