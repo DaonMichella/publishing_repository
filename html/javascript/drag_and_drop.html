@@ -12,8 +12,9 @@
         .drag-area {flex:2; background:orange}
         .chart-add-list {flex:0.5; }
         .chart-add-list a {display:block; margin-bottom:10px; padding:20px 5px; border:1px solid #ddd; text-align:center}
-        .drag-area {display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows:115px 115px 115px; gap:10px;}
-        .drag-area .chart-box {background:red}
+        .drag-area {display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows:repeat(3,170px); gap:10px;}
+        .drag-area .chart-box {border:1px solid #ddd}
+        
     </style>
 </head>
 <body>
@@ -93,7 +94,7 @@
         }],
           chart: {
           type: 'bar',
-          height: 350
+          height: 'auto'
         },
         plotOptions: {
           bar: {
@@ -139,7 +140,7 @@
           data: [11, 32, 45, 32, 34, 52, 41]
         }],
           chart: {
-          height: 350,
+          height: 'auto',
           type: 'area'
         },
         dataLabels: {
@@ -164,7 +165,7 @@
             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
         }],
           chart: {
-          height: 350,
+          height: 'auto',
           type: 'line',
           zoom: {
             enabled: false
@@ -194,7 +195,7 @@
         var options4 = {
           series: [44, 55, 67, 83],
           chart: {
-          height: 350,
+          height: 'auto',
           type: 'radialBar',
         },
         plotOptions: {
@@ -232,7 +233,7 @@
           data: [44, 76, 78, 13, 43, 10],
         }],
           chart: {
-          height: 350,
+          height: 'auto',
           type: 'radar',
           dropShadow: {
             enabled: true,
