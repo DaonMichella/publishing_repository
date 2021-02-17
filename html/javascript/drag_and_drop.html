@@ -14,6 +14,8 @@
         .chart-add-list a {display:block; margin-bottom:10px; padding:20px 5px; border:1px solid #ddd; text-align:center}
         .drag-area {display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows:repeat(3,170px); gap:10px;}
         .drag-area .chart-box {border:1px solid #ddd}
+        .drag-area .chart-box.twice {border-bottom:0}
+        .drag-area .chart-box.upside {border-top:0}
         
     </style>
 </head>
@@ -27,16 +29,16 @@
             <p class="txt-desc">자바스크립트</p>
             
             <div class="content-box">
-                <div class="drag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <div id="chart1" class="chart-box"></div>
-                    <div id="chart2" class="chart-box"></div>
-                    <div id="chart3" class="chart-box"></div>
-                    <div id="chart4" class="chart-box"></div>
-                    <div id="chart5" class="chart-box"></div>
-                    <div id="chart6" class="chart-box"></div>
-                    <div id="chart7" class="chart-box"></div>
-                    <div id="chart8" class="chart-box"></div>
-                    <div id="chart9" class="chart-box"></div>
+                <div class="drag-area" >
+                    <div id="chart1" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart2" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart3" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart4" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart5" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart6" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart7" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart8" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div id="chart9" class="chart-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 </div>
                 <ul class="chart-add-list">            
                     <li><a href="#" draggable="true" ondragstart="drag(event, options1)">bar 차트</a></li>
@@ -54,7 +56,14 @@
                 <li>1. 드래그시 차트 추가 </li>
                 <li>2. 차트 종류 추가</li>
                 <li>3. 드롭 영역 그리드 분리</li>
-                <li>4. 각 영역 별 분리 시, 1칸/2칸 구분</li>                
+                <li>4. 각 영역 별 분리 시, 1칸/2칸 구분</li>  
+                <li>event.currentTarget과 event.target의 차이</li>
+                <li>event.currentTarget : 이벤트가 걸려있는 위치를 반환(this)<br>
+                  the element to which the event handler has been attached.</li>
+                <li>event.target : 실제 이벤트가 발생하는 위치를 반환</li>
+                <li>button &gt; span 이 있는 엘리먼트에 클릭 이벤트시, <br>
+                  event.target은 (이벤트가 위임된) span을 반환<br>
+                  event.currentTarget은 (onclick이벤트가 부착된) button을 반환</li>
             </ul>
         </div>
         
@@ -69,19 +78,55 @@
         }
         
         function drag(event,chartOption) {
-          //dataTransfer.setData(format, data);
-          chartOption = JSON.stringify(chartOption)
+          //dataTransfer.setData(format, data);           
+          var chartOption = JSON.stringify(chartOption)
           event.dataTransfer.setData("text", chartOption);
         }
 
         function drop(event) {          
             var chartOption = JSON.parse(event.dataTransfer.getData("text"));
-            
-            //선언된 object 불러오기
-            var chart = new ApexCharts(event.target, chartOption);
+            if (chartOption.chart.height == 332) {//두개 영역 차지하는 크기            
+              if (event.target.id == 'chart7' || event.target.id == 'chart8' || event.target.id == 'chart9') {
+                //drop 영역이 차트 박스의 전체 length에서 마지막 3개일 경우 삽입 금지 
+                return 
+              } else {
+                var chart = new ApexCharts(event.currentTarget, chartOption)
+                event.target.append();
+                chart.render();
+                
+                setTimeout(function(){
+                  var num = Number(event.target.id.charAt(event.target.id.length-1))
+                  document.querySelector("#chart"+ num).classList.add("disabled")
+                  document.querySelector("#chart"+ num).classList.add("twice")
+                  document.querySelector("#chart"+ (num + 3)).classList.add("disabled")  
+                  document.querySelector("#chart"+ (num + 3)).classList.add("upside")  
+                })
+                
+                
+                
+                
+              }
 
-            event.currentTarget.append(chart);
-            chart.render();
+            } else {
+              if(event.target.tagName =='foreignObject') {              
+                  return 
+                } else {
+                  //선언된 object 불러오기 생성자 
+                  //2021-02-17 오류 수정 : currentTarget이 아니라 event.target에 append 하니 오류 사라짐
+                  var chart = new ApexCharts(event.target, chartOption)
+                  event.target.append();
+                  chart.render();
+
+                  setTimeout(function(){
+                    var num = Number(event.target.id.charAt(event.target.id.length-1))
+                    document.querySelector("#chart"+ num).classList.add("disabled")
+                    document.querySelector("#chart"+ (num + 3)).classList.add("disabled")  
+                  })
+                }
+            }
+            
+            
+            
         }
 
         var options1 = {
@@ -233,7 +278,7 @@
           data: [44, 76, 78, 13, 43, 10],
         }],
           chart: {
-          height: 'auto',
+          height: 332,
           type: 'radar',
           dropShadow: {
             enabled: true,
