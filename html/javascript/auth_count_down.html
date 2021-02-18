@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>휴대폰 인증 Count down</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<style>
+		#wrap {width:500px; margin:0 auto;}
+		.tx-red {color:#f00}
+		label {display:block; margin-bottom:3px; font-size:14px; color:#777; }
+		.inp-txt {position:relative;}
+		.inp-txt input {width:100%; padding:8px 10px; line-height:18px; font-size:14px; border:1px solid #ddd;}
+		.inp-txt + .inp-txt {margin-top:8px;}
+		.auth-time {position:absolute; right:10px; top:50%; margin-top:-9px; line-height:18px; font-weight:bold; }
+
+		.title {margin-bottom:20px;}
+		.title .sub {font-size:12px; color:#ccc; }
+		.title .txt {display:block; font-size:28px; font-weight:600; color:#f00}
+
+		.inp-auth {position:relative; margin-bottom:20px; }
+		.inp-auth input {display:inline-block; width:calc(100% - 100px); padding:8px 10px; border-bottom:1px solid #ddd; }
+		.inp-auth input:focus {border-color:#111}
+		.inp-auth .btn-inp {display:inline-block; padding:8px 0; border-radius:4px; width:70px; border:1px solid #111; }
+	</style>
+	<script>
+	function $ComTimer(){
+		//prototype extend
+	}
+
+	$ComTimer.prototype = {
+		comSecond : "",
+		min:"",
+		sec:"",
+		fnCallback : function(){},
+		timer : ""	,
+		domId : "",
+		fnTimer : function(){
+			min = this.comSecond / 60
+			sec = (this.comSecond < 10 || this.comSecond % 60 == 0? "0" + this.comSecond % 60 : this.comSecond % 60)
+			var m = Math.floor(min)+ ":" +sec;	// 남은 시간 계산
+			this.comSecond--;	// 1초씩 감소				
+			this.domId.innerText = m;
+
+			if (this.comSecond < 0) {
+				// 시간이 종료 되었으면..
+				clearInterval(this.timer);// 타이머 해제
+			}
+		},
+		fnStop : function(){
+			clearInterval(this.timer);
+		}
+	}
+
+	window.onload = function(){
+    	var AuthTimer = new $ComTimer()
+		AuthTimer.comSecond = 180;
+		AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
+		AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+		AuthTimer.domId = document.getElementById("timer");
+
+		document.querySelector(".auth-box.tel .btn-inp").addEventListener("click",function(){
+			document.querySelector(".auth-box.auth").style.display ="block"
+		})
+    }
+	</script>
+ </head>
+ <body>
+	<div id="wrap">
+		<h2 class="title">
+			<span class="sub">Welcome to</span>
+			<strong class="txt">homepage</strong>
+		</h2>
+		<div class="auth-box tel">
+			<label for="inp1">휴대폰번호 인증</label>
+			<div class="inp-auth">
+				<input type="text" name="" id="inp1" placeholder="휴대폰 번호 인증"/>
+				<button type="button" class="btn-inp">확인</button>
+			</div>
+		</div>
+		<div class="auth-box auth" style="display:none">
+			<label for="inp2">인증번호 입력</label>
+			<div class="inp-auth">
+				<input type="tel" name="" id="inp2" placeholder="인증번호 6자리 입력"/>
+				<span class="auth-time tx-red" id="timer"></span>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
