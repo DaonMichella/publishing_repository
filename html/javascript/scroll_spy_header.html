@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/contents.css"/>
     <style>
         body {margin:0; padding:0;}
+        #wrap {margin-top:100px; width:100%}
         #header {position:absolute; top:0; left:0; z-index:1; width:100%; height:50px; background:#000; color: #fff;}
         #header.fixed {position:fixed; }
         .section .title {background:orange; height:50px; color:#fff}
@@ -31,39 +32,40 @@
             <h2 class="title">메뉴2</h2>
             <div class="box"></div>
         </section>
+        <section class="section">
+            <h2 class="title">메뉴3</h2>
+            <div class="box"></div>
+        </section>
+        <section class="section">
+            <h2 class="title">메뉴4</h2>
+            <div class="box"></div>
+        </section>
         <div class="scrollhtml" style="position:fixed; bottom:0; right:0; width:300px; height:150px; font-weight:bold; color:white;"></div>
 
     </div>
     <!-- script --> 
     <script>
-        window.onload = function(){
-            var scroll = new Scroll();//생성자
+        window.onload = function(){            
+            //로드시, 스크롤 생성자 생성
+            var scroll = new Scroll();
         };
  
         // 생성자
         function Scroll(){
-            // 제이쿼리 최적화용 변수들
+            //초기화
             this.$html = null;
             this.$header = null;
             this.$section = null;
-            this.$section_title = null;
-            
+            this.$section_title = null;            
             this.nav_top = 0; // 헤더가 네비게이션 위치만큼 왔을때 고정시키기 위하여 변수값 찾기
-            this.fixChk = false; // 고정 여부 확인하기
+            this.scroll_top = 0; 
+            this.fixChk = false; // 고정 여부 확인하기            
             
-            
-            this.now_scroll = 0; // 현재 나의 스크롤 위치값 저장하는 변수
-            
-            this.scroll_num = []; // 영역별 스크롤 위치값 저장하기 위한변수
-            
-            
-            this.$select_li = null; // 메뉴 선택된것이 있는지 체크
-            
+            this.now_scroll = 0; // 현재 나의 스크롤 위치값 저장하는 변수            
+            this.scroll_num = []; // 영역별 스크롤 위치값 저장하기 위한변수            
+            this.$select_li = null; // 메뉴 선택된것이 있는지 체크            
             this.start(); // 기능 실행
         }
- 
- 
- 
  
     // start
     Scroll.prototype.start=function(){
@@ -75,16 +77,15 @@
     Scroll.prototype.init=function(){
         this.$html = document.querySelector('html,body');
         this.$header = document.querySelector('#header');
-        this.$section = this.$html.querySelector('.section');
-        this.$section_title = this.$section.querySelector('.title');
-        this.$scroll =  document.querySelector(".scroll"); // 메뉴 클릭시 이동기능 실행될 대상들
+        this.$section = this.$html.querySelectorAll('.section');
+        this.$scroll =  document.querySelector(".scroll"); // 메뉴 클릭시 이동기능 실행될 대상들        
         
-        this.nav_top = this.$header.pageYOffset; // 메뉴 고정 실행되는 스크롤 위치
-                
+        this.scroll_top = window.scrollY; // 메뉴 고정 실행되는 스크롤 위치        
         // 영역별 스크롤 위치값 저장하기
-        for(var i=0; i<this.scroll_length;i++){
-            this.scroll_num[i] = this.$section_title.eq(i).pageYOffset;
-        }
+        
+        for(var i=0; i<this.$section.length;i++){
+            this.scroll_num[i] = this.$section[i].offsetTop;
+        }    
     }
     
     
@@ -164,7 +165,7 @@
     // 헤더 고정 로직
     Scroll.prototype.header_fixed=function(){
         // 현재 내 스크롤값이 헤더 네비게이션 위치만큼 왔을때
-        if(this.now_scroll>=this.nav_top){
+        if(this.now_scroll>=this.scroll_top){
             // fix여부를 확인한후(거짓이면 실행)
             if(this.fixChk===false){
                 // 고정하고
