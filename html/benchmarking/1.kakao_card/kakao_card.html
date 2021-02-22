@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>card Img</title>
+    <link rel="stylesheet" href="../../../css/reset.css">
+    <style>
+        #header {position:relative; background:#111;}
+        .tab-btn {box-shadow: 2px 2px 2px #eee ;}
+        .tab-btn:after {display:block;content:''; clear:both}
+        .tab-btn > li {float:left; width:calc(100% / 3); text-align:center; }
+        .tab-btn .btn {padding:10px; font-weight:bold; font-size:16px; color:#fff;}
+        .slider {position:absolute; bottom:0; left:0; display:inline-block; width:33.3%; height:2px; background:#fff;}
+
+        .share-box {padding:20px 10px; display:flex; justify-content:space-between;font-weight:bold;}
+        .btn-kakao {position:relative; width:48px; height:48px; border-radius:50%; background:#f9e550; border:1px solid #dbca58; text-indent:-9999px}
+        .btn-kakao:before {position:absolute; top:50%; left:50%; margin-top:-10px; margin-left:-10px; width:20px; height:20px; border-radius:50%; background:#010100; content:''}
+        .btn-kakao:after {position:absolute; top:63%; left:30%; border-top:6px solid #000; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:5px solid transparent; transform:rotate(30deg); content:''}
+        .flip-card {display:block; width:320px; margin:0 auto; height:450px;  border-radius:20px; box-shadow: 2px 2px 3px #ddd;}
+        .flip-card:first-child {background-color:#ef8d8a;}
+        .flip-card:nth-child(2) {background-color:#6899f6;}
+        .flip-card:nth-child(3) {background-color:#8d8c9e;}
+        .flip-card + .flip-card {margin-top:20px;}
+
+        .flip-card:hover {transform:rotateY(180deg)}
+    </style>
+</head>
+<body>    
+    <div id="wrap">
+        <div id="header">
+            <ul class="tab-btn">
+                <li><button type="button" class="btn">코로나19</button></li>
+                <li><button type="button" class="btn">#톡업데이트</button></li>
+                <li><button type="button" class="btn">뉴스</button></li>
+            </ul>
+            <span class="slider"></span>
+        </div>
+        <div class="share-box">
+            <p>일상을 바꾸는 카카오톡<br>업데이트 소식을 알려드려요!</p>
+            <button type="button" class="btn-kakao">카카오톡 공유</button>
+        </div>
+        <div class="tab-content">
+            <div class="tab-cnt">
+                <button type="button" class="flip-card"></button>
+                <button type="button" class="flip-card"></button>
+                <button type="button" class="flip-card"></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
