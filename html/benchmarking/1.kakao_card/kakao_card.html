@@ -21,18 +21,30 @@
         .flip-card {display:block; width:320px; margin:0 auto; height:450px;  perspective: 1000px;}     
         .flip-card + .flip-card {margin-top:20px;}
 
-				.flip-card-inner {position: relative;width: 100%;height: 100%;text-align: center;transition: transform 0.6s;transform-style: preserve-3d;}
+        .flip-card-inner {position: relative;width: 100%;height: 100%;text-align: center;transition: transform 0.6s;transform-style: preserve-3d;}
 
-				.flip-card:hover .flip-card-inner ,
-				.flip-card.on .flip-card-inner {transform: rotateY(180deg);}
+        .flip-card.on .flip-card-inner {transform: rotateY(180deg);}
 
-				.flip-card-front, .flip-card-back {position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-shadow: 2px 2px 3px #ddd; border-radius:20px;}
-				
-				.flip-card-back {transform: rotateY(180deg);}
-				.flip-card.card1 .flip-card-front {background-color: #ef8d8a;}
-				.flip-card.card2 .flip-card-front {background-color:#6899f6;}
-				.flip-card.card3 .flip-card-front {background-color:#8d8c9e;}
-				.flip-card .flip-card-back {	background-color: #2980b9;}
+        .flip-card-front, .flip-card-back {position: absolute; left:0; top:0; padding:20px 10px 50px; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-shadow: 2px 2px 3px #ddd; border-radius:10px;box-sizing:border-box; }
+        
+        .flip-card-back {transform: rotateY(180deg); text-align:left; }
+        .flip-card.card1 .flip-card-front {background-color: #ef8d8a;}
+        .flip-card.card2 .flip-card-front {background-color:#6899f6;}
+        .flip-card.card3 .flip-card-front {background-color:#8d8c9e;}
+        .flip-card .flip-card-front {position:relative; }
+        .flip-card .flip-card-back {background-color: #2980b9;}
+        .btn-btm {display:flex; position:absolute; bottom:0; left:0; width:100%; height:50px; border-radius:inherit}
+        .btn-btm .btn {width:50%; border:1px solid #ddd; background:#efefef;}
+        .btn-btm .btn:first-child {border-bottom-left-radius:inherit}
+        .btn-btm .btn:nth-child(2) {border-bottom-right-radius:inherit}
+
+        .flip-card .flip-card-back .btn-btm {padding:4px; box-sizing:border-box}
+        .flip-card .btn.yellow {width:100%; border-radius:10px; background-color: lightyellow; color:#111; }
+        .flip-card .close-box {position:absolute; right:20px; top:20px; width:20px; height:20px; text-indent:-9999px;}
+        .close-box:before,
+        .close-box:after {position:absolute; top:50%; left:50%; width:20px; height:2px; border-radius:4px; background:#111; content:''; }
+        .close-box:before {transform:rotate(50deg)}
+        .close-box:after {transform:rotate(130deg)}
     </style>
 </head>
 <body>    
@@ -52,37 +64,55 @@
         <div class="tab-content">
             <div class="tab-cnt">
                 <div class="flip-card card1">
-									<div class="flip-card-inner">
-										<div class="flip-card-front">
-											앞
-										</div>
-										<div class="flip-card-back">
-											뒤
-										</div>
-									</div>									
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="btn-btm">
+                                <button type="button" class="btn btn-rotate">알아보기</button>
+                                <button type="button" class="btn">이동하기</button>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <span>카톡 업데이트</span>
+                            <h2>멀티프로필<span class="super">beta</span></h2>
+                            <div class="btn-btm">
+                                <button type="button" class="btn yellow">시작하기</button>
+                            </div>
+                            <button type="button" class="close-box">카드 닫기</button>
+                        </div>
+                    </div>									
                 </div>
                 <div class="flip-card card2">
-									<div class="flip-card-inner">
-										<div class="flip-card-front">
-											앞
-										</div>
-										<div class="flip-card-back">
-											뒤
-										</div>
-									</div>									
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            앞
+                        </div>
+                        <div class="flip-card-back">
+                            뒤
+                        </div>
+                    </div>									
                 </div>
-								<div class="flip-card card3">
-									<div class="flip-card-inner">
-										<div class="flip-card-front">
-											앞
-										</div>
-										<div class="flip-card-back">
-											뒤
-										</div>
-									</div>									
+                <div class="flip-card card3">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            앞
+                        </div>
+                        <div class="flip-card-back">
+                            뒤
+                        </div>
+                    </div>									
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const btn = document.querySelector(".btn-rotate")
+        btn.addEventListener("click",function(e){
+            e.target.closest('.flip-card').classList.add("on")            
+        })
+        const closebtn = document.querySelector(".close-box")
+        closebtn.addEventListener("click",function(e){
+            e.target.closest('.flip-card').classList.remove("on")
+        })
+    </script>
 </body>
 </html>
