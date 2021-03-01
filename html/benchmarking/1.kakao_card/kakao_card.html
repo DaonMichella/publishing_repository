@@ -84,20 +84,36 @@
                 <div class="flip-card card2">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            앞
+                            <div class="btn-btm">
+                                <button type="button" class="btn btn-rotate">알아보기</button>
+                                <button type="button" class="btn">이동하기</button>
+                            </div>
                         </div>
                         <div class="flip-card-back">
-                            뒤
+                            <span>카톡 업데이트</span>
+                            <h2>멀티프로필<span class="super">beta</span></h2>
+                            <div class="btn-btm">
+                                <button type="button" class="btn yellow">시작하기</button>
+                            </div>
+                            <button type="button" class="close-box">카드 닫기</button>
                         </div>
                     </div>									
                 </div>
                 <div class="flip-card card3">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            앞
+                            <div class="btn-btm">
+                                <button type="button" class="btn btn-rotate">알아보기</button>
+                                <button type="button" class="btn">이동하기</button>
+                            </div>
                         </div>
                         <div class="flip-card-back">
-                            뒤
+                            <span>카톡 업데이트</span>
+                            <h2>멀티프로필<span class="super">beta</span></h2>
+                            <div class="btn-btm">
+                                <button type="button" class="btn yellow">시작하기</button>
+                            </div>
+                            <button type="button" class="close-box">카드 닫기</button>
                         </div>
                     </div>									
                 </div>
@@ -105,13 +121,18 @@
         </div>
     </div>
     <script>
-        const btn = document.querySelector(".btn-rotate")
-        btn.addEventListener("click",function(e){
-            e.target.closest('.flip-card').classList.add("on")            
+        const btn = document.querySelectorAll(".btn-rotate")
+        btn.forEach(function(item){
+            item.addEventListener("click",function(e){
+                e.target.closest('.flip-card').classList.add("on")            
+            })
         })
-        const closebtn = document.querySelector(".close-box")
-        closebtn.addEventListener("click",function(e){
-            e.target.closest('.flip-card').classList.remove("on")
+
+        const closebtn = document.querySelectorAll(".close-box")
+        closebtn.forEach(function(close){
+            close.addEventListener("click",function(e){
+                e.target.closest('.flip-card').classList.remove("on")
+            })  
         })
     </script>
 </body>
