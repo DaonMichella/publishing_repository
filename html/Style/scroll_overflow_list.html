@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 list </title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+    <style>
+        body {margin:0; padding:0;}
+        #wrap {position:relative; height:10000px; margin:0px auto; padding-bottom:600px; width:100%}
+        #header {position:fixed; top:0; left:0; z-index:1; width:100%; height:50px; background:#000; color: #fff; transition:all 0.3s}
+        #header.scroll {top:-100%}
+
+        #content {height:100%; background:lightblue; padding-top:50px;}
+        .flow-box {width:100%; overflow:auto; }
+        .flow-list {display:block; width:100%; height:100%; line-height:2.8; white-space:nowrap; box-sizing:border-box;}
+        .flow-list li {display:inline-block; margin-left:10px; vertical-align: middle; line-height:1;}
+        .flow-list li:last-child {padding-right:10px; }
+        .btn-round {border:1px solid #fff; line-height:1; padding:5px 12px; border-radius:28px; color:#fff;}
+        .btn-round .txt {vertical-align: middle;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="flow-box">
+                <ul class="flow-list">
+                    <li><button type="button" class="btn-round">메뉴1</button></li>
+                    <li><button type="button" class="btn-round">메뉴2</button></li>
+                    <li><button type="button" class="btn-round">메뉴3</button></li>
+                    <li><button type="button" class="btn-round">메뉴4</button></li>
+                    <li><button type="button" class="btn-round">메뉴5</button></li>
+                    <li><button type="button" class="btn-round">메뉴6</button></li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            
+        </div>
+
+    </div>
+</body>
+</html>

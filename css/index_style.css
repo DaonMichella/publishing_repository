@@ -1,0 +1,327 @@
+html,body,
+div,p,ol,ul,li,img,a,
+h1,h2,h3,h4,h5,h6 
+form, span,iframe,
+dl,dt,dd,button,span,fieldset {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: none;
+}
+
+ul,ol,li {
+    list-style: none;
+}
+
+button,span,label {
+    display: inline-block;
+    background: none;
+    border: 0;
+}
+
+button,input[type='checkbox'],input[type='radio'],input[type='submit'],input[type='image'] {
+    cursor: pointer;
+}
+
+table,th,td {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+table caption,legend {
+    position: absolute;
+    top: -999em;
+    left: -999em;
+}
+
+select,input,textarea {
+    font-family: dotum, AppleGothic, sans-serif;
+    color: #363636;
+    padding: 0;
+    margin: 0;
+}
+
+textarea,iframe {
+    font-size: 12px;
+    font-family: dotum, AppleGothic, sans-serif;
+    color: #363636;
+    outline-style: none;
+}
+
+input,select {
+    outline-style: none;
+    outline: none;
+    background: #fff;
+    color: #363636;
+}
+
+input:not([type='checkbox']),
+input:not([type='radio']),
+textarea,
+select {
+    border-radius: 0;
+}
+
+input:not([type='checkbox']),
+input:not([type='radio']),
+textarea,
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+::-webkit-input-placeholder {
+    color: #BBBBBB;
+}
+
+:-ms-input-placeholder {
+    color: #BBBBBB;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover,
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    padding: 0;
+    /*outline-style:none;*/
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+img {
+    border: 0;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.hidden {
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.hidden.is-view {
+    position: static;
+    width: auto;
+    height: auto;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* End hide from IE-mac */
+.tit p {
+    padding: 10px 10px 0 0;
+    float: right;
+}
+
+.tit p .date {
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
+
+.txt {
+    margin: 10px 0 0;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+.txt li {
+    list-style: disc;
+    margin: 0 0 0 20px;
+    line-height: 18px;
+    color: #777
+}
+
+.txt li ul {
+    margin: 2px 0 2px 0
+}
+
+.txt li ul li {
+    list-style: none
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+.list {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.list th {
+    background: #aaa;
+    color: #fff;
+}
+
+.list th,
+table.list td {
+    border: 1px solid #333;
+    padding: 10px 7px;
+}
+
+.list td {
+    color: #333;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow-X: hidden;
+    text-overflow: hidden;
+}
+
+.list tbody tr:last-child td {
+    border-bottom: 2px solid #333;
+}
+
+.list td a {
+    color: blue;
+}
+
+.list td:first-child {
+    text-align: center;
+}
+
+/* number */
+.list td:nth-child(2) {
+    font-weight: bold;
+}
+
+/* 1depth */
+.list tr.even td {
+    background: #fbe3d7;
+}
+
+.list tr:hover td {
+    background: #ffffcc;
+}
+
+.list tr:hover td a {
+    color: inherit
+}
+
+.list tr.cut td.center {
+    text-align: center;
+}
+
+.list tr.del td,
+.list tr.del td * {
+    color: #999 !important;
+}
+
+.list tr.del td {
+    text-decoration: line-through;
+}
+
+.list tr.del td:first-child {
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.list tr.del td.bigo {
+    text-decoration: none;
+}
+
+.type {
+    text-align: center;
+}
+
+.html {
+    color: #666 !important;
+}
+
+.bbs {
+    color: #00cc00 !important;
+}
+
+.pgm {
+    color: #cc0000 !important;
+}
+
+.link {
+    color: #0000cc !important;
+}
+
+.date {
+    text-align: center;
+}
+
+.last {
+    background: #F63 !important;
+    color: #fff !important;
+}
+
+.nowork {
+    background: #666 !important;
+    color: #fff !important;
+}
+
+.bigo {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.date1 {
+    text-align: center;
+}
+
+.link {
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.link a {
+    display: inline-block;
+    background: #ddd;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.mainColor {
+    color: #666;
+}
