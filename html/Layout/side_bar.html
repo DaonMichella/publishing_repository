@@ -14,7 +14,7 @@
        <header id="header" class="header">
            <div class="inbox clear">
                <h1 class="logo"><img src="../../images/logo.png" alt="로고"></h1>
-               <nav id="gnb" class="gnb-wrap">
+               <nav id="gnb" class="gnb-wrap menu">
                     <button type="button" class="btn-menu">메뉴 오픈</button>
                     <div class="gnb-box">
                         <ul class="clear">
@@ -22,6 +22,7 @@
                             <li><a href="#">메뉴2</a></li>
                             <li><a href="#">메뉴3</a></li>
                         </ul>
+                        <button type="button" class="btn-side-close close-box"><span class="txt">닫기</span></button>
                     </div>               
                </nav>
            </div>
@@ -40,10 +41,28 @@
     </div>
 
     <script>
-        const btn = document.querySelector(".btn-menu");
-        btn.addEventListener("click",function(e){
-            e.target.classList.add("open")
-        })
+        
+        const SideOpenFunc = function  () {
+            const btn = document.querySelector(".btn-menu");
+            btn.addEventListener("click",function(e){
+                e.target.classList.add("open")
+            })
+        } 
+        const SideCloseFunc = function  () {
+            const closebtn = document.querySelectorAll(".close-box")
+            closebtn.forEach(function(btn){
+                btn.addEventListener("click",function(e){
+                    const openBtn = e.target.closest(".gnb-box").previousElementSibling
+                    openBtn.classList.remove("open")
+                })
+            })
+        }
+
+        function init() {
+            SideOpenFunc()
+            SideCloseFunc()
+        }
+        init()
     </script>
 </body>
 </html>
