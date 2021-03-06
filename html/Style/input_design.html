@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인풋 디자인</title>
+    <style>
+        * {margin:0; padding:0;}
+        #wrap {padding:20px }
+        h1 {margin-bottom:20px;}
+        .title {margin:10px 0; font-size:16px;}
+        input[type=checkbox], input[type=radio] {-webkit-appearance:none; -moz-appearance: none; appearance: none;}
+
+        .inp-chk {position:relative;}
+        .inp-chk input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
+        margin:0 5px 0 0; border-radius:3px}
+        .inp-chk input.check:checked:before,
+        .inp-chk input.check:checked:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#d21144; }
+        .inp-chk input.check:checked:before {width:2px; height:11px; top:4px; left:10px; }
+        .inp-chk input.check:checked:after {width:4px; height:2px; top:9px; left:3px;}
+        .inp-chk input.check + label {vertical-align:middle;}
+
+        .inp-chk2 {position:relative;}
+        .inp-chk2 input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
+        border-radius:3px}
+        .inp-chk2 input.check:before,
+        .inp-chk2 input.check:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#aaa; }
+        .inp-chk2 input.check:before {width:2px; height:11px; top:4px; left:10px; }
+        .inp-chk2 input.check:after {width:4px; height:2px; top:9px; left:3px;}
+        .inp-chk2 input.check:checked:before,
+        .inp-ch2 input.check:checked:after {background-color:#d21144}
+        .inp-chk2 input.check + label {vertical-align:middle;}
+
+
+        .inp-chk3 {position:relative;}
+        .inp-chk3 input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
+        margin:0 5px 0 0; border-radius:50%}
+        .inp-chk3 input.check:checked:before,
+        .inp-chk3 input.check:checked:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#d21144; }
+        .inp-chk3 input.check:checked:before {width:2px; height:11px; top:4px; left:10px; }
+        .inp-chk3 input.check:checked:after {width:4px; height:2px; top:9px; left:3px;}
+        .inp-chk3 input.check + label {vertical-align:middle;}
+        
+        .inp-chk4 {position:relative;}
+        .inp-chk4 input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
+        border-radius:50%}
+        .inp-chk4 input.check:before,
+        .inp-chk4 input.check:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#aaa; }
+        .inp-chk4 input.check:before {width:2px; height:11px; top:4px; left:10px; }
+        .inp-chk4 input.check:after {width:4px; height:2px; top:9px; left:3px;}
+        .inp-chk4 input.check:checked:before,
+        .inp-chk4 input.check:checked:after {background-color:#d21144}
+        .inp-chk4 input.check + label {vertical-align:middle;}
+
+        .inp-radio {position:relative;}
+        .inp-radio input.radio {position:relative; display:inline-block; vertical-align: middle;
+        width:20px; height:20px; border:1px solid #aaa; border-radius:50%;}
+        .inp-radio input.radio:checked::after {position:absolute; width:10px; height:10px; top:50%; left:50%; margin-left:-5px; margin-top:-5px; border-radius: 50%; background-color:#d21144; content:''}
+        .inp-radio input.radio + label {vertical-align:middle;}
+
+        .inp-radio2 {position:relative;}
+        .inp-radio2 input.radio {position:relative; display:inline-block; vertical-align: middle;
+        width:20px; height:20px; border:1px solid #aaa; border-radius:50%;}
+        .inp-radio2 input.radio:after {position:absolute; width:10px; height:10px; top:50%; left:50%; margin-left:-5px; margin-top:-5px; border-radius: 50%; background-color:#aaa;content:''}
+        .inp-radio2 input.radio:checked::after {background-color:#d21144}
+        .inp-radio2 input.radio + label {vertical-align:middle;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>체크, 라디오, 셀렉트</h1>
+
+        <h2 class="title">케이스1</h2>
+        <div class="inp-chk">
+            <input type="checkbox" name="inp1" id="inp1" class="check">
+            <label for="inp1">개인정보 동의</label>            
+        </div>
+        <h2 class="title">케이스2</h2>
+        <div class="inp-chk2">
+            <input type="checkbox" name="inp2" id="inp2" class="check">
+            <label for="inp2">개인정보 동의</label>            
+        </div>
+        <h2 class="title">케이스3</h2>
+        <div class="inp-chk3">
+            <input type="checkbox" name="inp3" id="inp3" class="check">
+            <label for="inp3">개인정보 동의</label>            
+        </div>
+        <h2 class="title">케이스4</h2>
+        <div class="inp-chk4">
+            <input type="checkbox" name="inp4" id="inp4" class="check">
+            <label for="inp4">개인정보 동의</label>            
+        </div>
+        <h2 class="title">케이스5</h2>
+        <div class="inp-radio">
+            <input type="checkbox" name="inp5" id="inp5" class="radio">
+            <label for="inp5">개인정보 동의</label>
+        </div>
+        <h2 class="title">케이스6</h2>
+        <div class="inp-radio2">
+            <input type="checkbox" name="inp6" id="inp6" class="radio">
+            <label for="inp6">개인정보 동의</label>
+        </div>
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
