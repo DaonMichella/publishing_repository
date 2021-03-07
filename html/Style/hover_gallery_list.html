@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인풋 디자인</title>
+    <style>
+        * {margin:0; padding:0;}
+        #wrap {padding:20px }
+        h1 {margin-bottom:20px;}
+        .title {margin:10px 0; font-size:16px;}
+
+        .gallery-wrap {max-width:1200px; width:100%; margin:0 auto;}
+        .gallery-list  {font-size:0}
+        .gallery-list > li {display: inline-block; width:33.3%; vertical-align: top; }
+        .gallery-list > li > a {display:block; width:auto; text-decoration: none; margin:5px;}
+        .gallery-list > li > a:hover .top {bottom:52%}
+        .gallery-list > li > a:hover .sub {top:52%}
+        .gallery-list > li > a:hover .screen::after {opacity: 1;}
+        .gallery-list .screen {position:relative; display:block; overflow:hidden}
+        .gallery-list .screen::after {display:block; position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); content:''; opacity: 0; transition:all .3s;}
+
+        .gallery-list .screen .top,
+        .gallery-list .screen .sub {position:absolute; display:block; left:30px; color:#fff;  z-index:1; transition:all .3s}
+        .gallery-list .screen .top {bottom:150%;font-size:26px; font-weight:bold}
+        .gallery-list .screen .sub {bottom:150%; font-size:16px; }
+        .gallery-list .screen .img {width:100%}
+        .gallery-list .default {font-size:14px; text-align:center; padding:20px; color:#666;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>호버 갤러리</h1>
+        <div class="gallery-wrap">
+            <ul class="gallery-list">
+                <li>
+                    <a href="#">
+                        <span class="screen">
+                            <span class="top">호버 갤러리 효과</span>
+                            <span class="sub">호버 시 나타남</span>
+                            <img src="../../images/logo.png" class="img" alt="">
+                        </span>
+                        <span class="default">
+                            <h3>이미지 나타나는 효과</h3>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="screen">
+                            <span class="top">호버 갤러리 효과</span>
+                            <span class="sub">호버 시 나타남</span>
+                            <img src="../../images/logo.png" class="img" alt="">
+                        </span>
+                        <span class="default">
+                            <h3>이미지 나타나는 효과</h3>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="screen">
+                            <span class="top">호버 갤러리 효과</span>
+                            <span class="sub">호버 시 나타남</span>
+                            <img src="../../images/logo.png" class="img" alt="">
+                        </span>
+                        <span class="default">
+                            <h3>이미지 나타나는 효과</h3>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
