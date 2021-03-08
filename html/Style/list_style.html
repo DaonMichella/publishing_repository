@@ -8,16 +8,46 @@
     <style>
         * {margin:0; padding:0;}
         #wrap {padding:20px }
+        li {list-style:none}
         h1 {margin-bottom:20px;}
-        .title {margin:10px 0; font-size:16px;}
 
+        .title {margin:10px 0; font-size:16px;}
+        .ui-list > li {position:relative;}
+        .ui-list > li:before {display:inline-block; margin-left:2px; margin-right:10px; background:#000; content:''; }
+        .ui-list.dot > li:before {width:2px; height:2px; border-radius:50%; vertical-align:middle;  }
+        .ui-list.bar > li:before {width:6px; height:2px; vertical-align:middle; }
+        .ui-list.star > li:before {width:6px; height:6px; background:none; content:"*"; vertical-align: -4px;}
+        .ui-list.refer > li:before {width:6px; height:6px; background:none; content:"※"; vertical-align:-2px;}
     </style>
 </head>
 <body>
     <div id="wrap">
         <h1>리스트 스타일</h1>
 
+        <h2 class="title">기본</h2>
+        <ul class="ui-list">
+            <li>aaaaa</li>
+        </ul>
+
         <h2 class="title">케이스1</h2>
+        <ul class="ui-list dot">
+            <li>aaaaa</li>
+        </ul>
+
+        <h2 class="title">케이스2</h2>
+        <ul class="ui-list star">
+            <li>aaaaa</li>
+        </ul>
+
+        <h2 class="title">케이스3</h2>
+        <ul class="ui-list refer">
+            <li>aaaaa</li>
+        </ul>
+
+        <h2 class="title">케이스4</h2>
+        <ul class="ui-list bar">
+            <li>aaaaa</li>
+        </ul>
     </div>
 </body>
 </html>
