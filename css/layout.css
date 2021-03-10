@@ -11,12 +11,15 @@ html, body {/*height:100%;*/ font-size:14px; color:#111}
 .gnb-wrap .gnb-box > ul > li.on a,
 .gnb-wrap .gnb-box > ul > li a:hover {border-color:#111}
 
-.gnb-wrap.menu .btn-menu {display:block}
-.gnb-wrap.menu .gnb-box {padding:20px 10px; border-left:1px solid #ddd; background:#fff;}
-.gnb-wrap.menu .gnb-box > ul > li {width:100%; margin-right:0;}
-.gnb-wrap.menu .gnb-box > ul > li a {display:block;}
-.gnb-wrap.menu .gnb-box {position:fixed; right:-100%; top:0; width:200px; height:100%; z-index:100; transition:all 0.8s}
-.gnb-wrap.menu .btn-menu.open + .gnb-box {right:0}
+.gnb-box {padding:20px 10px; border-left:1px solid #ddd; background:#fff;}
+.gnb-box > ul > li {width:100%; margin-right:0;}
+.gnb-box > ul > li a {display:block;}
+.gnb-box {position:fixed; top:0; width:200px; height:100%; z-index:100; transition:all 0.8s}
+.gnb-box.left {left:-100%}
+.gnb-box.right {right:-100%}
+.gnb-wrap.menu .btn-menu.open + .gnb-box,
+.gnb-box.right.open {right:0;  transition:all 0.8s}
+.gnb-box.left.open {left:0;  transition:all 0.8s}
 .btn-side-close {position:absolute; width:20px; height:20px; top:10px; right:10px; z-index:1; }
 .btn-side-close .txt {display:inline-block; text-indent:-9999px}
 .btn-side-close:before,
@@ -26,13 +29,12 @@ html, body {/*height:100%;*/ font-size:14px; color:#111}
 
 
 .content-wrap {height:calc(100% - 110px);}
-.content {padding-right:200px; box-sizing:border-box}
 .side-menu {width:200px;}
 .footer {width:100%; padding:18px 0; height:50px; line-height:1; text-align:center; box-sizing:border-box }
 
 .fixed {position:fixed; top:0; left:0; z-index:150}
 
-.btn-menu {display:none; width:36px; height:36px; background:url(../images/ico_btn-menu.png) no-repeat center; text-indent:-9999px; }
+.btn-menu { width:36px; height:36px; background:url(../images/ico_btn-menu.png) no-repeat center; text-indent:-9999px; }
 
 .layer-pop {display:none;position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5)}
 .layer-slider-cnt {position:absolute; left:0; bottom:-100%; transition:all 1s; padding:20px; border-top-left-radius:20px; border-top-right-radius: 20px; width:100%; height:60%;background:#fff; box-sizing:border-box;}

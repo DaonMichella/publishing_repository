@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sidebar2</title>
+    <link rel="stylesheet" href="../../../css/reset.css"/>
+    <link rel="stylesheet" href="../../../css/common.css"/>
+    <link rel="stylesheet" href="../../../css/layout.css"/>
+    <link rel="stylesheet" href="../../../css/contents.css"/>
+    <style>
+        html,body {height:100%}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+       <header id="header" class="header">
+           <div class="inbox clear">
+               <h1 class="logo"><img src="../../../images/logo.png" alt="로고"></h1>
+               <nav id="gnb" class="gnb-wrap menu">
+               </nav>
+           </div>
+       </header>
+       <div class="content-wrap">
+            <aside id="side_right_menu" class="side-menu">
+                <div class="gnb-box left">
+                    <ul class="clear">
+                        <li><a href="#">메뉴1</a></li>
+                        <li><a href="#">메뉴2</a></li>
+                        <li><a href="#">메뉴3</a></li>
+                    </ul>
+                    <button type="button" class="btn-side-close close-box"><span class="txt">닫기</span></button>
+                </div>
+           </aside>
+           <div id="content" class="content">
+               <div class="" style="display:flex; justify-content: space-between;">
+                <button type="button" class="btn-menu" data-direction="left">왼쪽 메뉴 오픈</button>                               
+                <button type="button" class="btn-menu" data-direction="right">오른쪽 메뉴 오픈</button>                               
+            </div>
+
+           </div>
+           <aside id="side_right_menu" class="side-menu">
+            <div class="gnb-box right">
+                <ul class="clear">
+                    <li><a href="#">메뉴1</a></li>
+                    <li><a href="#">메뉴2</a></li>
+                    <li><a href="#">메뉴3</a></li>
+                </ul>
+                <button type="button" class="btn-side-close close-box"><span class="txt">닫기</span></button>
+            </div>
+           </aside>
+       </div>
+       <footer id="footer" class="footer">
+           footer
+       </footer>
+    </div>
+    <div class="memo-box">
+        <h2>이전 코드 개선 사항</h2>
+        <ul>
+            <li>btn-menu와 gnb-box와의 위치 분리</li>
+            <li>.btn-menu 여러개 사용해서 left/right 메뉴 만들기</li>
+        </ul>
+        <h2>실제 구현 후 추가 개선 사항</h2>
+        <ul>
+            <li>left/right로 코드 양쪽을 넣어주고 각각 css를 지정해줘야해서 똑같이 귀찮았다. 그래도 위치적인 제약이 사라져서 자유로운 느낌이 든다..
+            </li>
+            <li>그리고 스크립트 넣는거 클릭한 버튼에 클래스를 넣어줄 필요가 없어서 편했다. 버튼과 box에 둘다 추가해야할듯</li>
+            <li>다음에는 btn-menu/gnb-box라는 클래스명이 변경되어도 구현 가능하도록 수정하고
+                꼭 저 data 속성을 추가해야하는지 추가하지 않아도 사용할 수 있는지 찾아봐야겠다!
+            </li>
+            <li>맨날 까먹는데, 클래스 없어졌을 때도 transition 효과 주려면 어떻게 해야핮; 수정이 필요하다.</li>
+            <li>구조를 생각하면 바로 아래에 넣어주는 게 맞는 것 같다. 그래도 떨어져 있어도 실행은 되도록 구현하는 게 안정적일듯 </li>
+        </ul>
+    </div>
+    <script>
+        
+        const SideOpenFunc = function  () {
+            const btnMenu = document.querySelectorAll(".btn-menu");
+            const box = document.querySelectorAll(".gnb-box");
+
+            btnMenu.forEach(function(btn){
+                btn.addEventListener("click",function(e){
+                    let num = btn.dataset.direction == "left"? 0 : 1;
+                    box[num].classList.add("open")
+                })  
+            })
+        } 
+        const SideCloseFunc = function  () {
+            const closebtn = document.querySelectorAll(".close-box")
+            closebtn.forEach(function(btn){
+                btn.addEventListener("click",function(e){
+                    e.target.closest(".gnb-box").remove("open")
+                })
+            })
+        }
+
+        function init() {
+            SideOpenFunc()
+            SideCloseFunc()
+        }
+        init()
+    </script>
+</body>
+</html>
