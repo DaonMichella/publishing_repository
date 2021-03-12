@@ -4,29 +4,139 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인풋 디자인</title>
+    <title>로딩 애니메이션</title>
     <style>
         * {margin:0; padding:0;}
         #wrap {padding:20px }
         li {list-style:none}
         h1 {margin-bottom:20px;}
 
-        .title {margin:10px 0; font-size:16px;}
-       .loading-box {position:fixed; left:0; top:0;     width:100%; height:100%;  background-color: rgba(0,0,0,0.5);}
-       .loader{position:absolute;top:50%; left:50%; transform:translate(-50%,-50%);
-       border:16px solid #f3f3f3; border-top:16px solid #3498db;border-radius: 50%; width:120px; height:120px; animation: spin 2s linear infinite;}
-       @keyframes spin {
+        .title {margin:10px; font-size:32px; color:#fff}
+        .loading-list > li {position: relative;
+            float:left; width:calc(98% / 3); height:200px; 
+            margin-left:1%; margin-bottom:10px;
+            background:#eee; border-radius: 20px;
+        }
+        .loading-list > li:nth-child(3n+1) {margin-left:0}
+        .loading-box {
+            position:absolute;
+            left:0; top:0; width:100%; height:100%;
+            background-color: rgba(0,0,0,0.4);
+            border-radius: inherit;
+        }
+        .loading-box .loader {
+            position:absolute;
+            top:50%; left:50%; transform:translate(-50%,-50%);
+        }
+        .spinner .loader{            
+            width:36px; height:36px; border-radius: 50%;  /* 내부 원 사이즈 */
+            border-width:6px; border-style:solid; border-color:#f3f3f3;/* loader track width */
+            border-top-color:#3498db;/* loader active section */        
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
            0% {transform: translate(-50%,-50%) rotate(0deg);}
            100% {transform: translate(-50%,-50%) rotate(360deg);}
+       }
+
+        /* flow loader */
+        .flow .loader:before,
+        .flow .loader:after {
+            display:block; width:inherit; height:inherit; 
+            background-color:inherit; border-radius:inherit; 
+            content:'';
+        }
+        .flow .loader:before,
+        .flow .loader,
+        .flow .loader:after {
+            animation-duration:3s;
+            animation-timing-function:ease-in-out;/* linear 보다 ease-in-out 이 자연스러움 */
+            animation-iteration-count: infinite
+        }
+        .flow .loader {
+            width:6px; height:6px; border-radius:50%;
+            background-color:rgba(255,255,255,.4);
+            animation-name: flow2;             
+        }
+        .flow .loader:before {
+            margin-left:-20px; 
+            animation-name: flow1;
+        }
+        .flow .loader:after {
+            margin-left:20px;
+            margin-top:-6px; 
+            animation-name: flow3;
+        }
+
+
+       @keyframes flow1 {
+           0% {background-color:rgba(255,255,255,1);}
+           50% {background-color:rgba(255,255,255,.4);}
+           75% {background-color:rgba(255,255,255,.4);}
+           100% {background-color:rgba(255,255,255,.4);}
+       }
+       @keyframes flow2 {
+           0% {background-color:rgba(255,255,255,.4);}
+           50% {background-color:rgba(255,255,255,1);}
+           75% {background-color:rgba(255,255,255,.4);}
+           100% {background-color:rgba(255,255,255,.4);}
+       }
+       @keyframes flow3 {
+           0% {background-color:rgba(255,255,255,.4);}
+           50% {background-color:rgba(255,255,255,.4);}
+           75% {background-color:rgba(255,255,255,1);}
+           100% {background-color:rgba(255,255,255,.4);}
        }
     </style>
 </head>
 <body>
     <div id="wrap">
-        <h1>로딩 효과</h1>
-        <div class="loading-box">
-            <div class="loader"></div>
-        </div>
+        <h1>로딩 애니메이션 모음</h1>
+        <ul class="loading-list">
+            <li>
+                <h2 class="title">스피너 로딩</h2>
+                <div class="loading-box spinner">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">신호등 로딩</h2>
+                <div class="loading-box flow">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">도깨비불 로딩</h2>
+                <div class="loading-box light">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">행성 로딩</h2>
+                <div class="loading-box planet">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">progress 로딩</h2>
+                <div class="loading-box progress">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">시계 로딩</h2>
+                <div class="loading-box clock">
+                    <div class="loader"></div>
+                </div>
+            </li>
+            <li>
+                <h2 class="title">디스코팡팡 로딩</h2>
+                <div class="loading-box circle">
+                    <div class="loader"></div>
+                </div>
+            </li>
+        </ul>
       
     </div>
 </body>
