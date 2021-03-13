@@ -28,66 +28,6 @@
             position:absolute;
             top:50%; left:50%; transform:translate(-50%,-50%);
         }
-        .spinner .loader{            
-            width:36px; height:36px; border-radius: 50%;  /* 내부 원 사이즈 */
-            border-width:6px; border-style:solid; border-color:#f3f3f3;/* loader track width */
-            border-top-color:#3498db;/* loader active section */        
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-           0% {transform: translate(-50%,-50%) rotate(0deg);}
-           100% {transform: translate(-50%,-50%) rotate(360deg);}
-       }
-
-        /* flow loader */
-        .flow .loader:before,
-        .flow .loader:after {
-            display:block; width:inherit; height:inherit; 
-            background-color:inherit; border-radius:inherit; 
-            content:'';
-        }
-        .flow .loader:before,
-        .flow .loader,
-        .flow .loader:after {
-            animation-duration:3s;
-            animation-timing-function:ease-in-out;/* linear 보다 ease-in-out 이 자연스러움 */
-            animation-iteration-count: infinite
-        }
-        .flow .loader {
-            width:6px; height:6px; border-radius:50%;
-            background-color:rgba(255,255,255,.4);
-            animation-name: flow2;             
-        }
-        .flow .loader:before {
-            margin-left:-20px; 
-            animation-name: flow1;
-        }
-        .flow .loader:after {
-            margin-left:20px;
-            margin-top:-6px; 
-            animation-name: flow3;
-        }
-
-
-       @keyframes flow1 {
-           0% {background-color:rgba(255,255,255,1);}
-           50% {background-color:rgba(255,255,255,.4);}
-           75% {background-color:rgba(255,255,255,.4);}
-           100% {background-color:rgba(255,255,255,.4);}
-       }
-       @keyframes flow2 {
-           0% {background-color:rgba(255,255,255,.4);}
-           50% {background-color:rgba(255,255,255,1);}
-           75% {background-color:rgba(255,255,255,.4);}
-           100% {background-color:rgba(255,255,255,.4);}
-       }
-       @keyframes flow3 {
-           0% {background-color:rgba(255,255,255,.4);}
-           50% {background-color:rgba(255,255,255,.4);}
-           75% {background-color:rgba(255,255,255,1);}
-           100% {background-color:rgba(255,255,255,.4);}
-       }
     </style>
 </head>
 <body>
@@ -99,42 +39,224 @@
                 <div class="loading-box spinner">
                     <div class="loader"></div>
                 </div>
+                <style>                
+                /* spinner */
+                .spinner .loader{            
+                    width:36px; height:36px; border-radius: 50%;  /* 내부 원 사이즈 */
+                    border-width:6px; border-style:solid; border-color:#f3f3f3;/* loader track width */
+                    border-top-color:#3498db;/* loader active section */        
+                    animation: spin 2s linear infinite;
+                }
+
+                @keyframes spin {
+                    0% {transform: translate(-50%,-50%) rotate(0deg);}
+                    100% {transform: translate(-50%,-50%) rotate(360deg);}
+                }
+                </style>
             </li>
             <li>
                 <h2 class="title">신호등 로딩</h2>
                 <div class="loading-box flow">
                     <div class="loader"></div>
                 </div>
+                <style>                
+                /* flow loader */
+                .flow .loader:before,
+                .flow .loader:after {
+                    display:block; width:inherit; height:inherit; 
+                    background-color:inherit; border-radius:inherit; 
+                    content:'';
+                }
+                .flow .loader:before,
+                .flow .loader,
+                .flow .loader:after {
+                    animation-duration:3s;
+                    animation-timing-function:ease-in-out;/* linear 보다 ease-in-out 이 자연스러움 */
+                    animation-iteration-count: infinite
+                }
+                .flow .loader {
+                    width:6px; height:6px; border-radius:50%;
+                    background-color:rgba(255,255,255,.4);
+                    animation-name: flow2;             
+                }
+                .flow .loader:before {
+                    margin-left:-20px; 
+                    animation-name: flow1;
+                }
+                .flow .loader:after {
+                    margin-left:20px;
+                    margin-top:-6px; 
+                    animation-name: flow3;
+                }
+
+
+                @keyframes flow1 {
+                    0% {background-color:rgba(255,255,255,1);}
+                    50% {background-color:rgba(255,255,255,.4);}
+                    75% {background-color:rgba(255,255,255,.4);}
+                    100% {background-color:rgba(255,255,255,.4);}
+                }
+                @keyframes flow2 {
+                    0% {background-color:rgba(255,255,255,.4);}
+                    50% {background-color:rgba(255,255,255,1);}
+                    75% {background-color:rgba(255,255,255,.4);}
+                    100% {background-color:rgba(255,255,255,.4);}
+                }
+                @keyframes flow3 {
+                    0% {background-color:rgba(255,255,255,.4);}
+                    50% {background-color:rgba(255,255,255,.4);}
+                    75% {background-color:rgba(255,255,255,1);}
+                    100% {background-color:rgba(255,255,255,.4);}
+                }
+                </style>
             </li>
             <li>
                 <h2 class="title">도깨비불 로딩</h2>
-                <div class="loading-box light">
+                <div class="loading-box fire">
                     <div class="loader"></div>
                 </div>
+                <style>
+                /* fire */
+                .fire .loader{            
+                    width:36px; height:36px; /* 내부 원 사이즈 */
+                    border-right:4px solid transparent;/* loader track width */                    
+                    border-top:3px solid #ccc;/* loader active section */        
+                    animation: spin 1s ease infinite;/* ease 효과 이용하면 좀 더 속도감 있음 */
+                    border-radius:100%;
+                }
+
+                @keyframes spin {
+                    0% {transform: translate(-50%,-50%) rotate(0deg);}
+                    100% {transform: translate(-50%,-50%) rotate(360deg);}
+                }
+                </style>
             </li>
             <li>
                 <h2 class="title">행성 로딩</h2>
                 <div class="loading-box planet">
                     <div class="loader"></div>
                 </div>
+                <style>
+                    /* planet */
+                    .planet .loader{            
+                        width:36px; height:36px; /* 내부 원 사이즈 */
+                        border-width:4px; border-style:solid;
+                        border-color:#ccc; border-radius:50%;/* loader track width */                                            
+                        animation: spin 1s ease infinite;/* ease 효과 이용하면 좀 더 속도감 있음 */                        
+                    }
+                    .planet .loader:after {            
+                        display:block; width:14px; height:14px; /* 내부 원 사이즈 */
+                        border-radius:50%;
+                        background-color:#ccc;
+                        margin-top:-5px;
+                        content:''
+                    }
+                    @keyframes spin {
+                        0% {transform: translate(-50%,-50%) rotate(0deg);}
+                        100% {transform: translate(-50%,-50%) rotate(360deg);}
+                    }
+                </style>
             </li>
             <li>
                 <h2 class="title">progress 로딩</h2>
                 <div class="loading-box progress">
                     <div class="loader"></div>
                 </div>
+                <style>
+                    /* fire */
+                    .progress .loader{            
+                        width:150px; height:40px; line-height:40px;/* 내부 원 사이즈 */                        
+                    }
+
+                    .progress .loader:before {            
+                        display:block;
+                        width:0; height:100%; line-height:40px;
+                        background-color:#ccc;
+                        padding-left:10px;
+                        color:#fff; 
+                        content:'LOADING...';
+                        animation: progress 2s linear infinite;/* ease 효과 이용하면 좀 더 속도감 있음 */                        
+                    }
+
+                    @keyframes progress {
+                        0% {width:0}
+                        30% {width:100%;opacity: 1;}
+                        60% {width:100%;opacity: 0;}
+                        100% {opacity: 0;}
+                    }
+                </style>
             </li>
             <li>
                 <h2 class="title">시계 로딩</h2>
                 <div class="loading-box clock">
                     <div class="loader"></div>
                 </div>
+                <style>
+                    /* planet */
+                    .clock .loader{       
+                        position: relative;     
+                        width:36px; height:36px; /* 내부 원 사이즈 */
+                        border-width:4px; border-style:solid;
+                        border-color:#ccc; border-radius:50%;/* loader track width */                                            
+                        
+                    }
+                    .clock .loader:before,
+                    .clock .loader:after {
+                        display: block; width:2px;height: 18px;
+                        position: absolute;
+                        background-color: #ccc;
+                        animation: anim1 18s linear infinite;
+                        transform-origin: 1px 19px;
+                        content: "";
+                    }
+                    .clock .loader:before {
+                        width:3px;
+                        left:16px;top:0px;
+                    }
+                    .clock .loader:after {
+                        left:18px;top: 6px;
+                        animation: spin 1s linear infinite;/* ease 효과 이용하면 좀 더 속도감 있음 */
+                    }
+                    @keyframes spin {
+                        0% {transform: rotate(0deg);}
+                        100% {transform: rotate(360deg);}
+                    }
+                </style>
             </li>
             <li>
                 <h2 class="title">디스코팡팡 로딩</h2>
                 <div class="loading-box circle">
                     <div class="loader"></div>
+                    <span class="txt">Loading...</span>
                 </div>
+                <style>                
+                    /* spinner */
+                    .circle .loader{            
+                        width:60px; height:60px; border-radius: 50%;  /* 내부 원 사이즈 */
+                        border-width:4px; border-style:solid; border-color:transparent;/* loader track width */
+                        border-top-color:#fff;/* loader active section */        
+                        border-bottom-color:#fff;/* loader active section */        
+                        animation: spin 1.5s linear infinite;
+                    }
+                    .circle .txt {  
+                        display:block;
+                        position:absolute; top:50%; left:50%;
+                        transform: translate(-50%,-50%);
+                        font-size:12px; letter-spacing: -1px; color:#fff;
+                        animation: textFlicker 2s ease-in-out infinite;
+                    }
+    
+                    @keyframes spin {
+                        0% {transform: translate(-50%,-50%) rotate(0deg);}
+                        100% {transform: translate(-50%,-50%) rotate(360deg);}
+                    }
+                    @keyframes textFlicker {
+                        0% {opacity: 0;}
+                        30% {opacity: 0;}
+                        70% {opacity: 1;}
+                        100% {opacity: 0;}
+                    }
+                </style>
             </li>
         </ul>
       
