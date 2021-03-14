@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100% Grid Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <style>
+        html,
+        body {width:100%; height:100%;background:#aaa}
+        #wrap {position:relative; margin:0; padding:10px 0; box-sizing:border-box;
+        width:100%; height:100%; }
+        .grid-wrap {
+            position:relative; 
+            display:grid; gap:10px;
+            width:100%; height:100%; min-width:1280px;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(4,1fr);
+        }
+        .grid-wrap .box {
+            position:relative; 
+            background:#eee; border-radius:10px;
+            overflow:hidden;
+
+        }
+        .grid-wrap .grid-box1 {
+            grid-row: span 2
+        }
+
+        .legend {
+            position:absolute; top:50%; right:5%;
+            max-width:20%; transform:translateY(-50%);
+            background:#ccc;
+        }
+        .legend li {position:relative; padding-left:20px; }
+        .legend li i {
+            display:block; 
+            position:absolute; top:50%; left:0; 
+            width:8px; height:8px; border-radius:50%; margin-top:-2px;            
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="grid-wrap">
+            <div class="box grid-box1">
+                <div class="chart-wrap" id="chart1"></div>
+            </div>
+            <div class="box grid-box2">
+                <div class="chart-wrap" id="chart2"></div>
+                <ul class="legend">
+                    <li><i style="background:#239df9;"></i>aaaa</li>
+                    <li><i style="background:#17dfa3;"></i>aaaa</li>
+                </ul>
+            </div>
+            <div class="box grid-box3">
+                <div class="chart-wrap" id="chart3"></div>
+            </div>
+            <div class="box grid-box4">
+                <div class="chart-wrap" id="chart4"></div>
+            </div>
+            <div class="box grid-box5">
+                <div class="chart-wrap" id="chart5"></div>
+            </div>
+            <div class="box grid-box6">
+                <div class="chart-wrap" id="chart6"></div>
+            </div>
+            <div class="box grid-box7">
+                <div class="chart-wrap" id="chart7"></div>
+            </div>
+            <div class="box grid-box8">
+                <div class="chart-wrap" id="chart8"></div>
+            </div>
+            <div class="box grid-box9">
+                <div class="chart-wrap" id="chart9"></div>
+            </div>
+            <div class="box grid-box10">
+                <div class="chart-wrap" id="chart10"></div>
+            </div>
+            <div class="box grid-box11">
+                <div class="chart-wrap" id="chart11"></div>
+            </div>
+            <div class="box grid-box12">
+                <div class="chart-wrap" id="chart12"></div>
+            </div>
+            <div class="box grid-box13">
+                <div class="chart-wrap" id="chart13"></div>
+            </div>
+            <div class="box grid-box14">
+                <div class="chart-wrap" id="chart14"></div>
+            </div>
+            <div class="box grid-box15">
+                <div class="chart-wrap" id="chart15"></div>
+            </div>
+           
+       </div>
+    </div>
+
+    <!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+    var options1 = {
+        chart: {
+            type: 'line',
+            height:'100%',
+            toolbar: {
+                show:false
+            },
+            zoom: {
+                enabled :false
+            }
+        },
+        series: [{
+            name: 'sales',
+            data: [30,40,35,50,49,60,70,91,125]
+        }],
+        xaxis: {
+            categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+        },
+        responsive: [{
+            breakpoint: 800,
+            options: {},
+        }]
+
+    }
+
+    var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+
+    chart1.render();
+    </script>
+
+    <script>
+        options2 = {
+            chart: {
+                type: 'line',
+                width:'70%',
+                height:'100%',
+                toolbar: {
+                    show:false
+                },
+                zoom: {
+                    enabled :false
+                }
+            },
+            series: [
+            {
+                name: "Radar Series 1",
+                data: [45, 52, 38, 24, 33, 10]
+            },
+            {
+                name: "Radar Series 2",
+                data: [26, 21, 20, 6, 8, 15]
+            }
+            ],
+            labels: ['April', 'May', 'June', 'July', 'August', 'September'],
+            legend: {
+                show: false
+            }
+        }
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+
+        chart2.render();
+    </script>
+</body>
+</html>
