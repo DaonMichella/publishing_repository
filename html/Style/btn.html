@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 디자인</title>
+    <style>
+        * {margin:0; padding:0;}
+        #wrap {padding:20px }
+        button {cursor: pointer; border:none; background:none}
+        .btn {position: relative; display:inline-block; font-family: inherit; 
+        padding:11px 10px; border-radius:2px; line-height:16px; font-size:14px; }
+        .gray {background:#ccc }
+
+        .btn-xl {line-height:20px; font-size:18px;}
+        .btn-l {line-height:18px; font-size:16px;}
+        .btn-m {line-height:16px; font-size:14px;}
+        .btn-s {line-height:14px; font-size:12px;}
+        .btn-xs {line-height:12px; font-size:10px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>버튼 스타일</h1>
+
+        <h2 class="title">기본</h2>
+        <button type="button" class="btn gray">버튼</button>
+
+        <h2 class="title">사이즈 별</h2>
+        <button type="button" class="btn btn-xl gray">버튼</button>
+        <button type="button" class="btn btn-l gray">버튼</button>
+        <button type="button" class="btn btn-m gray">버튼</button>
+        <button type="button" class="btn btn-s gray">버튼</button>
+        <button type="button" class="btn btn-xs gray">버튼</button>
+    </div>
+</body>
+</html>
