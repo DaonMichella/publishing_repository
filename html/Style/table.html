@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테이블 스타일</title>
+  <style>
+    table{ font-size:1.4rem; font-family: 'Noto Sans KR', "Apple SD Gothic Neo", "Malgun Gothic"}
+    table{ border-collapse:collapse;border-collapse:separate;/* IE th border 제어를 위해 삽입 */border-spacing:0; width:100%;letter-spacing:-0.05em;  }
+    .hide { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; filter:alpha(opacity=0); zoom:1; text-indent:-9999px; z-index:0; overflow:hidden; }
+    caption { height: 1px; overflow: hidden; line-height: 0; margin-top: -1px; color: transparent; }
+
+    /*===== TABLE =====*/
+    .tbl-type1 {margin-bottom:2rem}
+    .tbl-type1 th ,
+    .tbl-type1 tbody td {border-right:1px solid #eee;}
+    .tbl-type1 th:last-child,
+    .tbl-type1 tbody td:last-child {border-right:none;}
+
+    .tbl-type1 th { position:relative; padding:.8rem .5rem; border-top:1px solid #eee; border-bottom:1px solid #eee;
+    background:#fbfbfb; text-align:center; font-weight:400; line-height:1.2rem; font-size:1.2rem; color: #999; }
+    .tbl-type1 tbody th {padding:1.3rem .8rem; background-color:#fff; border-top:none; font-size:1.4rem; color: #5b5e62; }
+    .tbl-type1 tbody td {padding:1.1rem 1.5rem; border-bottom:1px solid #eee;text-align:center; line-height:1.7rem; text-align:left; font-size: 1.4rem }
+
+  </style>
+</head>
+<body>
+  <div class="tbl-type1">
+    <table>
+      <caption></caption>
+      <colgroup>
+        <col style="width:50%">
+        <col style="width:50%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
