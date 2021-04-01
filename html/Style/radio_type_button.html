@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라디오 형식 BUTTON</title>
+    <style>
+    * {margin:0; padding:0;}
+    input[type=checkbox], input[type=radio] {-webkit-appearance:none; -moz-appearance: none; appearance: none;}
+    #wrap {padding:20px }
+    #wrap:after {display:block; content:''; clear:both;}
+
+    .column-box > div {float:left;}
+    .column-box.col3 > div {width:33.3%; }
+    .inp-radio {position:relative;}
+    .inp-radio input.radio {position:relative; display:inline-block; vertical-align: middle;
+    width:20px; height:20px; border:1px solid #aaa; border-radius:50%;}
+    .inp-radio input.radio:checked {border-color:#d21144;}
+    .inp-radio input.radio:checked::after {position:absolute; width:10px; height:10px; top:50%; left:50%; margin-left:-5px; margin-top:-5px; border-radius: 50%; background-color:#d21144; content:''}
+    .inp-radio input.radio + label {vertical-align:middle; transition: 0.5s all;}
+
+    /* 기존 라디오 스타일에서 추가 */
+    .inp-radio {padding:0 5px 30px; box-sizing: border-box;}
+    .inp-radio input.radio {position:absolute; margin:0 auto; left:0; right:0; bottom:0; }
+    .label-box {display:inline-block; width:100%; border:1px solid #ddd; padding:60px 10px 20px; border-radius:20px; text-align:center; box-sizing: border-box;
+    background:url(../../images/logo.png) no-repeat center top 30px/ 20px auto}
+    .inp-radio input.radio:checked + .label-box {border-color:#d21144; color:#d21144; background-position:top 20px center; background-size:30px}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>라디오 형식 BUTTON</h1>
+        <div class="column-box col3">
+            <div class="inp-radio">
+                <input type="radio" name="car" id="inp" class="radio">
+                <label for="inp" class="label-box">차량번호로 알아보기</label>
+            </div>
+            <div class="inp-radio">
+                <input type="radio" name="car" id="inp1" class="radio">
+                <label for="inp1" class="label-box">차대번호로 알아보기</label>
+            </div>
+            <div class="inp-radio">
+                <input type="radio" name="car" id="inp2" class="radio">
+                <label for="inp2" class="label-box">차량 구매 예정</label>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
