@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>input date mobile test</title>
+  <style type="text/css">
+  	.calendar-box {margin-top:20px; font-size:0 }
+  	.calendar-box > span {display:inline-block;}
+	.calendar-box label {display:block; margin-bottom:6px; font-size:12px; color:#666;}
+	.calendar-box i {display:inline-block; width:6%; font-size:12px; text-align:center; vertical-align: middle;}
+	.calendar-box .inp-cal-range { display:inline-block; width:47%;}
+	.calendar-box input[type='date'] {width:100%;border:1px solid #ccc}
+
+	
+	/* date */
+	input[type="date"]::-webkit-inner-spin-button { opacity: 0}
+	input[type="date"]::-webkit-calendar-picker-indicator {background: url(https://img.favpng.com/24/2/22/calendar-icon-png-favpng-UPkMKJ8qTxuZxVJhMh693bfwa.jpg) center/80% no-repeat; color: #111; opacity: 0.8}
+	input[type="date"]::-webkit-calendar-picker-indicator:hover {background: url(https://img.favpng.com/24/2/22/calendar-icon-png-favpng-UPkMKJ8qTxuZxVJhMh693bfwa.jpg) center/80% no-repeat; opacity: 1 }
+
+	</style>
+ </head>
+ <body>
+	<div class="calendar-box">
+		<span class="inp-cal-range">
+			<input type="date" name="" placeholder="YYYY-MM-DD" value="2020-03-09" id="calStart" title="보험시작일">
+		</span>
+		<i>~</i>
+		<span class="inp-cal-range">
+			<input type="date" name="" placeholder="YYYY-MM-DD" value="2020-03-09" id="calStart" title="보험종료일">
+		</span>
+	</div>
+ </body>
+</html>
