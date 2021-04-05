@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하단 고정 버튼 메뉴 디자인</title>
+    <style>
+        * {margin:0; padding:0;}
+        button {background:none; border:none; cursor: pointer;}
+        a {text-decoration: none;}
+        #wrap {padding:20px; background:lightgoldenrodyellow }
+        .inbox {position:relative; width:800px; height:100vh; margin:0 auto; font-size:32px; background:lightcyan}
+
+        #wrap .fixed-btm {right:30%; }
+        .hide {overflow: hidden; display: inline-block; border: 0; margin: -1px; width: 1px; height: 1px; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);}
+        .fixed-btm {position:fixed; right:0; bottom:0; z-index:1000}
+        .btn-menu {position:relative; margin:20px; padding:10px 20px; display:block; border-radius:20px; background:#000; color:#fff; line-height:20px; font-size:14px; box-sizing:border-box}
+        .btn-menu .txt,
+        .btn-menu.text .box {display:inline-block; vertical-align: middle;}
+        .btn-menu.text .box {position:relative; margin-left:6px; width:16px;height:20px;  }
+        .btn-menu.text .box:after {position:absolute; width:8px; height:8px; margin-top:-4px; top:50%; right:0; transform:rotate(-45deg); border-top:2px solid #fff; border-right:2px solid #fff; content:'';} 
+
+        .btn-menu.circle {width:40px; height:40px; border-radius:50%; }        
+        .btn-menu.circle .box:after {display:block; position:absolute; top:50%; left:50%; width:8px; height:8px; margin-top:-3px; margin-left:-4px;
+            transform:rotate(-45deg); border-top:2px solid #fff; border-right:2px solid #fff; content:'';}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>하단 고정 버튼 메뉴 </h1>
+
+        <h2 class="title">기본</h2>
+        <div class="inbox">
+            box 영역 내
+            <div class="fixed-btm">
+                <a href="#" class="btn-menu text"><span class="txt">상단 메뉴로 이동</span><span class="box"></span></a>
+                <button type="button" class="btn-menu text"><span class="txt">상단 메뉴로 이동</span><span class="box"></span></button>
+                <button type="button" class="btn-menu circle"><span class="txt hide">상단 메뉴로 이동</span><span class="box"></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-btm">
+        <a href="#" class="btn-menu text"><span class="txt">상단 메뉴로 이동</span><span class="box"></span></a>
+        <button type="button" class="btn-menu text"><span class="txt">상단 메뉴로 이동</span><span class="box"></span></button>
+        <button type="button" class="btn-menu circle"><span class="txt hide">상단 메뉴로 이동</span><span class="box"></span></button>
+    </div>
+</body>
+</html>

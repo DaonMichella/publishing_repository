@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>햄버거 메뉴 디자인</title>
+    <style>
+        * {margin:0; padding:0;box-sizing: border-box;}
+        button {background:none; border:none; cursor: pointer; outline:none}/* outline 때문에 노란 테두리로 보임 */
+        a {text-decoration: none;}
+
+        #wrap {padding:20px; background:#000}
+        .btn-burger {position: relative; display: table; width:40px; height:40px;  border:3px solid #fff; text-align: center;}
+        .btn-burger .bar,
+        .btn-burger .bar:before,
+        .btn-burger .bar:after { display:inline-block; width:30px; height:4px; background:#fff; border-radius: 5px; box-shadow: 0 2px 4px rgba(255,255,255,.3); transition:all .5s ease-in-out;}
+        
+        .btn-burger .bar {position:relative; vertical-align: middle; text-indent:-9999px;}
+        .btn-burger .bar:before,
+        .btn-burger .bar:after {position:absolute; left:0; content:''}
+
+        .btn-burger .bar:before {transform: translateY(-10px);}
+        .btn-burger .bar:after {transform: translateY(10px)}
+
+        .btn-burger.open .bar {transform:translateX(-50px); background:transparent;  box-shadow: none;}
+        .btn-burger.open .bar:before {transform:rotate(45deg) translate(36px,-36px); }
+        .btn-burger.open .bar:after {transform:rotate(-45deg) translate(36px,36px);}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>햄버거 메뉴 스타일</h1>
+
+        <h2 class="title">기본</h2>
+
+        <button type="button" class="btn-burger">
+            <span class="bar">메뉴</span>
+        </button>
+    </div>
+    <script>
+        const menuBtn = document.querySelector(".btn-burger")
+        let menuOpen = false;
+
+        menuBtn.addEventListener("click",function () {
+            if(!menuOpen) {
+                menuBtn.classList.add('open');
+                menuOpen = true
+            } else {
+                menuBtn.classList.remove('open');
+                menuOpen = false
+            }
+        })
+    </script>
+</body>
+</html>
