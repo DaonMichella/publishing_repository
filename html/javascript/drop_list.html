@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드롭 메뉴 리스트</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+    <style>
+        .btn-drop-menu {border:1px solid #ccc; padding:10px; line-height:20px; font-size:14px;}
+        .drop-menu {height:0; transition:all .5s ease-in-out; opacity: 0; overflow: hidden;}
+        .btn-drop-menu.on + .drop-menu {height:auto; opacity: 1;}
+        
+        @-moz-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+        }
+        @-webkit-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+        }
+        @-o-keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+        }
+        @keyframes growDown {
+        0% {
+            transform: scaleY(0);
+        }
+        80% {
+            transform: scaleY(1.1);
+        }
+        100% {
+            transform: scaleY(1);
+        }
+        }
+        </style>
+</head>
+<body>
+
+    <div id="wrap">
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <button type="button" class="btn-drop-menu">리스트 버튼</button>
+            <ul class="drop-menu">
+                <li><a href="#">버튼1</a></li>
+                <li><a href="#">버튼2</a></li>
+                <li><a href="#">버튼3</a></li>
+            </ul>
+        </div>
+
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+   
+    <script>
+        const $scriptArea = document.querySelector(".vanila");
+        const btn = $scriptArea.querySelector('.btn-drop-menu')
+        btn.addEventListener("click",function(e){
+            e.target.classList.toggle("on")
+        })
+    </script>
+</body>
+</html>
