@@ -10,31 +10,31 @@
     <style>
         .drop-menu-wrap {position:relative}
         .btn-drop-menu {border:1px solid #ccc; padding:10px; line-height:20px; font-size:14px;}
-        .drop-menu {position:absolute; top:42px; left:0; 
+        .drop-menu {position:absolute; top:0px; left:0; 
         width:100%; max-height:0; transition:all .5s ease-in-out;
         opacity: 0; overflow: hidden; text-align: center; box-sizing: border-box;
-        background:#fff; border-radius:10px;}
+        background:#fff;}
         .drop-menu > li {border-bottom:1px solid #ccc}
+        .drop-menu > li:last-child {border-bottom:none}
         .drop-menu > li a {display:block; padding:10px;}
 
-        .btn-drop-menu.on + .drop-menu {max-height:200px; opacity: 1; transition:all .5s ease-in-out;}
-        .btn-drop-menu.fade + .drop-menu {max-height:0; opacity: 0; transition:all .5s ease-in-out;}
+        .drop-menu.on {max-height:200px; opacity: 1; transition:all .5s ease-in-out;}
+        .drop-menu.fade {max-height:0; opacity: 0; transition:all .5s ease-in-out;}
        
         </style>
 </head>
 <body>
 
     <div id="wrap">
-
         <div class="example-box vanila">
             <p class="txt-desc">자바스크립트</p>
             <div class="drop-menu-wrap">
                 <button type="button" class="btn-drop-menu">리스트 버튼</button>
-                <ul class="drop-menu">
+                <div class="drop-menu">
                     <li><a href="#">버튼1</a></li>
                     <li><a href="#">버튼2</a></li>
                     <li><a href="#">버튼3</a></li>
-                </ul>
+                </div>
             </div>
 
         </div>
@@ -46,20 +46,65 @@
             </ul>
         </div>
     </div>
-   
-    <script>        
-        const btn = document.querySelector('.btn-drop-menu')
-        btn.addEventListener("click",function(e){
-            const targetClass = e.target.classList
-            if(targetClass.contains("on")) {
-                targetClass.add("fade")
-                targetClass.remove("on")
-            } else {
-                targetClass.add("on")
-                targetClass.remove("fade")
-            } 
-            
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>       
+
+        function dropMenuOpen () {
+            const btn = document.querySelector('.btn-drop-menu')
+            const menu = document.querySelector('.drop-menu')
+            const btnMenu = menu.querySelectorAll('li a')
+
+            btn.addEventListener("click",function(){
+                if(menu.classList.contains("on")) {
+                    menuClose ()
+                } else {
+                    menu.classList.add("on")
+                    menu.classList.remove("fade")
+                } 
+                
+            })
+            btnMenu.forEach(function(btn) {
+                btn.addEventListener("click",function(){
+                    menuClose ()
+                })
+            })
+
+            function menuClose () {
+                menu.classList.add("fade")
+                menu.classList.remove("on")
+            }
+        }
+        $(document).ready(function() {
+
         })
+        function dropMenuOpenJQuery () {
+            const btn = $('.btn-drop-menu')
+            const menu = $('.drop-menu')
+            const btnMenu = menu.find('li a')
+
+            btn.on("click",function(){
+                if(menu.hasClass("on")) {
+
+                    menuClose ()
+                } else {
+                    menuOpen ()                    
+                } 
+                
+            })
+            btnMenu.on("click",function(){
+                menuClose ()
+            })
+
+            function menuClose () {
+                menu.addClass("fade")
+                menu.removeClass("on")
+            }
+            function menuOpen () {
+                menu.addClass("on")
+                menu.removeClass("fade")
+            }
+        }
+        dropMenuOpenJQuery ()
     </script>
 </body>
 </html>
