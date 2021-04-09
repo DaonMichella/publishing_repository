@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+  button {background:none; border:none; cursor:pointer}
+  * {margin:0; padding:0}
+  li {list-style:none}
+  .drop-menu-wrap {position:relative;margin-top:400px}
+  .btn-border-gray {padding:10px; width:100%;  border: 1px solid #ccc; background-color: #fff; font-weight:400; color: #111;}
+  .drop-menu-wrap {position:relative; width:340px; margin:500px auto;}
+.sel-drop-menu {position:absolute; bottom:0px; left:0; width:100%; max-height:0;
+overflow: hidden; text-align: center; box-sizing: border-box; background:#fff;}
+.sel-drop-menu .btn-xl {margin-bottom:0; border-bottom:0; }
+.sel-drop-menu li:last-child .btn {border-bottom:1px solid #ccc}
+.sel-drop-menu .btn-xl:hover:not(.on) {background-color:#feeee2}
+
+.sel-drop-menu.on {max-height:200px;}
+.sel-drop-menu.fade {max-height:0; }
+
+.sel-drop-menu,
+.sel-drop-menu.on {transition:all 0.35s ease-in;}
+.sel-drop-menu.fade {transition:all 0.35s ease-out;}
+  </style>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  /* dropMenuShowHide()
+	1) 매개변수 설명 : 클릭 버튼, 콜백1(열릴 때 실행되는 콜백 함수), 콜백2(닫힐때 실행되는 콜백함수)
+	2) 사용 예시 :
+	dropMenuShowHide ($('버튼 id/class 명'), 함수명1, 함수명2)
+	*/
+	$(document).ready(function() {
+			dropMenuShowHide ($(".drop-btn"))
+	})
+	function dropMenuShowHide (clickBtn, showCallback , hideCallback) {
+		var btn = clickBtn;
+		var menu = $('.sel-drop-menu')
+		var btnMenu = menu.find('.btn-xl')
+
+		btn.on("click",function(e){
+				if(menu.hasClass("on")) {
+						menuClose ()
+				} else {
+						menuOpen ()
+				}
+		})
+
+		btnMenu.on("click",function(e){
+			clickResultApply (e)
+			menuClose ()
+
+		})
+
+		function menuClose () {
+				menu.addClass("fade")
+				menu.removeClass("on")
+				if(hideCallback) hideCallback()
+		}
+		function menuOpen () {
+				menu.addClass("on")
+				menu.removeClass("fade")
+				if(showCallback) showCallback()
+		}
+		function clickResultApply (e) {
+			var applyTxt = e.target.innerText
+			btn.text(applyTxt)
+		}
+	}
+
+  </script>
+ </head>
+ <body>
+  <div class="btn-group col drop-menu-wrap" style="margin-bottom:0">
+	<a href="#" class="btn-xl btn-border-gray drop-btn">다른 문의사항이 있습니다.</a>
+	<div class="sel-drop-menu">
+		<ul>
+				<li><button type="button" class="btn-xl btn-border-gray">올해 보험료 견적을 받고 싶습니다.</button></li>
+				<li><button type="button" class="btn-xl btn-border-gray">온라인 가입 중 문제가 있습니다.</button></li>
+				<li><button type="button" class="btn-xl btn-border-gray">상담사 연결이 필요합니다.</button></li>
+				<li><button type="button" class="btn-xl btn-border-gray on">다른 문의사항이 있습니다.</button></li>
+		</ul>
+	</div>
+ </body>
+</html>
