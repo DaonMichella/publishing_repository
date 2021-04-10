@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+    <style>
+        .content-wrap {width:100%; height:100%; position:absolute; top:0; right:340px; overflow-x:hidden; overflow-y:auto;}
+        .content_inner {position:absolute;top:60px;right:50%;margin-right:-505px;width:670px;padding-bottom:50px;}
+        .content_inner h2 {font-size:24px;height:30px;line-height:30px;margin-bottom:8px;}
+        .terms_scrollbox {width:90%;height:485px;overflow-x:hidden;overflow-y:scroll;border:solid 1px #ccc;margin-top:45px;
+        padding:30px 5%;font-size:13px;line-height:25px;color:#62666a;}
+        .terms_scrollbox strong {display:block;font-size:14px;font-weight:normal;margin-bottom:5px;color:#000;}
+        #footer { overflow: hidden;position: absolute;bottom: 0; height: 30px; width:100%; text-align: center;margin-left:0px; margin-bottom:-7px; padding-top:7px;
+        text-align:center;font-size:12px;color:#999999;background:#ffffff;z-index:999;}
+        .gnb-box {right:-100%}
+        .open + .gnb-box {right:0}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+       <header id="header" class="header">
+           <div class="inbox clear">
+               <h1 class="logo"><img src="../../images/logo.png" alt="로고"></h1>
+               <nav id="gnb" class="gnb-wrap">
+                    <button type="button" class="btn-menu">메뉴 오픈</button>
+                    <div class="gnb-box">
+                        <ul class="clear">
+                            <li><a href="#">메뉴1</a></li>
+                            <li><a href="#">메뉴2</a></li>
+                            <li><a href="#">메뉴3</a></li>
+                        </ul>
+                    </div>               
+               </nav>
+           </div>
+       </header>
+       <div class="content-wrap">
+        <div class="content_inner">
+			<h2>이용약관</h2>
+			
+			<!--이용약관 내용시작-->
+			<div class="terms_scrollbox">
+				<strong>제1조(목적 등)</strong><br>
+                ① ADT 뷰가드 웹관제(www.capslive.co.kr) 서비스 약관(이하 "본 약관"이라 합니다)은 이용자가 주식회사 에이디티캡스(이하 "ADT캡스"라 합니다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 합니다)를 이용함에 있어 이용자와 ADT캡스의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다. <br>                    
+			</div>
+			<!--이용약관 내용끝-->
+		</div>
+       </div>
+       <footer id="footer" class="footer">
+           footer
+       </footer>
+    </div>
+
+    <script>
+        const btn = document.querySelector(".btn-menu");
+        btn.addEventListener("click",function(e){
+            e.target.classList.add("open")
+        })
+    </script>
+</body>
+</html>
