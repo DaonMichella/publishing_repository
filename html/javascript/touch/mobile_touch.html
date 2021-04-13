@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8" />
+  <title> indicator가 세로방향인 onePage </title>
+  <style type="text/css">
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);	
+	body, ul, h1{margin:0px;padding:0px}
+	body{font-family:"Nanum Gothic";font-size:12px}
+    body, html {-webkit-overflow-scrolling:touch}
+	ul{list-style:none}
+	a{text-decoration:none}
+
+	.box{position:relative; width:380px; height:440px; border:10px solid #000; display: flex; flex-direction: column; justify-content: center;  align-items: center;}
+    .box p {opacity: 0; transition: all 1s ease-in-out;}
+    .box p.fadeOut {opacity:0}
+    .box p.fadeIn {opacity:1}
+  </style>
+ </head>
+
+ <body>
+	<div class="box">
+        <p class="p1 toRight">오른쪽에서 왼쪽으로</p>
+        <p class="p1 toLeft">왼쪽에서 오른쪽으로</p>
+        <p class="p2 toTop">위에서 아래로</p>
+        <p class="p2 toBottom">아래서 위로</p>
+    </div>
+    <script>
+        var startX,startY, endX,endY;
+        var box = document.querySelector(".box")
+        var txt = box.querySelectorAll("p")
+        var topCnt = document.querySelector(".toTop")
+        var btnCnt = document.querySelector(".toBottom")
+        var leftCnt = document.querySelector(".toLeft")
+        var rightCnt = document.querySelector(".toRight")
+
+        box.addEventListener('touchstart',function(event){
+            startX = event.changedTouches[0].screenX;
+            startY = event.changedTouches[0].screenY;
+        });
+        box.addEventListener('touchend',function(event){
+            endX=event.changedTouches[0].screenX;
+            endY=event.changedTouches[0].screenY;
+            txt.forEach(function(t){
+              t.classList.remove("fadeOut")
+              t.classList.remove("fadeIn")
+            })
+            if(startY-endY>50){
+              topCnt.classList.add("fadeOut");
+              btnCnt.classList.add("fadeIn");  
+            }else if(endY-startY>50){
+              btnCnt.classList.add("fadeOut");    
+              topCnt.classList.add("fadeIn");      
+            }else if(startY-endY<50 || endY-startY<50 ){
+              topCnt.classList.add("fadeOut");
+              btnCnt.classList.add("fadeOut");
+            }
+          if(startX-endX>50){
+              leftCnt.classList.add("fadeOut");
+              rightCnt.classList.remove("fadeIn");      
+              rightCnt.classList.add("fadeIn");      
+            }else if(endX-startX>50){
+              rightCnt.classList.add("fadeOut");
+              leftCnt.classList.remove("fadeIn");      
+              leftCnt.classList.add("fadeIn");      
+            }else if(startX-endX<50 || endX-startX<50 ){
+              rightCnt.classList.add("fadeOut");
+              leftCnt.classList.add("fadeOut");
+            }
+        });
+  
+    </script>
+ </body>
+</html>

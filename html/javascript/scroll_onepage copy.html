@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8" />
+  <title> indicator가 세로방향인 onePage </title>
+  <style type="text/css">
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);	
+	body, ul, h1{margin:0px;padding:0px}
+	body{font-family:"Nanum Gothic";font-size:12px}
+    body, html {-webkit-overflow-scrolling:touch}
+	ul{list-style:none}
+	a{text-decoration:none}
+
+	.area{width:100%;height:100%}
+	#header{position:fixed;left:0px;right:0px;top:0px;height:50px;background:#aaa}
+	
+	#header h1, #header #gnb, #header #gnb ul li{display:inline-block;}
+    #header {font-size:0}
+	#header h1{width:20%; font-size:32px; margin-top:8px; vertical-align: middle;}
+	#header #gnb{width:80%; vertical-align: middle;}
+	#header #gnb ul {font-size:0}
+	#header #gnb ul li{display:inline-block; width:25%; vertical-align: middle;}
+	#header #gnb ul li a{display:inline-block; text-align:center; font-size:14px;}
+
+	#snb{position:fixed;right:30px;top:50%;margin-top:-110px;width:100px;background:#aaa;}
+	#snb ul{padding-top:10px}
+	#snb ul li{height:20px;line-height:20px;padding-bottom:10px}
+	#snb ul li a{display:block;}
+	#snb ul li a span{display:inline-block;vertical-align:middle}
+	#snb ul li a .txt{width:75px;padding-right:5px;text-align:right;color:#000}
+	#snb ul li.on a .txt{color:red}
+	#snb ul li a .icon{width:18px;height:18px;border:1px solid #000;background:#000}
+	#snb ul li.on a .icon{background:yellow}
+
+	#content{padding-top:50px}
+	#content article{min-height:500px;font-size:100px;text-align:center}
+	#content #cnt0{background:aqua}
+	#content #cnt1{background:pink}
+	#content #cnt2{background:yellow}
+	#content #cnt3{background:coral}
+	#content #cnt4{background:skyblue}
+	#content #cnt5{background:green}
+	#content #cnt6{background:blue}
+	#footer{height:100px;background:black}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>  
+
+ </head>
+
+ <body>
+	<div id="wrap">
+		<header id="header">
+			<div class="area">
+				<h1>로고</h1>
+				<nav id="gnb">
+					<ul>
+						<li><a href="#">주메뉴1</a></li>
+						<li><a href="#">주메뉴2</a></li>
+						<li><a href="#">주메뉴3</a></li>
+						<li><a href="#">주메뉴4</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<nav id="snb">
+			<ul>
+				<li class="on"><a href="#cnt0"><span class="txt">서브메뉴0</span><span class="icon"></span></a></li>
+				<li><a href="#cnt1"><span class="txt">서브메뉴1</span><span class="icon"></span></a></li>
+				<li><a href="#cnt2"><span class="txt">서브메뉴2</span><span class="icon"></span></a></li>
+				<li><a href="#cnt3"><span class="txt">서브메뉴3</span><span class="icon"></span></a></li>
+				<li><a href="#cnt4"><span class="txt">서브메뉴4</span><span class="icon"></span></a></li>
+				<li><a href="#cnt5"><span class="txt">서브메뉴5</span><span class="icon"></span></a></li>
+				<li><a href="#cnt6"><span class="txt">서브메뉴6</span><span class="icon"></span></a></li>
+			</ul>
+		</nav>
+		<section id="content">
+			<article id="cnt0">본문내용0</article>
+			<article id="cnt1">본문내용1</article>
+			<article id="cnt2">본문내용2</article>
+			<article id="cnt3">본문내용3</article>
+			<article id="cnt4">본문내용4</article>
+			<article id="cnt5">본문내용5</article>
+			<article id="cnt6">본문내용6</article>
+		</section>
+		<footer id="footer"></footer>
+	</div>
+    <script>
+        function getElementIndex(node) {
+        
+         var nodeArr = Array.from(node.parentNode.childNodes).filter(child => child.nodeType == 1)
+          return Array.prototype.indexOf.call(nodeArr, node);
+          //childNodes 에는 text 도 포함됨
+        }      
+        
+        function move(element) {
+          var top = 0
+          function frame() {
+              top++  // update parameters
+              element.style.top = top + 'px' // show frame
+              if (top == 100)  clearInterval(id)
+          }
+          var id = setInterval(frame, 10) // draw every 10ms
+        }
+        
+          /**
+            * Animate scrolling to a target position
+            * @param {string} _selector Target selector
+            * @param {number} _duration (Option) Duration time(ms) (Default. 800ms)
+            * @param {number} _adjust (Option) Adjustment value of position
+            */
+            animteScrollTo = function(_selector, _duration, _adjust) {
+            const targetEle = document.querySelector(_selector);
+            if (!targetEle) return;
+              console.log(targetEle);
+            // - Get current &amp; target positions
+            const scrollEle = document.documentElement || window.scrollingElement,
+            currentY = scrollEle.scrollTop,
+            targetY = targetEle.offsetTop - (_adjust || 0);
+            animateScrollTo(currentY, targetY, _duration);
+
+            // - Animate and scroll to target position
+            function animateScrollTo(_startY, _endY, _duration) {
+                _duration = _duration ? _duration : 600;
+                const unitY = (targetY - currentY) / _duration;
+                const startTime = new Date().getTime();
+                const endTime = new Date().getTime() + _duration;
+
+                const scrollTo = function() {
+                let now = new Date().getTime();
+                let passed = now - startTime;
+                if (now <= endTime) {
+                    scrollEle.scrollTop = currentY + (unitY * passed);
+                    requestAnimationFrame(scrollTo);
+                }
+                else {
+                    console.log('End off.')
+                }
+                };
+                requestAnimationFrame(scrollTo);
+            };
+            };
+
+      function scrollDown () {
+        
+      }
+        function scrollingEvent () {
+          var menu = document.querySelectorAll("#snb ul li"),
+          cnt = document.querySelectorAll("#content article"),
+          header = document.querySelector("#header");
+          var total=cnt.length,
+          cntPosY;
+          cntPosY=new Array(total+1);
+          for (var i=0; i<total; i++) {          
+              cntPosY[i]=cnt[i].getBoundingClientRect().top-header.clientHeight;
+          }
+          cntPosY[i]=document.clientHeight-window.clientHeight;		//마지막 컨텐츠의 높이가 낮아 스크롤바가 가장 마지막에 위치한 경우도 변수에 저장
+          
+          window.addEventListener("wheel", scrollMove);
+          function scrollMove () {
+              var scrollY=window.scrollY
+              for (var i=0; i<=total; i++) {
+                  menu.forEach(function(menuElement) {
+                    menuElement.classList.remove("on")
+                  })
+                  
+                  if (scrollY>=cntPosY[i]) menu[i].classList.add("on")
+                  else if (scrollY==cntPosY[total]) menu[i].classList.add("on")
+              }
+          }
+  
+          //3) 마우스휠 움직이기
+          cnt.forEach(function (cntElement) {
+            cntElement.addEventListener("wheel",function  (e) {
+            var wheelNum=e.wheelDelta || e.detail*-1;
+            var thisIdx= getElementIndex(e.target);     
+            //아래로 이동(음수), 위로 이동(양수)
+            if (wheelNum<0 && thisIdx<total-1) {      
+                animteScrollTo("#cnt"+[thisIdx+1],null, header.clientHeight);
+            }
+            else if (wheelNum>0 && thisIdx>0) {
+                animteScrollTo("#cnt"+[thisIdx-1],null, header.clientHeight);
+            }
+            
+            
+        })        
+  
+        })
+    }
+    scrollingEvent ()
+  
+    </script>
+ </body>
+</html>
