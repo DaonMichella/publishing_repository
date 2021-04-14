@@ -31,7 +31,7 @@
     <!-- apex chart -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>       
-        var options1= {
+      var options1= {
         series: [{
         name: 'Inflation',
         data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
@@ -122,7 +122,7 @@
           var max = arr.reduce(function(a, b) {
               return Math.max(a, b);
           });
-          console.log(max)
+
           if(value < max) return '#7E36AF'
           else return '#f00'
         }],
