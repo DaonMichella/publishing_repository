@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list add and remove</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+    <style>
+        .flex-box {display:flex; margin:0 auto; width:80%; gap:10px;}
+        .flex-box .box {flex:1; border:1px solid #ddd;}
+        .flex-box .box .list,
+        .flex-box .box .list > li > a{display:block; padding:8px 10px;}
+        .flex-box .box .list > li {border-bottom:1px solid #ddd; margin-bottom:8px; }
+        .flex-box .box .list > li:last-child {border-bottom:none;}
+        .flex-box .box .list > li > a{display:block; padding:8px 10px; background:#eee}
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+
+
+        <div class="example-box vanila">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="flex-box">
+                <div class="box">
+                    <ul class="list">
+                        <li><a href="#" class="btn-list">카메라1</a></li>
+                        <li><a href="#" class="btn-list">카메라2</a></li>
+                        <li><a href="#" class="btn-list">카메라3</a></li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <ul class="list append-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="memo-box">
+            <p class="title">메모</p>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+   
+    <script>
+        function listAddRemove () {
+
+            const $scriptArea = document.querySelector(".vanila");
+            const btnList = document.querySelectorAll(".btn-list")
+            const appendList = document.querySelector(".append-list")
+
+            btnList.forEach(function(btn){
+                btn.addEventListener("click",function(e){
+                    var data = e.target.innerText
+                    var parent = document.createElement("li");
+                    var parentLink = document.createElement("a");
+                    parentLink.setAttribute("href","#")
+                    parentLink.classList.add("btn-link")
+                    
+                    console.dir(parentLink)
+                    parentLink.append(data)
+                    parent.append(parentLink)
+                    appendList.append(parent)
+                    var linkBtn = appendList.querySelectorAll(".btn-link")
+                    linkBtn.forEach(function(link){
+                        
+                        link.addEventListener("click",function(linkEvent){
+                            linkEvent.target.parentElement.remove()
+                        })
+                    })
+                })
+            })
+
+            
+        }
+        listAddRemove ()
+    </script>
+</body>
+</html>
