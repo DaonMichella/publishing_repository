@@ -48,37 +48,65 @@
     </div>
    
     <script>
-        function listAddRemove () {
-
-            const $scriptArea = document.querySelector(".vanila");
+        function addList () {
             const btnList = document.querySelectorAll(".btn-list")
-            const appendList = document.querySelector(".append-list")
-
             btnList.forEach(function(btn){
                 btn.addEventListener("click",function(e){
-                    var data = e.target.innerText
-                    var parent = document.createElement("li");
-                    var parentLink = document.createElement("a");
-                    parentLink.setAttribute("href","#")
-                    parentLink.classList.add("btn-link")
                     
-                    console.dir(parentLink)
-                    parentLink.append(data)
-                    parent.append(parentLink)
-                    appendList.append(parent)
-                    var linkBtn = appendList.querySelectorAll(".btn-link")
-                    linkBtn.forEach(function(link){
-                        
-                        link.addEventListener("click",function(linkEvent){
-                            linkEvent.target.parentElement.remove()
-                        })
-                    })
+                    //중복 체크
+                    if (duplicateCheck (e.target.innerText)) {
+                        setTimeout(function (){                        
+                            const data = e.target.innerText
+                            const parent = document.createElement("li");
+                            const parentLink = document.createElement("a");
+                            parentLink.setAttribute("href","#")
+                            parentLink.classList.add("btn-link")
+                            const appendList = document.querySelector(".append-list")                    
+                            console.dir(parentLink)
+                            parentLink.append(data)
+                            parent.append(parentLink)
+                            appendList.append(parent)
+                        }, 100)
+
+                    } else {
+                        alert('동일한 카메라가 등록되어 있습니다.')
+                    }
+ 
+                    //동적 생성 실행 후, 삭제 실행
+                    removeList()
                 })
             })
 
-            
         }
-        listAddRemove ()
+        addList ()
+
+        
+        function duplicateCheck (currentWord) {
+            let clickText = currentWord
+            const appendList = document.querySelector(".append-list")
+            const linkBtn = appendList.querySelectorAll(".btn-link")
+            let flag = true;
+            if(linkBtn.length > 0) {
+                linkBtn.forEach(function (link){
+                    if (clickText == link.innerText) flag = false
+                })
+            }
+            return flag;
+        }
+
+        function removeList () {
+            const appendList = document.querySelector(".append-list")
+            const linkBtn = appendList.querySelectorAll(".btn-link")
+            linkBtn.forEach(function(link){                        
+                link.addEventListener("click",function(linkEvent){
+                    linkEvent.target.parentElement.remove()
+                })
+            })                
+        }
+
+        
+        
+        
     </script>
 </body>
 </html>
