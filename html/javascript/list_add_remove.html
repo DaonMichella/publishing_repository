@@ -66,20 +66,21 @@
                             parentLink.append(data)
                             parent.append(parentLink)
                             appendList.append(parent)
+
+                            //동적 생성 실행 후, 삭제 실행
+                            removeList()
                         }, 100)
 
                     } else {
                         alert('동일한 카메라가 등록되어 있습니다.')
                     }
  
-                    //동적 생성 실행 후, 삭제 실행
-                    removeList()
+                    
                 })
             })
 
         }
         addList ()
-
         
         function duplicateCheck (currentWord) {
             let clickText = currentWord
