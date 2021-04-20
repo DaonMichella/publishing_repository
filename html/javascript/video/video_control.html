@@ -6,11 +6,23 @@
     <title>player</title>
     <style>
         button {background: none; border:none; cursor: pointer;}
-        button[class*=btn] {padding:8px 10px; border:1px solid #eee; color:#fff; }
+        button[class*=btn] {padding:8px 10px;  color:#fff; }
         .player-wrap {position: relative;}
         .video-control {position:absolute; top:0; left:0; width:100%; height:100%; z-index:10;
         display:flex; flex-direction: column; justify-content: space-between;}
         .ctrl-btm {display:flex; justify-content: space-between;}
+        .ctrl-btm button {display:inline-block; width:64px; height:64px; text-indent:-9999px; background-repeat:no-repeat;background-size:32px auto; background-position:center }        
+        button.btn-play-stop {background-image:url(../../../images/ico_play.png); background-size:48px auto;}
+        .btn-play-stop.stop {background-image:url(../../../images/ico_pause.png)}
+        .btn-backward {background-image:url(../../../images/ico_backward-10sec.png)}
+        .btn-forward {background-image:url(../../../images/ico_forward-10sec.png)}
+        .btn-volume {background-image:url(../../../images/ico_volume.png)}
+        .btn-question {background-image:url(../../../images/ico_question.png)}
+        .btn-caption {background-image:url(../../../images/ico_caption.png)}
+        .btn-speed {background-image:url(../../../images/ico_speed.png)}
+        .btn-full {background-image:url(../../../images/ico_full.png)}
+
+
     </style>
 </head>
 <body>
@@ -24,11 +36,11 @@
                 </div>
                 <div class="ctrl-btm">
                     <button type="button" class="btn-play-stop">재생</button>
-                    <button type="button" class="btn-prev10">10초 전</button>
-                    <button type="button" class="btn-next10">10초 후</button>
-                    <button type="button" class="btn-volumn">음량 조절</button>
+                    <button type="button" class="btn-backward">10초 전</button>
+                    <button type="button" class="btn-forward">10초 후</button>
+                    <button type="button" class="btn-volume">음량 조절</button>
                     <span class="title"><strong>타이틀</strong><span class="tx-gray">sub 타이틀</span></span>
-                    <button type="button" class="btn-inqury">문의</button>
+                    <button type="button" class="btn-question">문의</button>
                     <button type="button" class="btn-next-video">다음 비디오</button>
                     <button type="button" class="btn-season">시즌 정보</button>
                     <button type="button" class="btn-caption">자막</button>
