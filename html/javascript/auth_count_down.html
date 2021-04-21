@@ -9,6 +9,9 @@
   <title>휴대폰 인증 Count down</title>
 	<link rel="stylesheet" href="../css/reset.css">
 	<style>
+		input {-webkit-appearance: none; -moz-appearance: none; appearance: none;}
+		.inp-auth input {border:1px solid #ddd;}
+		
 		#wrap {width:500px; margin:0 auto;}
 		.tx-red {color:#f00}
 		label {display:block; margin-bottom:3px; font-size:14px; color:#777; }
@@ -24,7 +27,9 @@
 		.inp-auth {position:relative; margin-bottom:20px; }
 		.inp-auth input {display:inline-block; width:calc(100% - 100px); padding:8px 10px; border-bottom:1px solid #ddd; }
 		.inp-auth input:focus {border-color:#111}
-		.inp-auth .btn-inp {display:inline-block; padding:8px 0; border-radius:4px; width:70px; border:1px solid #111; }
+		
+		.btn-inp {display:inline-block; padding:8px 0; border-radius:4px; width:100%; border:1px solid #111; }
+		.inp-auth .btn-inp {width:70px}
 	</style>
 	<script>
 	function $ComTimer(){
@@ -77,7 +82,7 @@
 		<div class="auth-box tel">
 			<label for="inp1">휴대폰번호 인증</label>
 			<div class="inp-auth">
-				<input type="text" name="" id="inp1" placeholder="휴대폰 번호 인증"/>
+				<input type="tel" name="" id="inp1" placeholder="휴대폰 번호 인증"/>
 				<button type="button" class="btn-inp">확인</button>
 			</div>
 		</div>
@@ -87,6 +92,7 @@
 				<input type="tel" name="" id="inp2" placeholder="인증번호 6자리 입력"/>
 				<span class="auth-time tx-red" id="timer"></span>
 			</div>
+			<button type="button" class="btn-inp confirm">확인</button>
 		</div>
 	</div>
  </body>

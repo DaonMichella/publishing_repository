@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOMContentLoaded</title>
+    <script>
+    	// window.onload가 가장 앞에 위치!
+        window.onload = function(){
+            console.log("afterwindowload");
+            var target = document.querySelector("#test");
+            console.log(target);
+        }
+		// DOMContentLoaded가 두번째에 위치!
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("afterdomload");
+            var target = document.querySelector('#test');
+            console.log(target);
+        });
+		// 일반 script 코드가 가장 끝에 위치
+        console.log("바로시작")
+        var target = document.querySelector('#test');
+        console.log(target);
+    </script>
+</head>
+<body>
+    <div id="test">일반 script 코드 -> DOMContentLoaded 안의 코드 -> window.onload 안의 코드 순으로 출력</div>
+</body>
+</html>

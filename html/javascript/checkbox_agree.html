@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkbox</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/contents.css"/>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">체크 동의</h2>
+        <div class="memo-box">
+            <p class="title">전체 동의 버튼 클릭 시 - 동의 하지 않음 체크 해제, 동의함 체크 </p>
+        </div>
+
+        <div class="example-box type1">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="inp-chk">
+                <label for="chkV1">동의함</label>
+                <input type="checkbox" id="chkV1" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV2">동의함</label>
+                <input type="checkbox" id="chkV2" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV3">동의함</label>
+                <input type="checkbox" id="chkV3" name="">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV_all">전체 동의함</label>
+                <input type="checkbox" id="chkV_all" name="">
+            </div>
+        </div>
+
+
+        <div class="example-box type2">
+            <p class="txt-desc">자바스크립트</p>
+            <div class="inp-chk">
+                <label for="chkV2_1">동의함</label>
+                <input type="checkbox" id="chkV2_1" name="check1" data-info="agree">
+            </div>
+            <div class="inp-chk">
+                <label for="chkNot2_1">동의 하지 않음</label>
+                <input type="checkbox" id="chkNot2_1" name="check1">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV2_2">동의함</label>
+                <input type="checkbox" id="chkV2_2" name="check2" data-info="agree">
+            </div>
+            <div class="inp-chk">
+                <label for="chkNot2_2">동의 하지 않음</label>
+                <input type="checkbox" id="chkNot2_2" name="check2">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV2_3">동의함</label>
+                <input type="checkbox" id="chkV2_3" name="check3" data-info="agree">
+            </div>
+            <div class="inp-chk">
+                <label for="chkNot2_3">동의 하지 않음</label>
+                <input type="checkbox" id="chkNot2_3" name="check3">
+            </div>
+            <div class="inp-chk">
+                <label for="chkV2_all">전체 동의함</label>
+                <input type="checkbox" id="chkV2_all" name="">
+            </div>
+        </div>
+
+        
+    </div>
+    <!-- script --> 
+    <script>
+        function agreeBasicFunc () {
+            const $scriptArea = document.querySelector(".type1");
+            const $chk = $scriptArea.querySelectorAll("input[type=checkbox]:not(#chkV_all)")
+            const $chk_all = $scriptArea.querySelector("#chkV_all")
+            // 모두 체크/해제
+            $chk_all.addEventListener("change",function(e){
+                
+                $chk.forEach(function(item){
+                    if(e.target.checked) item.checked = true
+                    else item.checked = false       
+                })
+            })
+            //개별 체크 박스 제어
+            $chk.forEach(function(item){
+                item.addEventListener("change",function(e){
+                    let $chk_num = $scriptArea.querySelectorAll("input[type=checkbox]:not(#chkV_all):checked")                
+                    if($chk_num.length == $chk.length) $chk_all.checked = true
+                    else $chk_all.checked = false
+                    
+                })
+     
+            })
+        }
+        agreeBasicFunc ()
+        function agreeType2Func () {
+            const $scriptArea = document.querySelector(".type2");
+            const chk_element = $scriptArea.querySelectorAll("input:not(#chkV2_all)")
+            const chk_agree = $scriptArea.querySelectorAll("input[data-info=agree]:not(#chkV2_all)")
+            const chk_all = $scriptArea.querySelector("#chkV2_all")
+            // 모두 체크/해제
+            chk_all.addEventListener("change",function(e){
+                chk_element.forEach(function (chk){
+                    chk.checked = false
+                    chk_agree.forEach(function(item){
+                        if(e.target.checked) item.checked = true
+                        else item.checked = false
+                    })
+                }) 
+            })
+    
+            //개별 체크 박스 제어
+            chk_element.forEach(function(item){
+                item.addEventListener("change",function(event){
+                    const scriptArea = document.querySelector(".type2");
+                    let chk_group = document.getElementsByName(event.currentTarget.getAttribute("name"))
+                    let chk_num = $scriptArea.querySelectorAll("input[data-info=agree]:not(#chkV2_all):checked")
+                    
+                    if(event.target.getAttribute('data-info')) {                        
+                        event.currentTarget.closest(".inp-chk").nextElementSibling.querySelector("input").checked = false
+                    } else {
+                        event.currentTarget.closest(".inp-chk").previousElementSibling.querySelector("input").checked = false
+                    }
+
+                    if(chk_num.length == chk_agree.length) chk_all.checked = true
+                    else chk_all.checked = false
+                })
+          })
+        }
+        agreeType2Func ()
+    </script>
+
+</body>
+</html>
