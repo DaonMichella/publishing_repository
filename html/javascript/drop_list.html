@@ -66,8 +66,9 @@
                 } 
                 
             })
-            btnMenu.forEach(function(btn) {
-                btn.addEventListener("click",function(){
+            btnMenu.forEach(function(menu) {
+                menu.addEventListener("click",function(e){
+                    btn.innerText = e.currentTarget.innerText
                     menuClose ()
                 })
             })
@@ -77,6 +78,8 @@
                 menu.classList.remove("on")
             }
         }
+        dropMenuOpen ()
+        /*
         $(document).ready(function() {
 
         })
@@ -107,7 +110,7 @@
                 menu.removeClass("fade")
             }
         }
-        dropMenuOpenJQuery ()
+        dropMenuOpenJQuery ()*/
     </script>
 </body>
 </html>
