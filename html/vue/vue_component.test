@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컴포넌트 로딩 테스트</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => console.log("`defer` 스크립트가 실행된 후, DOM이 준비되었습니다!"));
+	</script>
+	<script type="text/javascript" defer src="common.js"></script>
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">요구 조건 : vue 바인딩 후 script 로딩</h2>
+
+        <div class="example-box vue">
+            <p class="txt-desc">뷰</p>
+			<p>{{count}}</p>
+        </div>
+    </div>
+    <!-- script -->    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".vue",
+            data: {
+                count : 0
+            },
+            methods : {
+                test1: function() {
+				  this.count = 1
+				},
+				 test2: function() {
+				  this.count = 3
+				}
+            },
+			created : function () {
+				console.log("created", this.count)
+				this.test1 ()
+			},
+			mounted: function () {
+				console.log("mounted",this.count)
+				this.test2 ()
+			}
+            
+        })
+    </script>
+	<!-- <script type="text/javascript" src="common.js"></script> -->
+</body>
+</html>
