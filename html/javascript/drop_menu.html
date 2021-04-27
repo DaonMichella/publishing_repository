@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
  <head>
   <meta charset="UTF-8">
   <meta name="Generator" content="EditPlus®">
@@ -8,74 +8,31 @@
   <meta name="Description" content="">
   <title>Document</title>
   <style type="text/css">
-  button {background:none; border:none; cursor:pointer}
-  * {margin:0; padding:0}
-  li {list-style:none}
-  .drop-menu-wrap {position:relative;margin-top:400px}
-  .btn-border-gray {padding:10px; width:100%;  border: 1px solid #ccc; background-color: #fff; font-weight:400; color: #111;}
-  .drop-menu-wrap {position:relative; width:340px; margin:500px auto;}
-.sel-drop-menu {position:absolute; bottom:0px; left:0; width:100%; max-height:0;
-overflow: hidden; text-align: center; box-sizing: border-box; background:#fff;}
-.sel-drop-menu .btn-xl {margin-bottom:0; border-bottom:0; }
-.sel-drop-menu li:last-child .btn {border-bottom:1px solid #ccc}
-.sel-drop-menu .btn-xl:hover:not(.on) {background-color:#feeee2}
+	button {background:none; border:none; cursor:pointer}
+	* {margin:0; padding:0}
+	li {list-style:none}
+	html, body {width:100%; height:100%; }
+	body {display:flex; justify-content: center; align-items: center;}
+	.btn-border-gray {display:block; padding:10px; width:100%; background-color: #fff; font-weight:400; color: #111; box-sizing: border-box; text-align:center;}
+	.btn-border-gray:not(.sel-drop-menu .btn-border-gray) {border:1px solid #ccc;}
+	.drop-menu-wrap {position:relative; width:340px; }
 
-.sel-drop-menu.on {max-height:200px;}
-.sel-drop-menu.fade {max-height:0; }
+	.sel-drop-menu {position:absolute; bottom:0px; left:0; width:100%; max-height:0;
+	overflow: hidden; text-align: center; box-sizing: border-box; background:#fff; z-index:100}
+	.sel-drop-menu > ul {border:1px solid #ccc}
+	.sel-drop-menu > ul > li {border-bottom:1px solid #ccc}
+	.sel-drop-menu > ul > li:last-child {border-bottom:none}
+	.sel-drop-menu .btn-xl:hover:not(.on) {background-color:#feeee2}
 
-.sel-drop-menu,
-.sel-drop-menu.on {transition:all 0.35s ease-in;}
-.sel-drop-menu.fade {transition:all 0.35s ease-out;}
+	.sel-drop-menu.on {max-height:200px;}
+	.sel-drop-menu.fade {max-height:0; }
+
+	.sel-drop-menu,
+	.sel-drop-menu.on {transition:all 0.35s ease-in;}
+	.sel-drop-menu.fade {transition:all 0.35s ease-out;}
+
+	.dim {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1;}
   </style>
-  <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-  <script type="text/javascript">
-  /* dropMenuShowHide()
-	1) 매개변수 설명 : 클릭 버튼, 콜백1(열릴 때 실행되는 콜백 함수), 콜백2(닫힐때 실행되는 콜백함수)
-	2) 사용 예시 :
-	dropMenuShowHide ($('버튼 id/class 명'), 함수명1, 함수명2)
-	*/
-	$(document).ready(function() {
-			dropMenuShowHide ($(".drop-btn"))
-	})
-	function dropMenuShowHide (clickBtn, showCallback , hideCallback) {
-		var btn = clickBtn;
-		var menu = $('.sel-drop-menu')
-		var btnMenu = menu.find('.btn-xl')
-
-		btn.on("click",function(e){
-				if(menu.hasClass("on")) {
-						menuClose ()
-				} else {
-						menuOpen ()
-				}
-		})
-
-		btnMenu.on("click",function(e){
-			clickResultApply (e)
-			menuClose ()
-
-		})
-
-		function menuClose () {
-				menu.addClass("fade")
-				menu.removeClass("on")
-				if(hideCallback) hideCallback()
-		}
-		function menuOpen () {
-				menu.addClass("on")
-				menu.removeClass("fade")
-				if(showCallback) showCallback()
-		}
-		function clickResultApply (e) {
-			var applyTxt = e.target.innerText
-			btn.text(applyTxt)
-		}
-	}
-
-  </script>
  </head>
  <body>
   <div class="btn-group col drop-menu-wrap" style="margin-bottom:0">
@@ -88,5 +45,85 @@ overflow: hidden; text-align: center; box-sizing: border-box; background:#fff;}
 				<li><button type="button" class="btn-xl btn-border-gray on">다른 문의사항이 있습니다.</button></li>
 		</ul>
 	</div>
+
+	<script type="text/javascript">
+		/* dropMenuShowHide()
+		1) 매개변수 설명 : 클릭 버튼, 콜백1(열릴 때 실행되는 콜백 함수), 콜백2(닫힐때 실행되는 콜백함수)
+		2) 사용 예시 :
+		dropMenuShowHide ($('버튼 id/class 명'), 함수명1, 함수명2)
+		3) 선택 옵션  
+		transition 효과 (true/false)
+		다른 영역 클릭 시, 닫힘 기능 (true/false)
+		자동 닫힘 기능 (true/false)
+		닫힘 버튼 유무 (true/false)
+		오픈 시 콜백 함수 
+		닫힘 시 콜백 함수 
+		*/
+	
+
+		function dropMenuShowHide (clickBtn, option) {
+			const btn = clickBtn;
+			const dropWrap = document.querySelector('.drop-menu-wrap')
+			const menu = document.querySelector('.sel-drop-menu')
+			const btnMenu = menu.querySelector('.btn-xl')
+			
+			//default
+			
+			let	dimClose = false
+			
+
+			//event
+			btn.addEventListener("click",function(e){
+				if(e.target.classList.contains("on")) {
+					menuClose ()
+				} else {
+					menuOpen ()
+					dimCreate ()
+				}
+			})
+			
+			
+
+			menu.addEventListener("click",function(e){
+				clickResultApply (e)
+				menuClose ()
+			})
+	
+			function menuClose () {
+				menu.classList.add("fade")
+				menu.classList.remove("on")
+				//if(hideCallback) hideCallback()
+			}
+
+			function menuOpen () {
+				menu.classList.add("on")
+				menu.classList.remove("fade")
+				//if(showCallback) showCallback()
+			}
+
+			function clickResultApply (e) {
+				var applyTxt = e.target.innerText
+				if (applyTxt != '') btn.innerText = applyTxt
+				else return				
+			}
+			function dimCreate () {
+					const dimElement = document.createElement("div")
+					dimElement.classList.add("dim")
+					dropWrap.prepend(dimElement)
+
+					const dim = document.querySelector(".dim")					
+					//event
+					dim.addEventListener("click",function(e){
+						dim.remove()
+						menuClose ()
+					})
+			}
+		}
+
+		const dropBtn = document.querySelector(".drop-btn")
+		dropMenuShowHide (dropBtn, {
+			dimClose : true
+		})		
+		</script>
  </body>
 </html>
