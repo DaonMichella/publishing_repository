@@ -81,9 +81,7 @@
 					dimCreate ()
 				}
 			})
-			
-			
-
+				
 			menu.addEventListener("click",function(e){
 				clickResultApply (e)
 				menuClose ()
@@ -92,12 +90,15 @@
 			function menuClose () {
 				menu.classList.add("fade")
 				menu.classList.remove("on")
+				const dim = document.querySelector(".dim")
+				dim.remove()
 				//if(hideCallback) hideCallback()
 			}
 
 			function menuOpen () {
 				menu.classList.add("on")
 				menu.classList.remove("fade")
+				autoClose ()
 				//if(showCallback) showCallback()
 			}
 
@@ -109,14 +110,23 @@
 			function dimCreate () {
 					const dimElement = document.createElement("div")
 					dimElement.classList.add("dim")
-					dropWrap.prepend(dimElement)
-
-					const dim = document.querySelector(".dim")					
-					//event
-					dim.addEventListener("click",function(e){
-						dim.remove()
-						menuClose ()
-					})
+					dropWrap.prepend(dimElement)					
+					dimRemove()
+			}
+			function dimRemove () {
+				const dim = document.querySelector(".dim")					
+				//event
+				dim.addEventListener("click",function(e){
+					dim.remove()
+					menuClose ()
+				})
+			}
+			function autoClose () {
+				setTimeout(function(){
+					const dim = document.querySelector(".dim")
+					dim.remove()
+					menuClose ()
+				},3000)
 			}
 		}
 
