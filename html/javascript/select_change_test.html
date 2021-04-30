@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>select change</title>
+ </head>
+ <body>
+	  <label>Choose an ice cream flavor:
+	  <select class="ice-cream" name="ice-cream">
+		<option value="">Select One …</option>
+		<option value="chocolate">Chocolate</option>
+		<option value="sardine">Sardine</option>
+		<option value="vanilla">Vanilla</option>
+	  </select>
+	</label>
+
+	<div class="result"></div>
+
+	<script type="text/javascript">
+	const selectElement = document.querySelector('.ice-cream');
+
+	selectElement.addEventListener('change', (event) => {
+	  const result = document.querySelector('.result');
+	  result.textContent = `You like ${event.target.value}`;
+	});
+	</script>
+ </body>
+</html>
