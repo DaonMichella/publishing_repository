@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+  *{padding:0;margin:0}
+  ul,li {list-style:none}
+  body {background:lightblue}
+  .box {max-height:300px; overflow:auto; border:1px solid #aaa}
+  .box > ul >li {position:relative; height:200px; background:orange; margin-bottom:20px;}
+  .absolute {position:absolute; width:1px; height:1px; background:red; z-index:1}
+   .box > ul >li input {position:absolute;width:1px;height:1px;/* opacity:0; */background: red;z-index: 1;}
+
+  </style>
+ </head>
+ <body>
+	<div class="box">
+		<ul>	
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><input type="checkbox" id="" checked=""></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+			<li><span class="absolute">a</span></li>
+		</ul>
+
+	</div>
+ </body>
+</html>
