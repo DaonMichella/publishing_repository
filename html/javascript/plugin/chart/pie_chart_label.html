@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>max value</title>
+
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+      <h2>파이차트 dataLabel position 수정</h2>
+      <div id="chart1"></div>
+        
+    </div>
+    <!-- apex chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>       
+      var options1= {
+        series: [44, 55, 13, 43, 22],
+        chart: {
+        width: '100%',
+        type: 'pie',
+      },
+      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 400,
+            events: {
+              mounted : function (chartContext, config) {
+                dataLabelChange(chartContext,config)
+              },
+              updated: function(chartContext, config) {
+                dataLabelChange(chartContext,config)
+              }
+            }
+          },
+          legend: {
+            position: 'bottom'
+          },
+        }
+      }]
+      };
+      
+      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+      
+      chart1.render();
+      
+      function dataLabelChange (chart,config) {
+        var series = chart.el.querySelectorAll('.apexcharts-series path')
+        var label = chart.el.querySelectorAll('.apexcharts-datalabels')
+
+        //console.log(chart,config);
+        console.log(series[0].getAttribute('d'));                
+      }
+
+      function get_polygon_centroid(pts) {
+          var first = pts[0], last = pts[pts.length-1];
+          if (first.x != last.x || first.y != last.y) pts.push(first);
+          var twicearea=0,
+          x=0, y=0,
+          nPts = pts.length,
+          p1, p2, f;
+          for ( var i=0, j=nPts-1 ; i<nPts ; j=i++ ) {
+              p1 = pts[i]; p2 = pts[j];
+              f = p1.x*p2.y - p2.x*p1.y;
+              twicearea += f;          
+              x += ( p1.x + p2.x ) * f;
+              y += ( p1.y + p2.y ) * f;
+          }
+          f = twicearea * 3;
+          return { x:x/f, y:y/f };
+        }
+    </script>
+</body>
+</html>
