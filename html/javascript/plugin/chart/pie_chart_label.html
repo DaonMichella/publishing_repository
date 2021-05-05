@@ -29,8 +29,9 @@
           events: {
             mounted : function (chartContext, config) {                       
               setTimeout(function(){
-                console.log(dataLabelChange(chartContext))
-              },100)
+                var arrayData = dataLabelChange(chartContext)
+                console.log(arrayData);
+              },1000)
             },
             updated : function(chartContext, config) {
               dataLabelChange(chartContext)
@@ -44,53 +45,74 @@
 
       function dataLabelChange (chart) {
         var series = chart.el.querySelectorAll('.apexcharts-series path')
-        var label = chart.el.querySelectorAll('.apexcharts-datalabels')
+        var label = chart.el.querySelectorAll('.apexcharts-datalabels text')
         var arrObj = {};
         var arrTotal = [];
 
         series.forEach((element,seriesIdx) => {
-          arr = element.getAttribute("d").split(' ')                  
+                  
         });
-
-        for (var i = 0; i < 3; i++) {
+        var arr = new Array()
+        for (var i = 0; i < series.length; i++) {          
+          arr[i] = series[i].getAttribute("d").split(' ')
+        }
+        console.log("arr" , arr)
+        
+        for (var i = 0; i < series.length; i++) {
             element = new Array();
-            for (var j = 0; j < 2; j++) {
-                element.push(0);
+            for (var j = 0; j < 3; j++) {   
+                element[j] = new Array();
+                for (var k = 0; k < 2; k++) {
+                    element[j].push(0);
+                }
             }
             arrTotal.push(element);
         }
-        console.log(arr)
-        for (var i = 0; i < 3; i++) {            
-          if (i == 0) {
-            arrTotal[i][0] = Math.floor(arr[1])
-            arrTotal[i][1] = Math.floor(arr[2])
-          }
-          else if (i == 1) {
-            arrTotal[i][0] = Math.floor(arr[4])
-            arrTotal[i][1] = Math.floor(arr[5])
-          }
-          else if (i == 2) {
-            arrTotal[i][0] = Math.floor(arr[9])
-            arrTotal[i][1] = Math.floor(arr[10])
+        for (var i = 0; i < series.length; i++) {  //5
+          element = new Array();
+          for (var j = 0; j < 3; j++) {
+              
+              if (j == 0) {
+                arrTotal[i][j][0] = Math.floor(arr[i][1])
+                arrTotal[i][j][1] = Math.floor(arr[i][2])
+              }
+              else if (j == 1) {
+                arrTotal[i][j][0] = Math.floor(arr[i][4])
+                arrTotal[i][j][1] = Math.floor(arr[i][5])
+              }
+              else if (j == 2) {
+                arrTotal[i][j][0] = Math.floor(arr[i][9])
+                arrTotal[i][j][1] = Math.floor(arr[i][10])
+              }
           }
           
         }
-
+        
         // return getCentroid([
         //   [Math.floor(arr[1]),Math.floor(arr[2])],
         //   [Math.floor(arr[4]),Math.floor(arr[5])],
         //   [Math.floor(arr[9]),Math.floor(arr[10])]]
-        // )g
-        return arrTotal
+        // )
+
+        var center = new Array ()
+        for (var i = 0; i < series.length; i++) {
+          console.log(arrTotal[i])
+          center[i] = getCentroid(arrTotal[i])
+
+        }
+
+        console.log(center)
+        label.forEach(function(labelElement, labelIdx){
+          console.log(labelIdx);
+          labelElement.setAttribute("x",getCentroid(arrTotal[labelIdx]).x)
+          labelElement.setAttribute("y",getCentroid(arrTotal[labelIdx]).y)
+        })
+        return center
 
       }
       
       
       
-      function make_dynamic_arr() {
-          
-      }
-
       function getCentroid(points) {
 			var area = 0,
 					cx = 0,
@@ -102,7 +124,6 @@
 				var pt1 = points[i];
 				var pt2 = points[j];
         
-        console.log("a "+pt1)
 				var x1 = pt1[0];
 				var x2 = pt2[0];
 				var y1 = pt1[1];
