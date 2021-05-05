@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>max value</title>
+    <title>dataLabel position</title>
 
     <style>
         
@@ -18,64 +18,115 @@
     </div>
     <!-- apex chart -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>       
-      var options1= {
+    <script>
+
+    var options1= {
+        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],    
         series: [44, 55, 13, 43, 22],
         chart: {
-        width: '100%',
-        type: 'pie',
-      },
-      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 400,
-            events: {
-              mounted : function (chartContext, config) {
-                dataLabelChange(chartContext,config)
-              },
-              updated: function(chartContext, config) {
-                dataLabelChange(chartContext,config)
-              }
+          width: '100%',
+          type: 'pie',
+          events: {
+            mounted : function (chartContext, config) {                       
+              setTimeout(function(){
+                console.log(dataLabelChange(chartContext))
+              },100)
+            },
+            updated : function(chartContext, config) {
+              dataLabelChange(chartContext)
             }
-          },
-          legend: {
-            position: 'bottom'
-          },
+          }
         }
-      }]
       };
       
-      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
-      
+      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);      
       chart1.render();
-      
-      function dataLabelChange (chart,config) {
+
+      function dataLabelChange (chart) {
         var series = chart.el.querySelectorAll('.apexcharts-series path')
         var label = chart.el.querySelectorAll('.apexcharts-datalabels')
+        var arrObj = {};
+        var arrTotal = [];
 
-        //console.log(chart,config);
-        console.log(series[0].getAttribute('d'));                
+        series.forEach((element,seriesIdx) => {
+          arr = element.getAttribute("d").split(' ')                  
+        });
+
+        for (var i = 0; i < 3; i++) {
+            element = new Array();
+            for (var j = 0; j < 2; j++) {
+                element.push(0);
+            }
+            arrTotal.push(element);
+        }
+        console.log(arr)
+        for (var i = 0; i < 3; i++) {            
+          if (i == 0) {
+            arrTotal[i][0] = Math.floor(arr[1])
+            arrTotal[i][1] = Math.floor(arr[2])
+          }
+          else if (i == 1) {
+            arrTotal[i][0] = Math.floor(arr[4])
+            arrTotal[i][1] = Math.floor(arr[5])
+          }
+          else if (i == 2) {
+            arrTotal[i][0] = Math.floor(arr[9])
+            arrTotal[i][1] = Math.floor(arr[10])
+          }
+          
+        }
+
+        // return getCentroid([
+        //   [Math.floor(arr[1]),Math.floor(arr[2])],
+        //   [Math.floor(arr[4]),Math.floor(arr[5])],
+        //   [Math.floor(arr[9]),Math.floor(arr[10])]]
+        // )g
+        return arrTotal
+
+      }
+      
+      
+      
+      function make_dynamic_arr() {
+          
       }
 
-      function get_polygon_centroid(pts) {
-          var first = pts[0], last = pts[pts.length-1];
-          if (first.x != last.x || first.y != last.y) pts.push(first);
-          var twicearea=0,
-          x=0, y=0,
-          nPts = pts.length,
-          p1, p2, f;
-          for ( var i=0, j=nPts-1 ; i<nPts ; j=i++ ) {
-              p1 = pts[i]; p2 = pts[j];
-              f = p1.x*p2.y - p2.x*p1.y;
-              twicearea += f;          
-              x += ( p1.x + p2.x ) * f;
-              y += ( p1.y + p2.y ) * f;
-          }
-          f = twicearea * 3;
-          return { x:x/f, y:y/f };
-        }
+      function getCentroid(points) {
+			var area = 0,
+					cx = 0,
+					cy = 0;
+
+			for(var i = 0; i < points.length; i++){
+				var j = (i + 1) % points.length;
+
+				var pt1 = points[i];
+				var pt2 = points[j];
+        
+        console.log("a "+pt1)
+				var x1 = pt1[0];
+				var x2 = pt2[0];
+				var y1 = pt1[1];
+				var y2 = pt2[1];
+
+				area += x1 * y2;
+				area -= y1 * x2;
+
+				cx += ((x1 + x2) * ((x1 * y2) - (x2 * y1)));
+				cy += ((y1 + y2) * ((x1 * y2) - (x2 * y1)));
+			}
+
+			area /= 2;
+			area = Math.abs(area);
+
+			cx = cx / (6.0 * area);
+			cy = cy / (6.0 * area);
+
+			return {
+				x: Math.abs(cx),
+				y: Math.abs(cy)
+			};
+		}
+
     </script>
 </body>
 </html>
