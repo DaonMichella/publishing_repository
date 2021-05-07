@@ -49,12 +49,13 @@
         var arrObj = {};
         var arrTotal = [];
 
-        series.forEach((element,seriesIdx) => {
-                  
-        });
         var arr = new Array()
+        var arrDeg = new Array()
+        console.log(series)
         for (var i = 0; i < series.length; i++) {          
           arr[i] = series[i].getAttribute("d").split(' ')
+          arrDeg[i] = series[i].getAttribute("data:startAngle").split(' ')
+          
         }
         console.log("arr" , arr)
         
@@ -68,6 +69,7 @@
             }
             arrTotal.push(element);
         }
+
         for (var i = 0; i < series.length; i++) {  //5
           element = new Array();
           for (var j = 0; j < 3; j++) {
@@ -81,29 +83,22 @@
                 arrTotal[i][j][1] = Math.floor(arr[i][5])
               }
               else if (j == 2) {
-                arrTotal[i][j][0] = Math.floor(arr[i][9])
+                arrTotal[i][j][0] = Math.floor(arr[i][9]) 
                 arrTotal[i][j][1] = Math.floor(arr[i][10])
               }
           }
           
         }
-        
-        // return getCentroid([
-        //   [Math.floor(arr[1]),Math.floor(arr[2])],
-        //   [Math.floor(arr[4]),Math.floor(arr[5])],
-        //   [Math.floor(arr[9]),Math.floor(arr[10])]]
-        // )
 
         var center = new Array ()
         for (var i = 0; i < series.length; i++) {
           console.log(arrTotal[i])
           center[i] = getCentroid(arrTotal[i])
-
         }
 
         console.log(center)
         label.forEach(function(labelElement, labelIdx){
-          console.log(labelIdx);
+          console.log(labelIdx);          
           labelElement.setAttribute("x",getCentroid(arrTotal[labelIdx]).x)
           labelElement.setAttribute("y",getCentroid(arrTotal[labelIdx]).y)
         })

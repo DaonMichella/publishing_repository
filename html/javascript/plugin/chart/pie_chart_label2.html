@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dataLabel position</title>
+
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+      <h2>파이차트 dataLabel position 수정</h2>
+      <div id="chart1"></div>
+        
+    </div>
+    <!-- apex chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+
+    var options1= {
+        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],    
+        series: [44, 55, 13, 43, 22],
+        chart: {
+          width: '100%',
+          type: 'pie',
+          events: {
+            mounted : function (chartContext, config) {                       
+              setTimeout(function(){
+                var arrayData = dataLabelChange(chartContext)
+                console.log(arrayData);
+              },1000)
+            },
+            updated : function(chartContext, config) {
+              dataLabelChange(chartContext)
+            }
+          }
+        }
+      };
+      
+      var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);      
+      chart1.render();
+
+      function dataLabelChange (chart) {
+        var series = chart.el.querySelectorAll('.apexcharts-series path')
+        var label = chart.el.querySelectorAll('.apexcharts-datalabels text')
+        var arrObj = {};
+        var arrTotal = [];
+
+        // var arr = new Array()
+        // var arrDeg = new Array()
+        // console.log(series)
+        // for (var i = 0; i < series.length; i++) {          
+        //   arr[i] = series[i].getAttribute("d").split(' ')
+        //   arrDeg[i] = series[i].getAttribute("data:startAngle")
+          
+        // }
+        // console.log("arr" , arr)
+        
+        // for (var i = 0; i < series.length; i++) {
+        //     element = new Array();
+        //     for (var j = 0; j < 3; j++) {   
+        //         element[j] = new Array();
+        //         for (var k = 0; k < 2; k++) {
+        //             element[j].push(0);
+        //         }
+        //     }
+        //     arrTotal.push(element);
+        // }
+
+        // for (var i = 0; i < series.length; i++) {  //5
+        //   element = new Array();
+        //   for (var j = 0; j < 3; j++) {
+              
+        //       if (j == 0) {
+        //         arrTotal[i][j][0] = Math.floor(arr[i][1])
+        //         arrTotal[i][j][1] = Math.floor(arr[i][2])
+        //       }
+        //       else if (j == 1) {
+        //         arrTotal[i][j][0] = Math.floor(arr[i][4])
+        //         arrTotal[i][j][1] = Math.floor(arr[i][5])
+        //       }
+        //       else if (j == 2) {
+        //         arrTotal[i][j][0] = Math.floor(arr[i][9]) 
+        //         arrTotal[i][j][1] = Math.floor(arr[i][10])
+        //       }
+        //   }
+          
+        // }
+
+        // var center = new Array ()
+        // for (var i = 0; i < series.length; i++) {
+        //   console.log(arrTotal[i])
+        //   center[i] = getCentroid(arrTotal[i])
+        // }
+
+        // console.log(center)
+        label.forEach(function(labelElement, labelIdx){
+          console.log(labelIdx);          
+          labelElement.setAttribute("x",computeCentroid(arrTotal[labelIdx]).x)
+          labelElement.setAttribute("y",computeCentroid(arrTotal[labelIdx]).y)
+        })
+        return center
+
+      }
+      
+      
+      
+      function computeCentroid(slice, chart) {
+        const startAngle = slice.startAngle - (Math.PI / 2), endAngle = slice.endAngle - (Math.PI / 2);
+        const alpha = endAngle - startAngle;
+        const radius = chart.radius;
+
+        // get coordinates of centroid if startAngle = 0
+        const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
+        const ybar = (-2 / 3) * (radius / alpha) * (Math.cos(alpha) - 1);
+
+        // rotate coordinates about (0, 0) by startAngle
+        const xCoord = xbar * Math.cos(startAngle) - ybar * Math.sin(startAngle);
+        const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);
+
+        return [xCoord, yCoord];
+    }
+
+    </script>
+</body>
+</html>
