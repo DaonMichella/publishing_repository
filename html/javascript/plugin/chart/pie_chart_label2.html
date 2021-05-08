@@ -49,46 +49,46 @@
         var arrObj = {};
         var arrTotal = [];
 
-        // var arr = new Array()
-        // var arrDeg = new Array()
-        // console.log(series)
-        // for (var i = 0; i < series.length; i++) {          
-        //   arr[i] = series[i].getAttribute("d").split(' ')
-        //   arrDeg[i] = series[i].getAttribute("data:startAngle")
+        var arr = new Array()
+        var arrDeg = new Array()
+        console.log(series)
+        for (var i = 0; i < series.length; i++) {          
+          arr[i] = series[i].getAttribute("d").split(' ')
+          arrDeg[i] = series[i].getAttribute("data:startAngle")
           
-        // }
-        // console.log("arr" , arr)
+        }
+        console.log("arr" , arr)
         
-        // for (var i = 0; i < series.length; i++) {
-        //     element = new Array();
-        //     for (var j = 0; j < 3; j++) {   
-        //         element[j] = new Array();
-        //         for (var k = 0; k < 2; k++) {
-        //             element[j].push(0);
-        //         }
-        //     }
-        //     arrTotal.push(element);
-        // }
+        for (var i = 0; i < series.length; i++) {
+            element = new Array();
+            for (var j = 0; j < 3; j++) {   
+                element[j] = new Array();
+                for (var k = 0; k < 2; k++) {
+                    element[j].push(0);
+                }
+            }
+            arrTotal.push(element);
+        }
 
-        // for (var i = 0; i < series.length; i++) {  //5
-        //   element = new Array();
-        //   for (var j = 0; j < 3; j++) {
+        for (var i = 0; i < series.length; i++) {  //5
+          element = new Array();
+          for (var j = 0; j < 3; j++) {
               
-        //       if (j == 0) {
-        //         arrTotal[i][j][0] = Math.floor(arr[i][1])
-        //         arrTotal[i][j][1] = Math.floor(arr[i][2])
-        //       }
-        //       else if (j == 1) {
-        //         arrTotal[i][j][0] = Math.floor(arr[i][4])
-        //         arrTotal[i][j][1] = Math.floor(arr[i][5])
-        //       }
-        //       else if (j == 2) {
-        //         arrTotal[i][j][0] = Math.floor(arr[i][9]) 
-        //         arrTotal[i][j][1] = Math.floor(arr[i][10])
-        //       }
-        //   }
+              if (j == 0) {
+                arrTotal[i][j][0] = Math.floor(arr[i][1])
+                arrTotal[i][j][1] = Math.floor(arr[i][2])
+              }
+              else if (j == 1) {
+                arrTotal[i][j][0] = Math.floor(arr[i][4])
+                arrTotal[i][j][1] = Math.floor(arr[i][5])
+              }
+              else if (j == 2) {
+                arrTotal[i][j][0] = Math.floor(arr[i][9]) 
+                arrTotal[i][j][1] = Math.floor(arr[i][10])
+              }
+          }
           
-        // }
+        }
 
         // var center = new Array ()
         // for (var i = 0; i < series.length; i++) {
@@ -98,20 +98,19 @@
 
         // console.log(center)
         label.forEach(function(labelElement, labelIdx){
-          console.log(labelIdx);          
-          labelElement.setAttribute("x",computeCentroid(arrTotal[labelIdx]).x)
-          labelElement.setAttribute("y",computeCentroid(arrTotal[labelIdx]).y)
+                   console.log(computeCentroid(series[0]));
+          labelElement.setAttribute("x",computeCentroid(series[0])[0])
+          labelElement.setAttribute("y",computeCentroid(series[0])[1])
         })
-        return center
 
       }
       
       
       
       function computeCentroid(slice, chart) {
-        const startAngle = slice.startAngle - (Math.PI / 2), endAngle = slice.endAngle - (Math.PI / 2);
+        const startAngle = slice.getAttribute("startAngle")  - (Math.PI / 2), endAngle = slice.getAttribute("endAngle") - (Math.PI / 2);
         const alpha = endAngle - startAngle;
-        const radius = chart.radius;
+        const radius = Math.floor(slice.getAttribute("d").split(" ")[4])
 
         // get coordinates of centroid if startAngle = 0
         const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
@@ -121,6 +120,7 @@
         const xCoord = xbar * Math.cos(startAngle) - ybar * Math.sin(startAngle);
         const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);
 
+  
         return [xCoord, yCoord];
     }
 
