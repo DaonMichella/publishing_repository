@@ -54,7 +54,7 @@
         console.log(series)
         for (var i = 0; i < series.length; i++) {          
           arr[i] = series[i].getAttribute("d").split(' ')
-          arrDeg[i] = series[i].getAttribute("data:startAngle").split(' ')
+          arrDeg[i] = series[i].getAttribute("data:startAngle")
           
         }
         console.log("arr" , arr)
