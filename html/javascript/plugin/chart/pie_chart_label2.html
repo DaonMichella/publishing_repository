@@ -90,7 +90,7 @@
 
         
         label.forEach(function(labelElement, labelIdx){          
-          var pos  = computeCentroid(series[0],Math.floor(arr[0][4]))          
+          var pos  = computeCentroid(series[3],Math.floor(arr[0][4]))          
           labelElement.setAttribute("x",pos[0])
           labelElement.setAttribute("y",pos[1])
         })
@@ -100,9 +100,11 @@
       
       
       function computeCentroid(slice, chart) {
-        const startAngle = slice.getAttribute("data:startAngle")  - (Math.PI / 2), endAngle = slice.getAttribute("data:angle") - (Math.PI / 2);
-        const alpha = startAngle + endAngle;
+        const startAngle = Math.floor(slice.getAttribute("data:startAngle")),
+              Angle = Math.floor(slice.getAttribute("data:angle"));
+        const alpha = startAngle + (Angle/2)
         const radius = Math.floor(slice.getAttribute("d").split(" ")[4])
+        console.log(slice)
 
         // get coordinates of centroid if startAngle = 0
         // const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
@@ -114,10 +116,25 @@
 
         const xbar = (4 * radius) / (3 * Math.PI);
         const ybar = (4 * radius) / (3 * Math.PI);
-                
-        const xCoord = radius + xbar
-        const yCoord = radius + ybar        
-        
+        let xCoord = 0, yCoord = 0
+              
+        console.log(alpha)
+        if(alpha <= 90) {
+          xCoord = radius + xbar
+          yCoord = radius - ybar
+        }
+        else if(alpha <= 180) {
+          xCoord = radius + xbar
+          yCoord = radius + ybar
+        }
+        else if(alpha <= 270) {
+          xCoord = radius - xbar
+          yCoord = radius + ybar
+        }
+        else if(alpha <= 360) {
+          xCoord = radius - xbar
+          yCoord = radius - ybar
+        }
   
         return [xCoord, yCoord];
     }
