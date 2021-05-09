@@ -29,8 +29,7 @@
           events: {
             mounted : function (chartContext, config) {                       
               setTimeout(function(){
-                var arrayData = dataLabelChange(chartContext)
-                console.log(arrayData);
+                dataLabelChange(chartContext)                
               },1000)
             },
             updated : function(chartContext, config) {
@@ -51,13 +50,12 @@
 
         var arr = new Array()
         var arrDeg = new Array()
-        console.log(series)
+
         for (var i = 0; i < series.length; i++) {          
           arr[i] = series[i].getAttribute("d").split(' ')
           arrDeg[i] = series[i].getAttribute("data:startAngle")
           
-        }
-       
+        }        
         
         for (var i = 0; i < series.length; i++) {
             element = new Array();
@@ -92,9 +90,8 @@
 
         
         label.forEach(function(labelElement, labelIdx){          
-          var pos  = computeCentroid(series,Math.floor(arr[0][4]))
-          console.log(Math.floor(arr[0][4]) )
-          labelElement.setAttribute("x",pos[0 ])
+          var pos  = computeCentroid(series[0],Math.floor(arr[0][4]))          
+          labelElement.setAttribute("x",pos[0])
           labelElement.setAttribute("y",pos[1])
         })
 
@@ -102,19 +99,26 @@
       
       
       
-      function computeCentroid(slice, getradius) {
-        const startAngle = slice.startAngle - (Math.PI / 2), endAngle = slice.endAngle - (Math.PI / 2);
-        const alpha = endAngle - startAngle;
-        const radius = getradius;
-        // get coordinates of centroid if startAngle = 0
-        const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
-        const ybar = (-2 / 3) * (radius / alpha) * (Math.cos(alpha) - 1);
-        console.log("1",  alpha  )
-        // rotate coordinates about (0, 0) by startAngle
-        const xCoord = xbar * Math.cos(startAngle) - ybar * Math.sin(startAngle);
-        const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);
-        console.log("xbar",    xCoord)
+      function computeCentroid(slice, chart) {
+        const startAngle = slice.getAttribute("data:startAngle")  - (Math.PI / 2), endAngle = slice.getAttribute("data:angle") - (Math.PI / 2);
+        const alpha = startAngle + endAngle;
+        const radius = Math.floor(slice.getAttribute("d").split(" ")[4])
 
+        // get coordinates of centroid if startAngle = 0
+        // const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
+        // const ybar = (-2 / 3) * (radius / alpha) * (Math.cos(alpha) - 1);
+        
+        // // rotate coordinates about (0, 0) by startAngle
+        // const xCoord = xbar * Math.cos(startAngle) - ybar * Math.sin(startAngle);
+        // const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);        
+
+        const xbar = (4 * radius) / (3 * Math.PI);
+        const ybar = (4 * radius) / (3 * Math.PI);
+                
+        const xCoord = radius + xbar
+        const yCoord = radius + ybar        
+        
+  
         return [xCoord, yCoord];
     }
 
