@@ -89,22 +89,24 @@
         }
 
         
-        label.forEach(function(labelElement, labelIdx){          
-          var pos  = computeCentroid(series[3],Math.floor(arr[0][4]))          
+        label.forEach(function(labelElement, labelIdx){
+          
+          var pos  = computeCentroid(series[3])
           labelElement.setAttribute("x",pos[0])
           labelElement.setAttribute("y",pos[1])
+          
         })
 
       }
       
       
       
-      function computeCentroid(slice, chart) {
+      function computeCentroid(slice) {
         const startAngle = Math.floor(slice.getAttribute("data:startAngle")),
               Angle = Math.floor(slice.getAttribute("data:angle"));
         const alpha = startAngle + (Angle/2)
         const radius = Math.floor(slice.getAttribute("d").split(" ")[4])
-        console.log(slice)
+        
 
         // get coordinates of centroid if startAngle = 0
         // const xbar = (2 / 3) * (radius / alpha) * Math.sin(alpha);
@@ -112,31 +114,40 @@
         
         // // rotate coordinates about (0, 0) by startAngle
         // const xCoord = xbar * Math.cos(startAngle) - ybar * Math.sin(startAngle);
-        // const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);        
+        // const yCoord = ybar * Math.cos(startAngle) + xbar * Math.sin(startAngle);      
 
-        const xbar = (4 * radius) / (3 * Math.PI);
-        const ybar = (4 * radius) / (3 * Math.PI);
+        let degree = Angle * Math.PI
+        let centerR = 2 * radius * (Math.sin(degree/ 360) / (degree/120));
+        
+        //호의 길이 
+        let xbar = Math.abs(centerR * Math.cos(Angle/2))
+        let ybar = Math.abs(centerR * Math.sin(Angle/2))
         let xCoord = 0, yCoord = 0
               
-        console.log(alpha)
         if(alpha <= 90) {
+          console.log("a")
           xCoord = radius + xbar
           yCoord = radius - ybar
         }
-        else if(alpha <= 180) {
+        else if(90 < alpha && alpha <= 180) {
+          console.log("b")
           xCoord = radius + xbar
-          yCoord = radius + ybar
+          yCoord = radius + ybar          
         }
         else if(alpha <= 270) {
+          console.log("c")
           xCoord = radius - xbar
           yCoord = radius + ybar
+          console.log(xbar)
         }
         else if(alpha <= 360) {
+          console.log("d")
           xCoord = radius - xbar
           yCoord = radius - ybar
         }
-  
-        return [xCoord, yCoord];
+        
+        console.log(xCoord,yCoord)
+        return [xCoord, yCoord  ];
     }
 
     </script>
