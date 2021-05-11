@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Index</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" href="css/index_style.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//<![CDATA[
+		//테이블 tr over효과
+		$(document).ready(function () {
+			$(".list").each(function () {
+				$(this).find("tr:not(.del)").each(function (index) {
+					$("td:first-child", this).text(index);
+				});
+				$(this).find("tr:even").each(function (index) {
+					$(this).addClass("even");
+				});
+
+				//종료일에 값이 있으면 색 어두워짐 
+				$(this).find("tbody tr").each(function (index) {
+					var enddate = $(".list tbody tr td").eq(7);
+					if (!enddate.text() == "") {
+					}
+				});
+			});
+			$(".list tr.del td:first-child").text("삭제");
+			$tr = $(".list:not(.guide) tr:not(.del)");
+			$("#rate").html("( 총:" + $tr.length + " / 잔여:" + $("td.date:empty", $tr).length + " / 진행:" + parseInt((($tr.length - $("td.date:empty", $tr).length) / $tr.length * 100)) + "% )");
+
+			//날짜 출력
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = new String(date.getMonth() + 1);
+			var day = new String(date.getDate());
+
+			$(".today").text(year + "년 " + month + "월 " + day + "일");
+
+		});
+	//'table tr:gt(0) 0보다 큰것만 마우스 오버 효과가 나타남//]]>
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js">
+		</script>
+		<script src="js/html5shiv.min.js"></script>
+		<script type="text/javascript">
+		alert("현재 당신이 보는 브라우저는 지원하지 않습니다. 최신 브라우저로 업데이트해주세요!");
+		</script>
+	<![endif]-->
+</head>
+	<body>
+		<div id="acc-nav" class="hide">
+			<a href="#content">본문 바로가기</a>
+		</div>
+		
+		<div id="wrap">
+			<header id="webs_header">
+				<div class="header_top clearfix">
+					<div class="tit">
+						<h1><img src="resource/images/top_logo_black@2x.png" width="60" alt="">Sooo's index</h1>
+						<!-- info -->
+						<p>
+							<span class="today mainColor bold"></span>
+							<span id="rate"></span><br />
+						</p>
+					</div>	
+				</div>
+			</header>
+			<!-- //header -->
+			<section class="container">
+				<div class="content">
+          <table class="list">
+            <colgroup>
+              <col style="width:5%">
+              <col style="width:10%">
+              <col style="width:20%">
+              <col style="width:auto">
+              <col style="width:10%">
+              <col style="width:10%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Depth 1</th>
+                <th>Depth 2</th>
+                <th>File Name</th>
+                <th>종료일</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td><!-- No. -->
+                <td>공지사항</td><!-- Depth 1 -->
+                <td>리스트</td><!-- Depth 2 -->
+                <td><a target="_blank" href="html/task_manager_list.html">task_manager_list</a></td><!-- File Name -->
+                <td class="date"></td><!-- 종료일 -->
+                <td></td><!-- 상태 -->
+              </tr>
+              <tr>
+                <td></td><!-- No. -->
+                <td></td><!-- Depth 1 -->
+                <td>상세</td><!-- Depth 2 -->
+                <td><a target="_blank" href="html/task_manager_detail.html">task_manager_detail</a></td><!-- File Name -->
+                <td class="date"></td><!-- 종료일 -->
+                <td></td><!-- 상태 -->
+              </tr>
+            </tbody>
+          </table>                
+        </div>
+			</section>
+		</div>
+		
+	</body>
+
+</html>

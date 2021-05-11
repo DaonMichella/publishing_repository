@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager List</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="wrap">
+        <h2 class="title">Task Manager</h2>
+        <div class="contents">
+            <div class="tbl-type01">
+                <table>
+                    <caption>테이블</caption>
+                    <thead>
+                        <tr>
+                            <th colspan="row">NO.</th>
+                            <th colspan="row">제목</th>
+                            <th colspan="row">작성자</th>
+                            <th colspan="row">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in taskList" v-bind:key="item.id">
+                            <td>{{index+1}}</td>
+                            <td><a href="task_manager_detail.html" target="_blank">{{item.title}}</a></td>
+                            <td>{{item.writer}}</td>
+                            <td>{{item.state}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button type="button" class="btn-prev" @click="pagePrev()">이전</button>
+                <button type="button" class="btn-paging" v-for="(paging,index) in totalPageNum" :key="paging"
+                 :class="{on:paging === curPageNum}" @click="pagingActivate(paging)">{{ index + 1 }}</button>                
+                <button type="button" class="btn-next" @click="pageNext()">다음</button>
+            </div>
+        </div>
+    </div>
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#wrap",
+            data: function () {
+                return {
+                    curPageNum: 1,
+                    totalPageNum: 3,
+                    taskList :[
+                        {
+                            "id" : 1,
+                            "title" : "디자인 수정 요청드립니다.",
+                            "writer" : "전수영",
+                            "state" : "진행중" ,                      
+                            "enrollDate" : "2021-05-10" ,
+                            "endDate" : "2021-05-11" ,
+                        },
+                        {
+                            "id" : 2,
+                            "title" : "퍼블리싱 수정 요청드립니다.",
+                            "writer" : "전수영",
+                            "state" : "진행중" ,                      
+                            "enrollDate" : "2021-05-10" ,
+                            "endDate" : "2021-05-11" ,                        
+                        },
+                        {
+                            "id" : 3,
+                            "title" : "기획 수정 요청드립니다.",
+                            "writer" : "전수영",
+                            "state" : "진행중" ,                      
+                            "enrollDate" : "2021-05-10" ,
+                            "endDate" : "2021-05-11" ,                     
+                        }
+                    ]
+                }
+            },
+            methods : {
+                pagingActivate : function (paging) {
+                    this.curPageNum = paging
+                },
+                pagePrev : function () {
+                    if(this.curPageNum > 1 ) this.curPageNum -= 1
+                },
+                pageNext : function () {
+                    if( this.curPageNum < this.totalPageNum ) this.curPageNum += 1
+                    
+                }
+            },
+            computed : {
+                
+            }
+            
+        })
+    </script>
+</body>
+</html>

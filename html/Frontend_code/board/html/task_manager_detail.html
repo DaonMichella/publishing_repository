@@ -3,48 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue Template</title>
-    <style>
-        #wrap {margin: 40px auto; max-width:1280px; }
-        table {border-collapse: collapse; width:100%}
-        caption {position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);}
-        .tbl-type01 th {padding:10px 0; background:#eee}
-        .tbl-type01 td {padding:10px 0; border-right:1px solid #ddd;border-bottom:1px solid #ddd;text-align:center;}
-        .tbl-type01 td:last-child {border-right:none}
-    </style>
+    <title>Task Manager Detail</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
     <div id="wrap">
-        <h2 class="title">요구 조건 : </h2>
+        <h2 class="title">Task Manager</h2>
         <div class="contents">
-            <div class="tbl-type01">
+            <div class="tbl-type02">
                 <table>
                     <caption>테이블</caption>
-                    <thead>
+                    <tbody>
                         <tr>
                             <th colspan="row">NO.</th>
-                            <th colspan="row">제목</th>
-                            <th colspan="row">작성자</th>
-                            <th colspan="row">상태</th>
+                            <td>1</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item,index) in taskList" v-bind:key="item.id">
-                            <td>{{index+1}}</td>
-                            <td><a v-bind:href="`html/${item.title}.html`" target="_blank">{{item.title}}</a></td>
-                            <td>{{item.writer}}</td>
-                            <td>{{item.state}}</td>
+                            <th colspan="row">제목</th>
+                            <td>수정 요청 드립니다.</td>
+                        </tr>
+                            <th colspan="row">작성자</th>
+                            <td>전수영</td>
+                        </tr>
+                            <th colspan="row">상태</th>
+                            <td>진행중</td>
+                        </tr>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>        
-        <div class="memo-box">
-            <p class="title">메모</p>
-            <ul>
-                
-            </ul>
         </div>
     </div>
     <!-- script -->
@@ -54,6 +41,8 @@
             el:"#wrap",
             data: function () {
                 return {
+                    curPageNum: 1,
+                    totalPageNum: 3,
                     taskList :[
                         {
                             "id" : 1,
@@ -83,8 +72,10 @@
                 }
             },
             methods : {
-                
             },
+            computed : {
+                
+            }
             
         })
     </script>
