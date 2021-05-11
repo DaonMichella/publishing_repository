@@ -91,7 +91,7 @@
         
         label.forEach(function(labelElement, labelIdx){
           
-          var pos  = computeCentroid(series[3])
+          var pos  = computeCentroid(series[4])
           labelElement.setAttribute("x",pos[0])
           labelElement.setAttribute("y",pos[1])
           
@@ -123,7 +123,9 @@
         let xbar = Math.abs(centerR * Math.cos(Angle/2))
         let ybar = Math.abs(centerR * Math.sin(Angle/2))
         let xCoord = 0, yCoord = 0
-              
+
+        xCoord = radius + xbar
+        yCoord = radius + ybar        
         if(alpha <= 90) {
           console.log("a")
           xCoord = radius + xbar
@@ -134,20 +136,20 @@
           xCoord = radius + xbar
           yCoord = radius + ybar          
         }
-        else if(alpha <= 270) {
+        else if(180 < alpha && alpha <= 270) {
           console.log("c")
           xCoord = radius - xbar
           yCoord = radius + ybar
           console.log(xbar)
         }
-        else if(alpha <= 360) {
+        else if(270 < alpha &&alpha <= 360) {
           console.log("d")
           xCoord = radius - xbar
           yCoord = radius - ybar
         }
         
         console.log(xCoord,yCoord)
-        return [xCoord, yCoord  ];
+        return [xCoord, yCoord];
     }
 
     </script>
