@@ -14,23 +14,63 @@
             <div class="tbl-type02">
                 <table>
                     <caption>테이블</caption>
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                    </colgroup>
                     <tbody>
                         <tr>
-                            <th colspan="row">NO.</th>
-                            <td>1</td>
+                            <th scope="row">제목</th>
+                            <td colspan="3">수정 요청 드립니다.</td>
                         </tr>
-                            <th colspan="row">제목</th>
-                            <td>수정 요청 드립니다.</td>
-                        </tr>
-                            <th colspan="row">작성자</th>
-                            <td>전수영</td>
-                        </tr>
-                            <th colspan="row">상태</th>
-                            <td>진행중</td>
-                        </tr>
+                        <tr>
+                            <th scope="row">작성자</th>
+                            <td>전수영</td>                        
+                            <th scope="row">상태</th>
+                            <td>진행중</td>                        
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="tbl-type01">
+                <table>
+                    <caption>테이블</caption>
+                    <colgroup>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                        <col width="20%"/>
+                        <col width="30%"/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th scope="row">제목</th>
+                            <td colspan="3">수정 요청 드립니다.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                              <div class="inp-chk">
+                                  <input type="checkbox" name="inp1" id="inp1" class="check">
+                                  <label for="inp1">수정 요청 1</label>            
+                              </div>
+                            </td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="button" @click="addTaskInput()">할일 추가하기</button>
+            <div class="task-wrap" style="display:none">
+              <input type="text" class="inp-type01" v-model="tasks">
+              <button type="button" @click="addTodo()">입력</button>
+            </div>
+
+            <div class="todo-wrap">
+              <ul class="todo-list">
+                <li v-for="task in tasksList2">{{task}}</li>
+              </ul>
             </div>
         </div>
     </div>
@@ -41,6 +81,8 @@
             el:"#wrap",
             data: function () {
                 return {
+                    tasks : '',
+                    tasksList2 : [],
                     curPageNum: 1,
                     totalPageNum: 3,
                     taskList :[
@@ -72,6 +114,13 @@
                 }
             },
             methods : {
+              addTaskInput () {
+                document.querySelector(".task-wrap").style.display = "block"
+              },
+              addTodo () {
+                this.tasksList2.push(this.tasks)
+
+              }
             },
             computed : {
                 
