@@ -51,10 +51,19 @@
                         </tr>
                         <tr>
                             <td colspan="4">
-                              <div class="inp-chk">
-                                  <input type="checkbox" name="inp1" id="inp1" class="check">
-                                  <label for="inp1">수정 요청 1</label>            
+                              <div class="todo-wrap">
+                                <ul class="todo-list">
+                                  <li v-for="(task,index) in tasksList2">
+                                    
+                                    <span class="inp-chk">
+                                        <input type="checkbox" name="inp1" :id="'inp'+index" class="check">
+                                        <label :for="'inp'+index"><span>{{index+1}}</span>
+                                          <span>{{task}}</span></label>            
+                                    </span>
+                                  </li>
+                                </ul>
                               </div>
+                              
                             </td>                            
                         </tr>
                     </tbody>
@@ -67,11 +76,9 @@
               <button type="button" @click="addTodo()">입력</button>
             </div>
 
-            <div class="todo-wrap">
-              <ul class="todo-list">
-                <li v-for="task in tasksList2">{{task}}</li>
-              </ul>
-            </div>
+            
+            
+
         </div>
     </div>
     <!-- script -->
@@ -81,6 +88,7 @@
             el:"#wrap",
             data: function () {
                 return {
+                    inpId : `inp{{index}}`,
                     tasks : '',
                     tasksList2 : [],
                     curPageNum: 1,
@@ -118,6 +126,10 @@
                 document.querySelector(".task-wrap").style.display = "block"
               },
               addTodo () {
+                this.tasksList2.push(this.tasks)
+
+              },
+              addTodoList () {
                 this.tasksList2.push(this.tasks)
 
               }
