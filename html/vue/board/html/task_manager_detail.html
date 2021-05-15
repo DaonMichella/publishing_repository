@@ -20,17 +20,23 @@
                         <col width="20%"/>
                         <col width="30%"/>
                     </colgroup>
-                    <tbody>
+                    <tbody>                      
                         <tr>
                             <th scope="row">제목</th>
-                            <td colspan="3">수정 요청 드립니다.</td>
+                            <td colspan="3">{{taskList[0].title}}</td>
                         </tr>
                         <tr>
                             <th scope="row">작성자</th>
-                            <td>전수영</td>                        
+                            <td>{{taskList[0].writer}}</td>                        
                             <th scope="row">상태</th>
-                            <td>진행중</td>                        
+                            <td>{{taskList[0].state}}</td>
                         </tr>
+                        <tr>
+                            <th scope="row">등록일</th>
+                            <td>{{taskList[0].enrollDate}}</td>                        
+                            <th scope="row">마감일</th>
+                            <td>{{taskList[0].endDate}}</td>
+                        </tr>                      
                     </tbody>
                 </table>
             </div>
@@ -45,20 +51,18 @@
                         <col width="30%"/>
                     </colgroup>
                     <tbody>
-                        <tr>
-                            <th scope="row">제목</th>
-                            <td colspan="3">수정 요청 드립니다.</td>
-                        </tr>
+                        
                         <tr>
                             <td colspan="4">
                               <div class="todo-wrap">
                                 <ul class="todo-list">
-                                  <li v-for="(task,index) in tasksList2">
-                                    
+                                  <li v-for="(task,index) in taskDetailList">                                    
                                     <span class="inp-chk">
                                         <input type="checkbox" name="inp1" :id="'inp'+index" class="check">
-                                        <label :for="'inp'+index"><span>{{index+1}}</span>
-                                          <span>{{task}}</span></label>            
+                                        <label :for="'inp'+index"><span>{{index+1}}</span>                                          
+                                          <span>{{task}}</span>
+                                        </label>
+                                        <button type="button" @click="removeTask(task,index)">할일 삭제</button>
                                     </span>
                                   </li>
                                 </ul>
@@ -71,7 +75,9 @@
             </div>
 
             <button type="button" @click="addTaskInput()">할일 추가하기</button>
+            <button type="button" @click="updateTaskInput()">할일 수정하기</button>
             <div class="task-wrap" style="display:none">
+              <span>할일</span>
               <input type="text" class="inp-type01" v-model="tasks">
               <button type="button" @click="addTodo()">입력</button>
             </div>
@@ -90,7 +96,6 @@
                 return {
                     inpId : `inp{{index}}`,
                     tasks : '',
-                    tasksList2 : [],
                     curPageNum: 1,
                     totalPageNum: 3,
                     taskList :[
@@ -118,7 +123,8 @@
                             "enrollDate" : "2021-05-10" ,
                             "endDate" : "2021-05-11" ,                     
                         }
-                    ]
+                    ],
+                    taskDetailList : []
                 }
             },
             methods : {
@@ -126,11 +132,10 @@
                 document.querySelector(".task-wrap").style.display = "block"
               },
               addTodo () {
-                this.tasksList2.push(this.tasks)
-
+                this.taskDetailList.push(this.tasks)
               },
-              addTodoList () {
-                this.tasksList2.push(this.tasks)
+              removeTask (task,index) {
+                this.taskDetailList.splice(index,1)              
 
               }
             },
