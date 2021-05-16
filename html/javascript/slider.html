@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <style>
+      .hero {width:100%; height:100vh; background:#f6fbff;
+      display:flex; flex-direction: column; align-items: center; justify-content: center;}
+      h1{position:relative; margin-bottom:80px; font-size:30px;}
+      h1:after {content:''; width:150px;height:3px; background: linear-gradient(to right,#f44336,#9f4db5);
+      position: absolute; bottom:-20px; left:50%; transform: translateX(-50%);}
+      .review-box {position:relative; width:90%; max-width:700px; height:300px; border-radius:10px; box-shadow:-10px 10px 40px rgba(0,0,0,.25); overflow: hidden;}
+      .card {position: relative; height:300px; padding:40px; line-height:22px; box-sizing:border-box; background:#fff; z-index:1}
+      .profile {display:flex; align-items: center; margin-bottom:40px;}
+      .profile img {width:70px; height:70px; border-radius:50%; margin-right:20px;}
+      .profile h3 {font-size:26px; color:#f44336; margin-bottom:8px;}
+
+      #slide {width:100%; padding-right:60px; position:absolute; top:0; left:0; box-sizing: border-box; transition:0.5s}
+
+      .sidebar {width:60px; height:100%; padding:15px 0; box-sizing:border-box; 
+      background:#f44336; position:absolute; top:0; right:0;
+      display:flex; flex-direction: column; align-items: center; justify-content: space-between;}
+      .sidebar img {width:24px; padding:5px; background:#fff; border-radius:50%; cursor:pointer;  }      
+
+      .card:before {content:''; width:110px; height:110px; border-bottom-right-radius: 100%;
+      background:#f44336; position:absolute; top:0; left:0; z-index: -1;}
+      ::selection {background: #f44336; color:#fff; }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+      <h1>Customer Reviews</h1>
+      <div class="review-box">
+        <div id="slide">
+          <!-- card -->
+          <div class="card">
+            <div class="profile">
+              <img src="../../images/sample_slider.jpg" alt="" srcset="">
+              <div>
+                <h3>Riley Odole0</h3>
+                <p>Web desingner</p>
+              </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi distinctio,
+              quasi iusto sit suscipit facere, obcaecati aperiam minima expedita, similique dolorum magni.
+              Officiis numquam quo, maxime amet adipisci doloremque perspiciatis.</p>
+          </div>
+          <!-- //card -->
+
+          <!-- card -->
+          <div class="card">
+            <div class="profile">
+              <img src="../../images/sample_slider.jpg" alt="" srcset="">
+              <div>
+                <h3>Riley Odole1</h3>
+                <p>Web desingner</p>
+              </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi distinctio,
+              quasi iusto sit suscipit facere, obcaecati aperiam minima expedita, similique dolorum magni.
+              Officiis numquam quo, maxime amet adipisci doloremque perspiciatis.</p>
+          </div>
+          <!-- //card -->
+
+          <!-- card -->
+          <div class="card">
+            <div class="profile">
+              <img src="../../images/sample_slider.jpg" alt="" srcset="">
+              <div>
+                <h3>Riley Odole2</h3>
+                <p>Web desingner</p>
+              </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi distinctio,
+              quasi iusto sit suscipit facere, obcaecati aperiam minima expedita, similique dolorum magni.
+              Officiis numquam quo, maxime amet adipisci doloremque perspiciatis.</p>
+          </div>
+          <!-- //card -->
+
+          <!-- card -->
+          <div class="card">
+            <div class="profile">
+              <img src="../../images/sample_slider.jpg" alt="" srcset="">
+              <div>
+                <h3>Riley Odole3</h3>
+                <p>Web desingner</p>
+              </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi distinctio,
+              quasi iusto sit suscipit facere, obcaecati aperiam minima expedita, similique dolorum magni.
+              Officiis numquam quo, maxime amet adipisci doloremque perspiciatis.</p>
+          </div>
+          <!-- //card -->
+        </div>
+        
+        <div class="sidebar">
+          <img src="../../images/up-arrow.svg" id="upArrow" alt="" srcset="">
+          <img src="../../images/down-arrow.svg" id="downArrow" alt="" srcset="">
+
+        </div>
+      </div>
+        
+
+    </div>
+   
+    <script>
+      var slide = document.getElementById("slide")
+      var upArrow = document.getElementById("upArrow")
+      var downArrow = document.getElementById("downArrow")
+
+      let x = 0; 
+      upArrow.onclick=function () {
+        if(x > "-900") {
+          x = x - 300;
+          slide.style.top = x + "px"
+        }
+      }
+      downArrow.onclick=function () {
+        if(x < 0) {
+          x = x + 300;
+          slide.style.top = x + "px"
+        }
+      }
+
+    </script>
+</body>
+</html>
