@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+</head>
+<body>
+
+    <div id="todolistapp">
+      <div id="header">
+        <h2>Todo List App</h2>
+        <input type="text" class="input" id="task" placeholder="엔터후 입력">
+        <span class="addbutton">추가</span>
+      </div>
+      <ul id="todolist">
+        <li>
+          <span>Task1</span>
+          <span class="close">&#x00D7;</span>
+        </li>
+        <li class="checked">
+          <span>Task2</span>
+          <span class="close">&#x00D7;</span>
+        </li>
+        <li>
+          <span>Task3</span>
+          <span class="close">&#x00D7;</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#wrap",
+            data: {
+
+            },
+            methods : {
+                
+            },
+            
+        })
+    </script>
+</body>
+</html>
