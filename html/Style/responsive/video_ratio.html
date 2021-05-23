@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive video</title>
-    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../../css/reset.css">
     <style>
         body {color:#111}
-        .inbox {width:1120px; margin:0 auto;}
+        .inbox {max-width:1120px; margin:0 auto;}
         .inbox:after {display:block; content:''; clear:both;}
 
-        #header {position:fixed; top:0; left:0; width:100%; height:50px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2);}
+        #header {position:fixed; top:0; left:0; width:100%; height:50px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        background:#fff; z-index: 100;}
         .logo {float:left; margin:5px 20px; width:40px; height:40px; }
         .gnb-wrap {float:right;}
         .gnb-wrap .gnb-box > li {position:relative;float:left; margin-right:30px; margin-top:15px;}
@@ -25,15 +26,16 @@
         .dropbox .box > ul > li a {display:inline-block; width:100%; padding:8px 10px;text-align:center; font-weight:500; box-sizing:border-box}
 
         .content {padding:50px 0; margin-top:50px;}
-        .main-slider {background:#000; padding:20px 0; }
+
+        .main-slider {background:#000; min-width:1016px;  padding:20px; box-sizing:border-box}
         .main-title {max-width:1120px; width:100%; margin:0 auto; font-size:24px; margin-bottom:10px; letter-spacing: -0.05px;}
 
-        .video-wrap, .map-wrap {position:relative; margin:0 auto; max-width:1120px; width:100%;}
-        .video, .map {width:100%; padding-bottom:56.25%}
-        .video iframe, .map iframe {position:absolute; top:0; left:0; width:100%; height:100%; z-index:1}
-        @media screen and (max-width:1120px) {
-            .inbox {width:100%;}
-        }
+        .video-wrap {position:relative; margin:0 auto; width:100%; background:red}
+        .video, .map {width:100%; height:0; padding-bottom:56.25%}
+        .video-cnt, 
+        .video iframe {position:absolute; top:0; left:0; right:0; bottom:0; width:100%; height:100%; z-index:1}
+        .video iframe, .video img {width:100%; height:100%}
+
     </style>
 </head>
 <body>
@@ -41,7 +43,7 @@
         <!--(header#header>.inbox>(h1.logo>img[src=../../images/logo.png]))+(nav#gnb>(ul.gnb-box>li>(button[type=button].btn{메뉴1}+(.dropbox>.dim+(ul.box>li>a)))))+(#content>.inbox>)+(footer#footer>.inbox>p.copyright)-->
         <header id="header">
             <div class="inbox">
-                <h1 class="logo"><img src="../../images/logo.png" alt=""></h1>
+                <h1 class="logo"><img src="../../../images/logo.png" alt=""></h1>
                 <nav id="gnb" class="gnb-wrap">
                     <ul class="gnb-box">
                         <li>
@@ -83,15 +85,12 @@
                 <div class="inbox">
                     <div class="video-wrap">
                         <div class="video">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7_LPdttKXPc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          <div class="video-cnt">
+                            <img src="../../../images/sample_slider.jpg" alt="">
+                              <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7_LPdttKXPc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                          </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="main-map">
-                <div class="map-wrap">
-                    <div class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2236.3141393580386!2d126.97596139110931!3d37.56387947006926!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1614607444734!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>                    </div>
                 </div>
             </div>
         </div>
@@ -101,20 +100,20 @@
             </div>
         </footer>
     </div>
-
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=v4fiQ0estYYxFCxes61W"></script>
     <script>
-        document.querySelectorAll(".btn-drop").forEach(function(btn){
-            btn.addEventListener("click",function(e){                
-                e.target.classList.add("on")
-            })
-        })
-        document.querySelectorAll(".dim").forEach(function(dim){
-            dim.addEventListener("click",function(e){            
-                e.target.parentElement.previousElementSibling.classList.remove("on")
-            })
-        })
+      function mainVideoResizing () {
+        var img =  document.querySelector(".video .video-cnt")
+        var widthRadio = 16,
+        heightRadio = 9;
 
+        var computedHeight = img.offsetWidth * (heightRadio / widthRadio)
+        console.log(img.style.height) 
+        img.style.width = "100%"
+        img.style.height = computedHeight + "px"
+      }
+      window.onload = function() { 
+        mainVideoResizing ()
+      }
     </script>
 </body>
 </html>
