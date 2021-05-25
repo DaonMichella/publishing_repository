@@ -44,12 +44,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .title {margin-bottom:10px; }
 
 .inp-chk {position:relative;}
-.inp-chk input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
+.inp-chk input {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
 margin:0 5px 0 0; border-radius:3px}
-.inp-chk input.check:checked:before,
-.inp-chk input.check:checked:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#d21144; }
-.inp-chk input.check:checked:before {width:2px; height:11px; top:4px; left:10px; }
-.inp-chk input.check:checked:after {width:4px; height:2px; top:9px; left:4px;}
-.inp-chk input.check + label {vertical-align:middle;}
+.inp-chk.check {color:#bbb; text-decoration: line-through;}
+.inp-chk.check button {color:#bbb; text-decoration: line-through;}
+.inp-chk.check input:checked:before,
+.inp-chk.check input:checked:after {display:block; position:absolute; transform:rotate(45deg); content:''; background:#bbb; }
+.inp-chk.check input:checked:before {width:2px; height:11px; top:4px; left:10px; }
+.inp-chk.check input:checked:after {width:4px; height:2px; top:9px; left:4px;}
+.inp-chk input + label {vertical-align:middle;}
 
 .inp-type01 {border:1px solid #111; }

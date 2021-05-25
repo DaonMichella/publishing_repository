@@ -56,13 +56,13 @@
                             <td colspan="4">
                               <div class="todo-wrap">
                                 <ul class="todo-list">
-                                  <li v-for="(task,index) in taskDetailList">                                    
-                                    <span class="inp-chk">
-                                        <input type="checkbox" name="inp1" :id="'inp'+index" class="check">
-                                        <label :for="'inp'+index"><span>{{index+1}}</span>                                          
-                                          <span>{{task}}</span>
+                                  <li v-for="(task,index) in taskDetailList">                    
+                                    <span class="inp-chk" :class="todoCheck(task.done)">
+                                        <input type="checkbox" name="inp1" :id="'inp'+index">
+                                        <label :for="'inp'+index" @click="doneToggle(task.id)"><span>{{index+1}}.</span>                                          
+                                          <span>{{task.detail}}</span>
                                         </label>
-                                        <button type="button" @click="removeTask(task,index)">할일 삭제</button>
+                                        <button type="button" @click="removeTask(task,index)">&#x00D7;</button>
                                     </span>
                                   </li>
                                 </ul>
@@ -106,6 +106,7 @@
                             "state" : "진행중" ,                      
                             "enrollDate" : "2021-05-10" ,
                             "endDate" : "2021-05-11" ,
+                            
                         },
                         {
                             "id" : 2,
@@ -113,7 +114,7 @@
                             "writer" : "전수영",
                             "state" : "진행중" ,                      
                             "enrollDate" : "2021-05-10" ,
-                            "endDate" : "2021-05-11" ,                        
+                            "endDate" : "2021-05-11" ,
                         },
                         {
                             "id" : 3,
@@ -121,10 +122,16 @@
                             "writer" : "전수영",
                             "state" : "진행중" ,                      
                             "enrollDate" : "2021-05-10" ,
-                            "endDate" : "2021-05-11" ,                     
+                            "endDate" : "2021-05-11" ,
                         }
                     ],
-                    taskDetailList : []
+                    taskDetailList : [
+                      {
+                        "id":1,
+                        "detail" : "aaa",
+                        "done":false
+                      }
+                    ]
                 }
             },
             methods : {
@@ -132,11 +139,24 @@
                 document.querySelector(".task-wrap").style.display = "block"
               },
               addTodo () {
-                this.taskDetailList.push(this.tasks)
+                if(this.tasks != "") {
+                  this.taskDetailList.push({id:this.taskDetailList.length+1, detail : this.tasks, done :false })
+                  this.tasks = ""
+                }
               },
               removeTask (task,index) {
                 this.taskDetailList.splice(index,1)              
 
+              },
+              todoCheck : function (done) {
+                if(done) return {check : true}
+                else return {check : false}
+              },
+              doneToggle : function (id) {
+                  var index = this.taskList.findIndex(function(item){
+                    return item.id === id
+                  })
+                  this.taskDetailList[index].done = !this.taskDetailList[index].done
               }
             },
             computed : {
