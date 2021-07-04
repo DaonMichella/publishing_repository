@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정 내역 안내</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .task-content {padding:10px 20px}
+      .task-title { margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
+      .task-item { display:flex; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
+      .task-item .task { padding:10px; width:50%; border-radius:10px; background:#edf2f4; color:#222}
+
+      .ui {margin:30px 0; padding:10px; background:#fff; }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1 class="main-title">수정 내역 기록 </h1>
+        <ul class="tab-box">
+          <li class="on"><a href="#">21-06-21</a></li>
+          <li><a href="#">21-06-22</a></li>
+          <li><a href="#">21-06-23</a></li>
+          <li><a href="#">21-06-24</a></li>
+        </ul>
+        <div class="task-content">
+          <div class="task-box">
+            <h2 class="task-title">21-06-21</h2>
+            <section class="task-item">
+              <div class="task before">
+                  <ul class="task-list">
+                    <li>*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s</li>
+                    <li>*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s</li>
+                  </ul>
+
+                  <div class="ui">
+                    <ul class="task-list">
+                      <li>*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s</li>
+                      <li>*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s</li>
+                    </ul>                    
+                  </div>
+                  <pre><code class="language-html">
+
+&lt;ul class="task-list"&gt;
+  &lt;li&gt;*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s&lt;/li&gt;
+  &lt;li&gt;*Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum omnis illo cum tempora magnam magni alias voluptatibus labore libero praesentium expedita nostrum vel temporibus, ab quibusdam quidem mollitia recusandae obcaecati?s&lt;/li&gt;
+&lt;/ul&gt;
+                  </code></pre>
+              </div>
+              <div class="task after">변경 후</div>
+            </section>
+          </div>
+        </div>
+       
+
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/androidstudio.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
