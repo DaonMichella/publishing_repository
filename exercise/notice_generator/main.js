@@ -25,11 +25,9 @@ var app = http.createServer(function(request,response){
 
           fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
               var title = queryData.id;
-              var sanitizedTitle = title;
-              var sanitizedDescription = description;
               var list = template.list(filelist);
               var html = template.structure(title, list, `
-              <h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
+              <h2>${title}</h2>${description}`,
               `
                 <a href="/create">create</a> 
                 <a href="/update?id=${sanitizedTitle}">update</a> 
@@ -50,13 +48,17 @@ var app = http.createServer(function(request,response){
       var list = template.list(filelist);//이 부분 오타 매서드명 오타 
       var html = template.structure(title, list, `
           <form action="/create_process" method="post">
-            <p><input type="text" name="title" placeholder="title"></p>
-            <p>
-              <textarea name="description" placeholder="description"></textarea>
-            </p>
-            <p>
-              <input type="submit">
-            </p>
+          <div id="wrap">
+            <h1 class="main-title">게시글 생성</h1>
+            <div class="input-area">
+              <div class="inp-txt">
+                <input type="text" name="title" placeholder="title">
+              </div>
+              <textarea name="description" placeholder="description" title="글 내용"></textarea>        
+            </div>
+            <input type="submit">
+    
+          </div>           
           </form>
         `,``);
       response.writeHead(200);//성공
