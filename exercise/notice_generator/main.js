@@ -4,6 +4,7 @@ var url = require('url');
 var qs = require('querystring');
 var template = require('./lib/template.js')
 var path = require('path')
+var style = require('./style.css')
 
 var app = http.createServer(function(request,response){
   var _url = request.url;
@@ -12,10 +13,10 @@ var app = http.createServer(function(request,response){
   if(pathname === '/'){
     if(queryData.id === undefined){
       fs.readdir('./data', function(error, filelist){
-        var title = 'Welcome';
-        var description = 'Hello, Node.js';
+        var title = '기사제목';
+        var description = '기사내용';
         var list = template.list(filelist);
-        var html = template.structure(title, list, `<h2>${title}</h2>${description}`,`<a href="/create">create</a>`);
+        var html = template.structure(title, list, `<h2>${title}</h2><p>${description}</p>`,`<button type='button' class="btn blue">공지사항 등록</button>`);
         response.writeHead(200);
         response.end(html);
       });
@@ -29,10 +30,11 @@ var app = http.createServer(function(request,response){
               var html = template.structure(title, list, `
               <h2>${title}</h2>${description}`,
               `
+                <button type='button'>공지사항등록</button>
                 <a href="/create">create</a> 
-                <a href="/update?id=${sanitizedTitle}">update</a> 
+                <a href="/update?id=${title}">update</a> 
                 <form action="delete_process" method="post" onsubmit="">
-                  <input type="hidden" name="id" value="${sanitizedTitle}">
+                  <input type="hidden" name="id" value="${title}">
                   <input type="submit" value="delete">
                 </form>
 
@@ -44,7 +46,7 @@ var app = http.createServer(function(request,response){
     }
   } else if(pathname === '/create'){
     fs.readdir('./data', function(error, filelist){
-      var title = 'WEB - create';
+      var title = '공지사항 등록';
       var list = template.list(filelist);//이 부분 오타 매서드명 오타 
       var html = template.structure(title, list, `
           <form action="/create_process" method="post">

@@ -1,19 +1,20 @@
 module.exports = {
     structure: function (title, list, body, control){
       return `
-        <!doctype html>
-        <html>
+      <!doctype html>
+      <html>
         <head>
-        <title>WEB2 - ${title}</title>
-        <meta charset="utf-8">
+          <meta charset="utf-8">
+          <title>${title}</title>
+          <link rel="style.css"/>
         </head>
         <body>
-        <h1><a href="/">WEB</a></h1>
-        ${list}
-        ${control}
-        ${body}
+          <h1>공지사항목록</h1>
+          ${list}
+          ${control}
+          ${body}
         </body>
-        </html>
+      </html>
         `;
     },
     list : function (filelist) {
@@ -27,3 +28,4 @@ module.exports = {
   
     
   }
+  
