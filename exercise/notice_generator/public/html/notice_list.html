@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 등록</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrap">
+      <h1 class="main-title">게시글 목록<span class="sub">기존 목록 불러오기</span></h1>
+
+        <div class="tbl-type01">
+          <table>
+              <caption>테이블</caption>
+              <thead>
+                  <tr>
+                      <th colspan="row" v-for="title in headers">{{title}}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="(item,index) in articles">
+                      <td>{{index+1}}</td>
+                      <td><a v-bind:href='`notice/notice${item.fileNum}.txt`' target="_blank">{{item.title}}</a>
+                      <td>{{item.enrollDate}}</td>
+                  </tr>
+              </tbody>
+
+          </table>
+        </div>
+        <button type="button" class="btn blue">새 공지사항</button>
+
+    </div>
+
+  <!-- script -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/androidstudio.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+  <script>
+    hljs.highlightAll();
+    var app = new Vue({
+        el:"#wrap",
+        data: {
+            headers : ["NO","제목","등록일"],
+            articles :[//article에서 정보 불러오기 - notice 폴더 안의 정보
+                {
+                  "fileNum" : 1,
+                  "title" : "기사 제목",
+                  "contents" : "기사 내용",
+                  "enrollDate" : "2021-07-20",
+                  "images" : "public/sample.jpg",
+                  "imageSize" :"600",
+                  "sourceYN" : "소스표시"
+                }
+            ]
+        }
+    })
+  </script>
+</body>
+</html>
