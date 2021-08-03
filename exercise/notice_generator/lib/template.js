@@ -43,7 +43,7 @@ module.exports = {
       for (var list_i = 0; list_i < filelist.length; list_i++) {    
         list += `
         <tr>
-            <td>${list_i}</td>
+            <td>${list_i +1 }</td>
             <td><a v-bind:href='data/${filelist[list_i]}' target="_blank">${filelist[list_i]}</a></td>
         </tr>`
       }
