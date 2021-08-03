@@ -40,20 +40,7 @@ var app = http.createServer(function(request,response){
     if(pathname === '/'){
       fs.readdir('./data', function(error, filelist){
         var list = template.list(filelist);
-        var html = template.structure('Main', list, `
-            <form action="/create_process" method="post">
-            <div id="wrap">
-              <h1 class="main-title">게시글 생성</h1>
-              <div class="input-area">
-                <div class="inp-txt">
-                  <input type="text" name="title" placeholder="title">
-                </div>
-                <textarea name="description" placeholder="description" title="글 내용"></textarea>        
-              </div>
-      
-            </div>           
-            </form>
-          `,`
+        var html = template.structure('Main', list, ``,`
           <div class="btn-group">
             <a href="notice_new.html" class="btn blue"><span class="txt">새 공지사항</span></a>
           </div>
