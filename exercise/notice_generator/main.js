@@ -42,7 +42,7 @@ var app = http.createServer(function(request,response){
         var list = template.list(filelist);
         var html = template.structure('Main', list, ``,`
           <div class="btn-group">
-            <a href="notice_new.html" class="btn blue"><span class="txt">새 공지사항</span></a>
+            <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
           </div>
           `);
           response.writeHead(200);
@@ -53,18 +53,19 @@ var app = http.createServer(function(request,response){
       fs.readdir('./data', function(error, filelist){
         var title = '공지사항 등록';
         var list = template.list(filelist);//이 부분 오타 매서드명 오타 
-        var html = template.structure(title, list, `
+        var html = template.structure(title, '', `
             <form action="/create_process" method="post">
             <div id="wrap">
-              <h1 class="main-title">게시글 생성</h1>
               <div class="input-area">
                 <div class="inp-txt">
                   <input type="text" name="title" placeholder="title">
                 </div>
-                <textarea name="description" placeholder="description" title="글 내용"></textarea>        
+                <textarea name="description" placeholder="description" class="textarea" title="글 내용"></textarea>        
               </div>
-              <input type="submit">
-      
+              <div class="btn-group">
+                <input type="submit" class="btn blue">
+              </div>
+              
             </div>           
             </form>
           `,``);

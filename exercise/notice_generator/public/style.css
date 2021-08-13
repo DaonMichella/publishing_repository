@@ -61,6 +61,7 @@ textarea::placeholder {color:#aaa;}
 .btn {display:inline-block; padding:10px; vertical-align: middle;}
 .btn.blue {background:#3B8DBD; color:#fff;}
 
+.btn-group {margin-top:30px}
 /* table */
 .tbl-type01 table {width:100%}
 .tbl-type01 th, .tbl-type01 td {padding:12px 10px; border-bottom:1px solid #ddd; text-align:center;}
@@ -92,7 +93,6 @@ margin:0 5px 0 0; border-radius:3px}
 .inp-chk input.check + label {vertical-align:middle;}
 
 /* content */
-.input-area ,
 .main-box{margin: 0 auto; padding:50px 0; width:1200px; background:#fff }
 .input-area div.inp-txt,
 .input-area .textarea ,

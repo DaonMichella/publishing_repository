@@ -14,8 +14,8 @@ module.exports = {
       <body>
           <div id="wrap">
             <h1 class="main-title">${title}</h1>
-
-              <div class="tbl-type01">
+            ${list != '' ?
+              `<div class="tbl-type01">
                 <table>
                     <caption>${title}테이블</caption>
                     <thead>
@@ -28,11 +28,12 @@ module.exports = {
                     </tbody>
 
                 </table>
-              </div>
+              </div>` 
+              : ''}
+              
               ${body}    
               ${control}
               
-
           </div>
       </body>
       </html>
@@ -44,7 +45,7 @@ module.exports = {
         list += `
         <tr>
             <td>${list_i +1 }</td>
-            <td><a v-bind:href='data/${filelist[list_i]}' target="_blank">${filelist[list_i]}</a></td>
+            <td><a href='/?id=${filelist[list_i]}'>${filelist[list_i]}</a></td>
         </tr>`
       }
       list += '</tbody>';

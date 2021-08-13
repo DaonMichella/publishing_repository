@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Image Upload</title>
+    <style>        
+      * {margin:0; padding:0;}
+      ul,li {list-style:none}
+      img {max-width:100%}
+      #app {margin: 40px auto; width:70%; }
+      h1 {margin-bottom:20px; font-size:64px; text-align: center;}
+      svg{ display:block; max-width:160px; margin:20px auto;}
+      input[type=file] {position: absolute; display:block; width:100%; height:100%; opacity: 0; }
+      .image-container {position:relative; padding:30px; width:100%; border:.5px solid #a3a8b1; border-radius:10px; text-align:center; background:#f7fafc;}
+      .img-list {display:flex; gap:10px;}
+      .img-list li {width:200px; height:200px; }
+
+    </style>
+</head>
+<body>
+  
+    <div id="app">
+      <h1>Vue Image Upload</h1>
+      <div class="image-container">
+        <div class="" v-if="upLoading == false">
+          <input type="file" accept="image/*" multiple="multiple" >
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>folder, file, archive, document, upload</title><path d="M21,5H11.72l-.32-1A3,3,0,0,0,8.56,2H3A3,3,0,0,0,0,5V19a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V8A3,3,0,0,0,21,5Zm1,14a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V5A1,1,0,0,1,3,4H8.56a1,1,0,0,1,.95.68L10.28,7H21a1,1,0,0,1,1,1Z"/><path d="M12.71,9.29a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-3,3a1,1,0,0,0,1.42,1.42L11,12.41V18a1,1,0,0,0,2,0V12.41l1.29,1.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
+          <p>Click to upload or drop your images here</p>
+        </div>
+        <div class="img-preview" v-else>
+          <button type="button" class="clearButton">clear All</button>
+          <ul class="img-list">
+            <li>
+              <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt="" srcset="">
+            </li>
+            <li>
+              <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt="" srcset="">
+            </li>
+            <li>
+              <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt="" srcset="">
+            </li>
+            <li>
+              <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" alt="" srcset="">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- script -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data: {
+                upLoading:true
+            }
+        })
+    </script>
+</body>
+</html>
