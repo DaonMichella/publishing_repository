@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <style>
+      .tab-wrap {position:relative; display:flex; }
+      .tab-wrap .tab-btn {width:100%; color:blue; transition:all 1s}
+      .tab-wrap .tab-btn:hover,
+      .tab-wrap .tab-btn.active {background:#eee; }
+      .slider {position:absolute; bottom:0; left:0; width:33.3%; height:2px; background:blue;
+      transition:all 1s;}
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+      <div class="tab-wrap">
+        <button type="button" class="tab-btn active">history</button>
+        <button type="button" class="tab-btn">vision</button>
+        <button type="button" class="tab-btn">goals</button>
+        <span class="slider" data-left="0"></span>
+      </div>
+    </div>
+    <script>
+      const tabBtn = document.querySelectorAll(".tab-btn")
+      const slider = document.querySelector(".slider")
+      tabBtn.forEach(btn => {
+        btn.addEventListener("click",(e) => {
+          tabBtn.forEach(btn => {
+            btn.classList.remove("active")
+          })
+          console.log(e.currentTarget.offsetLeft)
+          slider.style.left = e.currentTarget.offsetLeft + "px"
+          e.currentTarget.classList.add("active")
+        })
+      })
+    </script>
+</body>
+</html>
