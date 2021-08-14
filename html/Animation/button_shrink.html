@@ -24,7 +24,11 @@
         .inp-sch .ico:after { top:11px; left:11px; width:2px; height:6px; background-color: #fff; transform: rotate(-45deg); }
         .inp-sch button .txt { padding-left:5px; width:30px; color:#fff; white-space:nowrap; transition:width .4s; }  
 
-        .inp-sch button:hover .txt { padding-left:0; width:0; overflow:hidden; }
+        /* scale 제어를 통해서 영역이 애매할 떄 trembling 현상 제어 */
+        .inp-sch button:hover .ico {-webkit-transform: scale(1.0) !important;
+        transform: scale(1.0) !important; }
+        .inp-sch button:hover .txt { padding-left:0; width:0; overflow:hidden; -webkit-transform: scale(1.0) !important;
+        transform: scale(1.0) !important; }
 
     </style>
 </head>
