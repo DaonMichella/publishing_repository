@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tab</title>
+    <title>Tab slider</title>
     <link rel="stylesheet" href="../../css/reset.css"/>
     <link rel="stylesheet" href="../../css/layout.css"/>
     <link rel="stylesheet" href="../../css/common.css"/>
@@ -27,18 +27,22 @@
       </div>
     </div>
     <script>
-      const tabBtn = document.querySelectorAll(".tab-btn")
-      const slider = document.querySelector(".slider")
-      tabBtn.forEach(btn => {
-        btn.addEventListener("click",(e) => {
-          tabBtn.forEach(btn => {
-            btn.classList.remove("active")
+      
+      let tabFunc = function (tabwrap) {
+        const wrap = document.querySelector(tabwrap)
+        const tabBtn = wrap.querySelectorAll(".tab-btn")
+        const slider = wrap.querySelector(".slider")
+        tabBtn.forEach(btn => {
+          btn.addEventListener("click",(e) => {
+            tabBtn.forEach(btn => {
+              btn.classList.remove("active")
+            })
+            slider.style.left = e.currentTarget.offsetLeft + "px"
+            e.currentTarget.classList.add("active")
           })
-          console.log(e.currentTarget.offsetLeft)
-          slider.style.left = e.currentTarget.offsetLeft + "px"
-          e.currentTarget.classList.add("active")
         })
-      })
+      }
+      tabFunc (".tab-wrap") 
     </script>
 </body>
 </html>

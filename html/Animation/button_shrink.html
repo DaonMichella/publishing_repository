@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 애니메이션</title>
+    <style>
+        * {margin:0; padding:0;}
+        #wrap {padding:20px }
+        button {background:none; border:none; cursor: pointer;}
+        
+        .inp-sch {position: relative;}
+        .inp-sch input { padding:10px 10px; line-height:20px; width:100%; padding-right:30px; border:1px solid #ddd; box-sizing: border-box;}
+        .inp-sch button {position:absolute; top:50%; right:0px;  transform:translateY(-50%); width:40px; height:40px; background:#aaa;}
+        .inp-sch button .txt {display: inline-block; padding-left:120px; color:#fff; }
+        .inp-sch button:before {position: absolute; top:47%; left:45%;
+        width:12px; height:12px; border:2px solid #fff; border-radius: 50%;
+         transform: translate(-50%,-50%); content:''}
+        .inp-sch button:after {position: absolute; top:59%; left:61%;
+        width:2px; height:7px; background-color: #fff;
+         transform: rotate(-45deg); content:''}
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>스타일</h1>
+        <h2 class="title">기본</h2>
+        <div class="inp-sch">
+            <input type="text" name="" id="" >
+            <button type="submit"><span class="txt">검색</span></button>
+        </div>
+    </div>
+</body>
+</html>
