@@ -12,14 +12,19 @@
         
         .inp-sch {position: relative;}
         .inp-sch input { padding:10px 10px; line-height:20px; width:100%; padding-right:30px; border:1px solid #ddd; box-sizing: border-box;}
-        .inp-sch button {position:absolute; top:50%; right:0px;  transform:translateY(-50%); width:40px; height:40px; background:#aaa;}
-        .inp-sch button .txt {display: inline-block; padding-left:120px; color:#fff; }
-        .inp-sch button:before {position: absolute; top:47%; left:45%;
-        width:12px; height:12px; border:2px solid #fff; border-radius: 50%;
-         transform: translate(-50%,-50%); content:''}
-        .inp-sch button:after {position: absolute; top:59%; left:61%;
-        width:2px; height:7px; background-color: #fff;
-         transform: rotate(-45deg); content:''}
+        .inp-sch button { position:absolute; height:40px; top:50%; right:0px; margin-top:-20px;
+          padding:11px 10px; background:#aaa; }
+        
+        .inp-sch .ico,
+        .inp-sch button .txt { display: inline-block; vertical-align: middle;}
+        .inp-sch .ico { position:relative;  width:16px; height:16px; }
+        .inp-sch .ico:before ,
+        .inp-sch .ico:after  {position: absolute; content:''; }
+        .inp-sch .ico:before { width:10px; height:10px; top:7px; left:6px; border:2px solid #fff; border-radius: 50%; transform: translate(-50%,-50%); }
+        .inp-sch .ico:after { top:11px; left:11px; width:2px; height:6px; background-color: #fff; transform: rotate(-45deg); }
+        .inp-sch button .txt { padding-left:5px; width:30px; color:#fff; white-space:nowrap; transition:width .4s; }  
+
+        .inp-sch button:hover .txt { padding-left:0; width:0; overflow:hidden; }
 
     </style>
 </head>
@@ -29,7 +34,7 @@
         <h2 class="title">기본</h2>
         <div class="inp-sch">
             <input type="text" name="" id="" >
-            <button type="submit"><span class="txt">검색</span></button>
+            <button type="submit"><i class="ico"></i><span class="txt">검색</span></button>
         </div>
     </div>
 </body>
