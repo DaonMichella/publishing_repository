@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <style>
+      .header {padding:0; height:88px; }
+      .header .btn-link {float:left}
+      .header .top-menu {border-bottom:1px solid #ddd; height:32px; }
+      .header .btn-arrow {display:inline-block; margin:8px 0}
+      .header .menu-list,
+      .header .gnb-list {float:right;}
+      .header .logo {margin-top:10px}
+      .header .menu-list li,
+      .header .gnb-list li {float:left;}
+      .header .menu-list li {padding:8px 10px;font-size:14px; color: #111; }
+      .header .gnb-list li {padding:20px 10px; font-weight:500; font-size:16px; color:#111; }
+
+      .btn-arrow {position:relative; }      
+      .btn-arrow .txt {display:inline-block; vertical-align: middle;}
+      .btn-arrow .right {position:relative; margin-left:6px; width:16px;height:20px;  }
+      .btn-arrow .right:after {position:absolute; width:4px; height:4px; margin-top:-0px; top:50%; right:0; transform:rotate(45deg); border-top:1px solid #111; border-right:1px solid #111; content:'';} 
+      
+      .btn-cam {padding-left:20px; background:url(../../images/ico_cam.png) no-repeat left center /16px}
+      .btn-setting {padding-left:20px;  background:url(../../images/ico_setting.png) no-repeat left center /16px}
+
+      #content { min-height:calc(100vh - 188px);}
+
+      .footer {height:100px; background:#ddd; }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+       <header id="header" class="header">                    
+             <div class="top-menu">
+              <div class="inbox clear">
+                <a href="#" class="btn-arrow"><span class="txt">실시간 영상보기</span><i class="right"></i></a>                
+                <ul class="menu-list">
+                  <li><a href="#" class="btn-cam">목록</a></li>
+                  <li><a href="#" class="btn-setting">관리</a></li>
+                </ul>
+              </div>
+             </div>
+              <div class="menu">
+               <div class="inbox clear">
+                <h1 class="logo"><img src="../../images/logo.png" alt="로고"></h1>
+                <ul class="gnb-list">
+                  <li><a href="#">메뉴1</a></li>
+                  <li><a href="#">메뉴2</a></li>
+                  <li><a href="#">메뉴3</a></li>
+                </ul>
+              </div>
+           </div>
+       </header>
+       <div id="content">
+           <div class="content-wrap">
+    
+           </div>
+           <aside id="side_menu" class="side-menu">
+    
+           </aside>
+       </div>
+       <footer id="footer" class="footer">
+           footer
+       </footer>
+    </div>
+
+    <script>
+        const btn = document.querySelector(".btn-menu");
+        btn.addEventListener("click",function(e){
+            e.target.classList.add("open")
+        })
+    </script>
+</body>
+</html>
