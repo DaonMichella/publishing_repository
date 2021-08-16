@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Dropdown Example</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/'-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body{
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.hide {
+    max-height: 0 !important;
+}
+
+.dropdown{
+	border: 0.1em solid black;
+	width: 10em;
+	margin-bottom: 1em;
+}
+
+.dropdown .title{
+	margin: .3em .3em .3em .3em;	
+	width: 100%;
+}
+
+.dropdown .title .fa-angle-right{
+	float: right;
+	margin-right: .7em;
+	transition: transform .3s;
+}
+
+.dropdown .menu{
+	transition: max-height .5s ease-out;
+	max-height: 20em;
+	overflow: hidden;
+}
+
+.dropdown .menu .option{
+	margin: .3em .3em .3em .3em;
+	margin-top: 0.3em;
+}
+
+.dropdown .menu .option:hover{
+	background: rgba(0,0,0,0.2);
+}
+
+.pointerCursor:hover{
+	cursor: pointer;
+}
+
+.rotate-90{
+	transform: rotate(90deg);
+}
+  </style>
+</head>
+<body>
+	<div class='dropdown'>
+		<div class='title pointerCursor'>Select an option <i class="fa fa-angle-right"></i></div>
+		
+		<div class='menu pointerCursor hide'>
+			<div class='option' id='option1'>Option 1</div>
+			<div class='option' id='option2'>Option 2</div>
+			<div class='option' id='option3'>Option 3</div>
+			<div class='option' id='option4'>Option 4</div>
+		</div>
+
+	</div>
+	<span id='result'>The result is: </span>
+	<script>
+function toggleClass(elem,className){
+	if (elem.className.indexOf(className) !== -1){
+		elem.className = elem.className.replace(className,'');
+	}
+	else{
+		elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
+	}
+	
+	return elem;
+}
+
+function toggleDisplay(elem){
+	const curDisplayStyle = elem.style.display;			
+				
+	if (curDisplayStyle === 'none' || curDisplayStyle === ''){
+		elem.style.display = 'block';
+	}
+	else{
+		elem.style.display = 'none';
+	}
+}
+
+
+function toggleMenuDisplay(e){
+	const dropdown = e.currentTarget.parentNode;
+	const menu = dropdown.querySelector('.menu');
+	const icon = dropdown.querySelector('.fa-angle-right');
+
+	toggleClass(menu,'hide');
+	toggleClass(icon,'rotate-90');
+}
+
+function handleOptionSelected(e){
+	toggleClass(e.target.parentNode, 'hide');			
+
+	const id = e.target.id;
+	const newValue = e.target.textContent + ' ';
+	const titleElem = document.querySelector('.dropdown .title');
+	const icon = document.querySelector('.dropdown .title .fa');
+
+
+	titleElem.textContent = newValue;
+	titleElem.appendChild(icon);
+	
+	//trigger custom event
+	document.querySelector('.dropdown .title').dispatchEvent(new Event('change'));
+	//setTimeout is used so transition is properly shown
+	setTimeout(() => toggleClass(icon,'rotate-90',0));
+}
+function handleTitleChange(e){
+	const result = document.getElementById('result');
+
+	result.innerHTML = 'The result is: ' + e.target.textContent;
+}
+//get elements
+const dropdownTitle = document.querySelector('.dropdown .title');
+const dropdownOptions = document.querySelectorAll('.dropdown .option');
+
+//bind listeners to these elements
+dropdownTitle.addEventListener('click', toggleMenuDisplay);
+dropdownOptions.forEach(option => option.addEventListener('click',handleOptionSelected));
+document.querySelector('.dropdown .title').addEventListener('change',handleTitleChange);
+	</script>
+</body>
+</html>

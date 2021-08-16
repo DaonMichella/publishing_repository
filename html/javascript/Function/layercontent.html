@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../../../css/contents.css"/>
     <style>
       .area {width:1120px; margin:0 auto;}
-      .smart-searchbox {border:1px solid blue; border-radius:5px; font-size:0;padding:10px 0;}
+      .smart-searchbox {border:1px solid lightskyblue; background:#fff; border-radius:5px; font-size:0;padding:10px 0;}
       .smart-searchbox li {display:inline-block; width:33.3%; padding:0 15px; font-size:14px; box-sizing: border-box;}
       .smart-searchbox li + li {border-left:1px solid #ddd;;}
-      .smart-searchbox .head {display:block; margin-bottom:12px;color:#aaa;text-align: left;}
-      .smart-searchbox .cnt {color:#222; font-size:18px;}
+      .smart-searchbox .head {color:#aaa;text-align: left;}
+      .smart-searchbox .btn-smart {display:block; margin-top:12px; color:#222; font-size:18px;}
     </style>
 </head>
 <body>
@@ -25,19 +25,19 @@
           <li>
             <button type="button">
               <span class="head">카메라</span>
-              <span class="cnt">카메라를 택해주세요</span>
+              <button type="button" class="btn-smart">카메라를 택해주세요</button>
             </button>              
           </li>
           <li>
             <button type="button">
               <span class="head">카메라</span>
-              <span class="cnt">카메라를 택해주세요</span>
+              <button type="button" class="btn-smart">카메라를 택해주세요</button>
             </button>              
           </li>
           <li>
             <button type="button">
               <span class="head">카메라</span>
-              <span class="cnt">카메라를 택해주세요</span>
+              <button type="button" class="btn-smart">카메라를 택해주세요</button>
             </button>              
           </li>
         </ul>
@@ -46,6 +46,20 @@
    
     <script>
 
+        const btn = document.querySelector(".btn-smart");
+        btn.addEventListener("click",function(e){
+            e.target.classList.add("open")
+        })
+        function toggleClass(elem,className){
+          if (elem.className.indexOf(className) !== -1){
+            elem.className = elem.className.replace(className,'');
+          }
+          else{
+            elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
+          }
+          
+          return elem;
+        }        
     </script>
 </body>
 </html>
