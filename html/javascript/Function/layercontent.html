@@ -23,22 +23,23 @@
       <div class="area">
         <ul class="smart-searchbox">
           <li>
-            <button type="button">
+            <div class="dropdown">
               <span class="head">카메라</span>
               <button type="button" class="btn-smart">카메라를 택해주세요</button>
-            </button>              
+
+            </div>              
           </li>
           <li>
-            <button type="button">
+            <div class="dropdown">
               <span class="head">카메라</span>
               <button type="button" class="btn-smart">카메라를 택해주세요</button>
-            </button>              
+            </div>              
           </li>
           <li>
-            <button type="button">
+            <div class="dropdown">
               <span class="head">카메라</span>
               <button type="button" class="btn-smart">카메라를 택해주세요</button>
-            </button>              
+            </div>              
           </li>
         </ul>
       </div>    
@@ -46,20 +47,34 @@
    
     <script>
 
-        const btn = document.querySelector(".btn-smart");
-        btn.addEventListener("click",function(e){
-            e.target.classList.add("open")
-        })
-        function toggleClass(elem,className){
-          if (elem.className.indexOf(className) !== -1){
-            elem.className = elem.className.replace(className,'');
-          }
-          else{
-            elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
-          }
-          
-          return elem;
-        }        
+      const btn = document.querySelector(".btn-smart");
+      btn.addEventListener("click",function(e){
+          e.target.classList.add("open")
+      })
+      function toggleClass(elem,className){
+        if (elem.className.indexOf(className) !== -1){
+          elem.className = elem.className.replace(className,'');
+        }
+        else{
+          elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
+        }
+        
+        return elem;
+      }        
+
+      //get elements
+      function toggleMenuDisplay(e){
+        const dropdown = e.currentTarget.parentNode;
+        const menu = dropdown.querySelector('.menu');
+        const icon = dropdown.querySelector('.fa-angle-right');
+
+        toggleClass(menu,'hide');
+        toggleClass(icon,'rotate-90');
+      }
+      //bind listeners to these elements
+      const btnSmart = document.querySelector('.btn-smart');
+
+      btnSmart.addEventListener('click', toggleMenuDisplay);
     </script>
 </body>
 </html>
