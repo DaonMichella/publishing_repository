@@ -3,6 +3,7 @@ var fs = require('fs');
 var url = require('url');
 var qs = require('querystring');
 var template = require('./lib/template.js')
+var templateContent = require('./lib/template_detail.js')
 var path = require('path')
 
 var mimeType = {//확장자에 따라서 content-type header 값을 동적으로 생성
@@ -36,33 +37,54 @@ var app = http.createServer(function(request,response){
   } else {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
+    //url 주소뒤에 입력한 값을 객체 형태로 반환
     var pathname = url.parse(_url, true).pathname;
-    if(pathname === '/'){
-      fs.readdir('./data', function(error, filelist){
-        var list = template.list(filelist);
-        var html = template.structure('Main', list, ``,`
+    if(pathname === '/'){//목록
+      var pageTitle = "Main"//페이지 타이틀
+      if(queryData.id == undefined) {
+        fs.readdir('./data', function(error, filelist){
+          var list = template.list(filelist, queryData.id);
+          var html = template.structure(pageTitle, list, ``,`
+            <div class="btn-group">
+              <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+            </div>
+            `);
+            response.writeHead(200);
+            response.end(html);
+        })          
+      } else {
+        fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
+          var html = templateContent.structure(queryData.id, fileContent,`
           <div class="btn-group">
-            <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+            <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
+            <form action="delete_process" method="post" style="display:inline-block">
+              <input type="hidden" name="id" value="${queryData.id}">
+              <input type="submit" class="btn blue" value="삭제">
+            </form>
+              <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+
           </div>
           `);
           response.writeHead(200);
           response.end(html);
+        })        
+      }
+      
 
-      })
     } else if(pathname === '/create'){
       fs.readdir('./data', function(error, filelist){
         var title = '공지사항 등록';
-        var list = template.list(filelist);//이 부분 오타 매서드명 오타 
         var html = template.structure(title, '', `
             <form action="/create_process" method="post">
             <div id="wrap">
               <div class="input-area">
                 <div class="inp-txt">
-                  <input type="text" name="title" placeholder="title">
+                  <input type="text" name="fileName" placeholder="fileName">
                 </div>
                 <textarea name="description" placeholder="description" class="textarea" title="글 내용"></textarea>        
               </div>
               <div class="btn-group">
+                <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
                 <input type="submit" class="btn blue">
               </div>
               
@@ -79,11 +101,11 @@ var app = http.createServer(function(request,response){
       })//node js로 접속 들어올때마다 콜백 함수로 node 호출
       request.on('end',function(){
           var post = qs.parse(body);
-          var title = post.title;
+          var fileName = post.fileName;
           var description = post.description;
-          fs.writeFile(`data/${title}`, description,'utf8',
+          fs.writeFile(`data/${fileName}`, description,'utf8',
           function(err){
-            response.writeHead(302, {Location:`/?id=${title}`});
+            response.writeHead(302, {Location:`/?id=${fileName}`});
             response.end();
           })      
       })
@@ -139,6 +161,19 @@ var app = http.createServer(function(request,response){
             response.writeHead(302, {Location:`/?id=${title}`});
             response.end();
           })     
+        })
+      })
+    } else if(pathname === '/delete_process'){
+      var body = '';
+      request.on('data',function(data){
+        body += data;
+      })
+      request.on("end",function(){
+        var post = qs.parse(body)      
+        var id = post.id;
+        fs.unlink(`data/${id}`,function(err){
+          response.writeHead(302, {Location : `/`});
+          response.end();
         })
       })
     } else {

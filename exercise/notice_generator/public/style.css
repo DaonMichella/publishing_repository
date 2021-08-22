@@ -55,7 +55,6 @@ textarea::placeholder {color:#aaa;}
 .tab-box li a { display:block; padding:11px 0; background:#3B8DBD; text-align:center; color:#fff}
 .tab-box li.on a {background-color:#33363B}
 .task-content {padding:10px 20px}
-.ui {margin:30px 0; padding:10px; background:#fff; }
 
 /* btn */
 .btn {display:inline-block; padding:10px; vertical-align: middle;}
@@ -113,3 +112,16 @@ margin:0 5px 0 0; border-radius:3px}
 
 .btn-group {text-align: center;}
 pre {white-space: normal;}
+
+.task-content {padding:10px 20px}
+.task-title { margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
+.task-item { display:flex; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
+.task-item .task { padding:10px; width:50%; border-radius:10px; background:#edf2f4; color:#222}
+
+.task-list {margin-bottom:20px}
+
+.ui {margin-bottom:20px; padding:10px; background-color:yellow; }
+.dot-list > li {position: relative; padding-left: 12px;}
+.dot-list > li:before {position: absolute; top:8px; left:0; width:4px; height:4px; background-color: #111; 
+border-radius: 50%; content:''}
+.task-item pre[class*=language-] {padding:10px; border:1px solid #ddd;}
