@@ -16,7 +16,7 @@ module.exports = {
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
             <div class="task before">
-              ${body} 
+              ${JSON.parse(body).code} 
             </div>
             <div class="task after">변경 후</div>
           </section>

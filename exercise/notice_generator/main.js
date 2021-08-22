@@ -82,6 +82,7 @@ var app = http.createServer(function(request,response){
                   <input type="text" name="fileName" placeholder="fileName">
                 </div>
                 <textarea name="description" placeholder="description" class="textarea" title="글 내용"></textarea>        
+                <textarea name="code" placeholder="code here" class="textarea" title="글 내용"></textarea>        
               </div>
               <div class="btn-group">
                 <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
@@ -103,7 +104,13 @@ var app = http.createServer(function(request,response){
           var post = qs.parse(body);
           var fileName = post.fileName;
           var description = post.description;
-          fs.writeFile(`data/${fileName}`, description,'utf8',
+          var code = post.code;
+          var collection = {
+            description, 
+            code
+          }
+          fs.writeFile(`data/${fileName}`, 
+          JSON.stringify(collection) ,'utf8',
           function(err){
             response.writeHead(302, {Location:`/?id=${fileName}`});
             response.end();
