@@ -54,7 +54,8 @@ var app = http.createServer(function(request,response){
         })          
       } else {
         fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
-          var html = templateContent.structure(queryData.id, fileContent,`
+          var data = JSON.parse(fileContent)
+          var html = templateContent.structure(queryData.id, data,`
           <div class="btn-group">
             <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
             <form action="delete_process" method="post" style="display:inline-block">
@@ -62,7 +63,6 @@ var app = http.createServer(function(request,response){
               <input type="submit" class="btn blue" value="삭제">
             </form>
               <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
-
           </div>
           `);
           response.writeHead(200);
@@ -100,20 +100,31 @@ var app = http.createServer(function(request,response){
       request.on('data',function(data){//
           body += data;
       })//node js로 접속 들어올때마다 콜백 함수로 node 호출
+
       request.on('end',function(){
           var post = qs.parse(body);
           var fileName = post.fileName;
-          var description = post.description;
-          var code = post.code;
           var collection = {
-            description, 
-            code
+            fileName : post.fileName,
+            description : post.description,
+            code : post.code
           }
-          fs.writeFile(`data/${fileName}`, 
-          JSON.stringify(collection) ,'utf8',
+          
+          fs.writeFile(`data/${fileName}`, `${JSON.stringify(collection)}`,'utf8',
           function(err){
+            var data = JSON.parse(collection)
+            var html = templateContent.structure(queryData.id,`${data}`,`
+            <div class="btn-group">
+              <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
+              <form action="delete_process" method="post" style="display:inline-block">
+                <input type="hidden" name="id" value="${queryData.id}">
+                <input type="submit" class="btn blue" value="삭제">
+              </form>
+                <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+            </div>
+            `);
             response.writeHead(302, {Location:`/?id=${fileName}`});
-            response.end();
+            response.end(html);
           })      
       })
   

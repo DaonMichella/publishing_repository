@@ -1,5 +1,5 @@
 module.exports = {
-    structure: function (title, body, control){
+    structure: function (title, body , control){
       return `
       <!DOCTYPE html>
       <html lang="ko">
@@ -16,7 +16,12 @@ module.exports = {
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
             <div class="task before">
-              ${JSON.parse(body).code} 
+              <h3 class="task-title">안내사항</h3>
+              ${body.description} 
+              <h3 class="task-title">화면</h3>
+              ${body.code} 
+              <h3 class="task-title">코드</h3>
+              ${body.code} 
             </div>
             <div class="task after">변경 후</div>
           </section>

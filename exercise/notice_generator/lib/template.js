@@ -1,5 +1,5 @@
 module.exports = {
-    structure: function (title,list, body, control){
+    structure: function (title, list, body, control){
       return `
       <!DOCTYPE html>
       <html lang="ko">
