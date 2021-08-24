@@ -99,6 +99,15 @@
         0% {transform:translateX(10px)}
         100% {transform:translateX(-10px)}
       }
+
+      .tab-wrap {position:relative; width:60%; margin:0 auto 20px; display:flex; }
+      .tab-wrap .tab-btn {width:100%; height:40px; color:blue;}
+      .slider {position:absolute; bottom:0; left:0; width:33.3%; height:100%; border-radius:20px; background:rgb(0, 0, 255,0.1);
+      transition:all .4s;}
+      .tab-cntbox .tab-cnt {display:none}
+      .tab-cntbox .tab-cnt.show,
+      .tab-cntbox .tab-cnt:first-child{display:block}
+
       /* .top-visual {padding:120px 0; background-repeat:no-repeat; background-position:right center; background-size:300px auto }
       .top-visual.theme1 {background-image:url(../../images/visual-theme1.png)}
       .top-visual.theme2 {background-image:url(../../images/visual-theme2.png)} */
@@ -154,28 +163,88 @@
                    <img src="../../images/stars.png" alt="" class="star star3">
                  </div>
                 </section>
-                <!-- 스마트 서치 박스 -->
-                <ul class="smart-searchbox">
-                  <li>
-                    <button type="button">
-                      <span class="head">카메라</span>
-                      <span class="cnt">카메라를 택해주세요</span>
-                    </button>              
-                  </li>
-                  <li>
-                    <button type="button">
-                      <span class="head">카메라</span>
-                      <span class="cnt">카메라를 택해주세요</span>
-                    </button>              
-                  </li>
-                  <li>
-                    <button type="button">
-                      <span class="head">카메라</span>
-                      <span class="cnt">카메라를 택해주세요</span>
-                    </button>              
-                  </li>
-                </ul>
-                <!-- //스마트 서치 박스 -->
+                <!-- 탭 메뉴 -->
+                <div class="tab-wrap">
+                  <button type="button" class="tab-btn active" data-info="cnt1">메뉴1</button>
+                  <button type="button" class="tab-btn" data-info="cnt2">메뉴2</button>
+                  <button type="button" class="tab-btn" data-info="cnt3">메뉴3</button>
+                  <span class="slider" data-left="0"></span>
+                </div>
+                <div class="tab-cntbox">
+                  <div class="tab-cnt" id="cnt1">
+                    <!-- 스마트 서치 박스 -->
+                    <ul class="smart-searchbox">
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                    </ul>
+                    <!-- //스마트 서치 박스 -->
+                  </div>
+                  <div class="tab-cnt" id="cnt2">
+                    <!-- 스마트 서치 박스 -->
+                    <ul class="smart-searchbox">
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                    </ul>
+                    <!-- //스마트 서치 박스 -->                    
+                  </div>
+                  <div class="tab-cnt" id="cnt3">
+                    <!-- 스마트 서치 박스 -->
+                    <ul class="smart-searchbox">
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                      <li>
+                        <button type="button" class="btn-dropmenu">
+                          <span class="head">카메라</span>
+                          <span class="cnt">카메라를 택해주세요</span>
+                        </button>              
+                      </li>
+                    </ul>
+                    <!-- //스마트 서치 박스 -->                    
+                  </div>
+                </div>
+                
              </div>
              <!-- slider -->
              <div class="slider-section"></div>
@@ -187,10 +256,37 @@
     </div>
 
     <script>
-        const btn = document.querySelector(".btn-menu");
+        const btn = document.querySelector(".btn-dropmenu");
         btn.addEventListener("click",function(e){
             e.target.classList.add("open")
         })
+
+        let tabFunc = function (tabwrap) {
+        const wrap = document.querySelector(tabwrap)
+        const tabBtn = wrap.querySelectorAll(".tab-btn")
+        const tabcnt = wrap.querySelectorAll(".tab-cntbox .tab-cnt")
+        const slider = wrap.querySelector(".slider")
+        let clickIndex = 0 ;
+        tabBtn.forEach(btn => {
+          btn.addEventListener("click",(e) => {
+            tabBtn.forEach(btn => {
+              btn.classList.remove("active")
+            })
+            slider.style.left = e.currentTarget.offsetLeft + "px"
+            e.currentTarget.classList.add("active")
+          })
+        })
+
+        tabcnt.forEach(cnt => {
+          cnt.addEventListener("click",(e) => {
+            tabcnt.forEach(cnt => {
+              cnt.classList.remove("show")
+            })
+            e.currentTarget.classList.add("show")
+          })
+        })
+      }
+      tabFunc (".tab-wrap") 
     </script>
 </body>
 </html>
