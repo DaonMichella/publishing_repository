@@ -165,9 +165,9 @@
                 </section>
                 <!-- 탭 메뉴 -->
                 <div class="tab-wrap">
-                  <button type="button" class="tab-btn active" data-info="cnt1">메뉴1</button>
-                  <button type="button" class="tab-btn" data-info="cnt2">메뉴2</button>
-                  <button type="button" class="tab-btn" data-info="cnt3">메뉴3</button>
+                  <button type="button" class="tab-btn active" data-tab="1">메뉴1</button>
+                  <button type="button" class="tab-btn" data-tab="2">메뉴2</button>
+                  <button type="button" class="tab-btn" data-tab="3">메뉴3</button>
                   <span class="slider" data-left="0"></span>
                 </div>
                 <div class="tab-cntbox">
@@ -264,23 +264,27 @@
         let tabFunc = function (tabwrap) {
         const wrap = document.querySelector(tabwrap)
         const tabBtn = wrap.querySelectorAll(".tab-btn")
-        const tabcnt = wrap.querySelectorAll(".tab-cntbox .tab-cnt")
+        const tabContents = wrap.querySelectorAll(".tab-cntbox .tab-cnt")
         const slider = wrap.querySelector(".slider")
         let clickIndex = 0 ;
-        tabBtn.forEach(btn => {
-          btn.addEventListener("click",(e) => {
-            tabBtn.forEach(btn => {
-              btn.classList.remove("active")
+        
+        const activateTab = tabnum => {
+          tabBtn.forEach(tab => {
+              slider.style.left = e.currentTarget.offsetLeft + "px"
+              e.currentTarget.classList.add("active")
             })
-            slider.style.left = e.currentTarget.offsetLeft + "px"
-            e.currentTarget.classList.add("active")
-          })
-        })
+                 
+        }
 
-        tabcnt.forEach(cnt => {
-          cnt.addEventListener("click",(e) => {
-            tabcnt.forEach(cnt => {
-              cnt.classList.remove("show")
+        tab.addEventListener("click",(e) => {
+              tabBtn.forEach(tab => {
+                tab.classList.remove("active")
+              })
+            })   
+        tabContents.forEach(tabContent => {
+          tabContent.addEventListener("click",(e) => {
+            tabContents.forEach(tabContent => {
+              tabContent.classList.remove("show")
             })
             e.currentTarget.classList.add("show")
           })

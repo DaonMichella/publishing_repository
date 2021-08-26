@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skip nav</title>
+    <link rel="stylesheet" href="../../css/reset.css"/>
+    <link rel="stylesheet" href="../../css/common.css"/>
+    <link rel="stylesheet" href="../../css/layout.css"/>
+    <style>
+      .header {position:fixed; top:0;left:0; padding:0; height:91px; }
+      .header .btn-link {float:left}
+      .header .top-menu {border-bottom:1px solid #ddd; height:32px; }
+      .header .btn-arrow {display:inline-block; margin:8px 0}
+      .header .menu-list,
+      .header .gnb-list {float:right;}
+      .header .logo {margin-top:10px}
+      .header .menu-list li,
+      .header .gnb-list li {float:left;}
+      .header .menu-list li {padding:8px 10px;font-size:14px; color: #111; }
+      .header .gnb-list li {padding:20px 10px; font-weight:500; font-size:16px; color:#111; }
+
+      .btn-arrow {position:relative; }      
+      .btn-arrow .txt {display:inline-block; vertical-align: middle;}
+      .btn-arrow .right {position:relative; margin-left:6px; width:16px;height:20px;  }
+      .btn-arrow .right:after {position:absolute; width:4px; height:4px; margin-top:-0px; top:50%; right:0; transform:rotate(45deg); border-top:1px solid #111; border-right:1px solid #111; content:'';} 
+      
+      .btn-cam, 
+      .btn-setting {position:relative; display:block; padding-left:20px; }
+      .btn-cam:before, 
+      .btn-setting:before {position:absolute; width:16px; height:16px; left:0;  background:url(../../images/ico_cam.png) no-repeat left center /16px; content:''}
+      .btn-setting:before {background-image:url(../../images/ico_setting.png)}
+
+      .btn-cam:hover:before {transition:transform .4s; transform:scale(1.05)}
+      .btn-setting:hover:before {transition:transform .4s; transform:rotate(90deg)}
+
+      #content { margin-top:91px; min-height:calc(100vh - 188px); width:100%; overflow: hidden;}
+      .content-wrap {height:100%;}
+      .footer {height:100px; background:#ddd; }
+      .top-visual{display:flex; width:100%; justify-content: space-between; align-items:center; }
+      .top-visual .img{position: relative;margin-top: 100px;width:760px;text-align:center;}
+      #skipNav{position:relative;z-index:9999;}
+      #skipNav a{position: absolute; top: -200px; left:0;
+        width: 160px; line-height: 30px; 
+        border: 1px solid #dedede; background-color: #333;}
+      #skipNav a:focus, 
+      #skipNav a:active{top: 0;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+      <div id="skipNav">
+        <a href="#contents">본문 바로가기</a>
+      </div>
+       <header id="header" class="header">                    
+             <div class="top-menu">
+              <div class="inbox clear">
+                <a href="#" class="btn-arrow"><span class="txt">실시간 영상보기</span><i class="right"></i></a>                
+                <ul class="menu-list">
+                  <li><a href="#" class="btn-cam">목록</a></li>
+                  <li><a href="#" class="btn-setting">관리</a></li>
+                </ul>
+              </div>
+             </div>
+              <div class="menu">
+               <div class="inbox clear">
+                <h1 class="logo"><img src="../../images/logo.png" alt="로고"></h1>
+                <ul class="gnb-list">
+                  <li><a href="#">메뉴1</a></li>
+                  <li><a href="#">메뉴2</a></li>
+                  <li><a href="#">메뉴3</a></li>
+                </ul>
+              </div>
+           </div>
+       </header>
+       <section id="content">
+        <div class="inbox">
+         </section>
+               
+        </div>
+       <footer id="footer" class="footer">
+           footer
+       </footer>
+    </div>
+
+</body>
+</html>
