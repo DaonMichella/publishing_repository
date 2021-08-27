@@ -55,7 +55,7 @@ var app = http.createServer(function(request,response){
       } else {
         fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
           var data = JSON.parse(fileContent)
-          var html = templateContent.structure(queryData.id, data,`
+          var html = templateContent.structure(queryData.id, datase,`
           <div class="btn-group">
             <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
             <form action="delete_process" method="post" style="display:inline-block">
