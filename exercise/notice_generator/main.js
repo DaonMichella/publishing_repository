@@ -55,7 +55,7 @@ var app = http.createServer(function(request,response){
       } else {
         fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
           var data = JSON.parse(fileContent)
-          var html = templateContent.structure(queryData.id, datase,`
+          var html = templateContent.structure(queryData.id, data,`
           <div class="btn-group">
             <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
             <form action="delete_process" method="post" style="display:inline-block">
@@ -79,10 +79,18 @@ var app = http.createServer(function(request,response){
             <div id="wrap">
               <div class="input-area">
                 <div class="inp-txt">
-                  <input type="text" name="fileName" placeholder="fileName">
+                  <input type="text" name="fileName" placeholder="fileName : 예) 20210822">
                 </div>
                 <textarea name="description" placeholder="description" class="textarea" title="글 내용"></textarea>        
-                <textarea name="code" placeholder="code here" class="textarea" title="글 내용"></textarea>        
+                <div class="code-box">
+                  <div class="before">
+                    <textarea name="codeBefore" placeholder="변경 전 code here" class="textarea" title="글 내용"></textarea>                  
+                  </div>
+                  <div class="after">
+                    <textarea name="codeAfter" placeholder="변경 후 code here" class="textarea" title="글 내용"></textarea>   
+                  </div>
+                </div>
+        
               </div>
               <div class="btn-group">
                 <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
@@ -107,7 +115,8 @@ var app = http.createServer(function(request,response){
           var collection = {
             fileName : post.fileName,
             description : post.description,
-            code : post.code
+            codeBefore : post.codeBefore,
+            codeAfter : post.codeAfter
           }
           
           fs.writeFile(`data/${fileName}`, `${JSON.stringify(collection)}`,'utf8',

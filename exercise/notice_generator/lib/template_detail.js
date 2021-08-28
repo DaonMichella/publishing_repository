@@ -15,15 +15,22 @@ module.exports = {
           <div id="wrap">
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
-            <div class="task before">
               <h3 class="task-title">안내사항</h3>
               ${body.description} 
-              <h3 class="task-title">화면</h3>
-              ${body.code} 
-              <h3 class="task-title">코드</h3>
-              ${body.code} 
-            </div>
-            <div class="task after">변경 후</div>
+              <div class="code-box">
+                <div class="task before">
+                  <h3 class="task-title">변경 전 화면</h3>
+                  ${body.codeBefore} 
+                  <h3 class="task-title">코드</h3>
+                  ${body.codeBefore} 
+                </div>
+                <div class="task after">
+                  <h3 class="task-title">변경 후 화면</h3>
+                  ${body.codeAfter} 
+                  <h3 class="task-title">코드</h3>
+                  ${body.codeAfter}
+                </div>
+              </div>
           </section>
                 
           ${control}

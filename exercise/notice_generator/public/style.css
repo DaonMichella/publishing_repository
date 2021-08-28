@@ -115,7 +115,7 @@ pre {white-space: normal;}
 
 .task-content {padding:10px 20px}
 .task-title { margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
-.task-item { display:flex; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
+.task-item { display:flex; flex-direction:column; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
 .task-item .task { padding:10px; width:50%; border-radius:10px; background:#edf2f4; color:#222}
 
 .task-list {margin-bottom:20px}
@@ -125,3 +125,6 @@ pre {white-space: normal;}
 .dot-list > li:before {position: absolute; top:8px; left:0; width:4px; height:4px; background-color: #111; 
 border-radius: 50%; content:''}
 .task-item pre[class*=language-] {padding:10px; border:1px solid #ddd;}
+
+.code-box {display:flex; margin-top:10px; gap:10px}
+.code-box > div {flex:1}

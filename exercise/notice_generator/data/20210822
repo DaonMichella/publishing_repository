@@ -1,1 +1,1 @@
-{"description":"<h3 class=\"task-title\">안내사항</h3>\r\n<ul class=\"task-list\">\r\n  <li>수정전 코드에 대한 설명을 적는 공간</li>\r\n</ul>","code":"<pre><code class=\"language-html\">&lt;ul class=\"task-list\"&gt;\r\n  &lt;li&gt;*코드를 확인&lt;/li&gt;\r\n&lt;/ul&gt;\r\n</code></pre>"}
+{"description":"<h3 class=\"task-title\">안내사항</h3>\r\n<ul class=\"task-list\">\r\n  <li>수정전 코드에 대한 설명을 적는 공간</li>\r\n</ul>","codeBefore":"<pre><code class=\"language-html\">&lt;ul class=\"task-list\"&gt;\r\n  &lt;li&gt;*코드를 확인&lt;/li&gt;\r\n&lt;/ul&gt;\r\n</code></pre>"}

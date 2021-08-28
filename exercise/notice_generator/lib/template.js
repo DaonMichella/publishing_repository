@@ -17,7 +17,7 @@ module.exports = {
             ${list != '' ?
               `<div class="tbl-type01">
                 <table>
-                    <caption>${title}테이블</caption>
+                    <caption>${title}일자 수정 내역 기록 테이블</caption>
                     <thead>
                         <tr>
                             <th scope="row" colspan="3">${title}</th>
@@ -45,13 +45,16 @@ module.exports = {
         list += `
         <tr>
             <td>${list_i +1 }</td>
-            <td><a href='/?id=${filelist[list_i]}'>${filelist[list_i]}</a></td>
+            <td><a href='/?id=${filelist[list_i]}'>${this.stringToDateForm(filelist[list_i])} 일자 수정내역</a></td>
         </tr>`
       }
       list += '</tbody>';
       return list;
+    },
+    stringToDateForm : function (str) {
+      var y = str.substr(0,4),
+      m = str.substr(4,2),
+      d = str.substr(6,2);
+      return `${y}-${m}-${d}`;
     }
-  
-    
   }
-  
