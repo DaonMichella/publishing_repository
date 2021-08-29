@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <img id="logo" src="">
+        <script>document.getElementById('logo').src=logo_info()</script>
+                    
+    <img id="title" src="">
+        <script>document.getElementById('title').src=title_info()</script>
+  </div>
+
+  <script language="javascript">
+ 
+    function logo_info() {
+        var user_area =document.getElementById('logo');
+        var img_src;
+        for(var i=1; i<=17; i++) {
+            if(user_area == i) {
+            img_src = '../public/img/'+ i + '_logo.png';
+            }
+        }
+        return img_src;
+    }
+
+    function title_info() {
+        var user_area = document.getElementById('title');
+        var img_src;
+        for(var i=1; i<=17; i++) {
+            if(user_area == i) {
+            img_src = '../public/img/'+ i + '_title.png';
+            }
+        }
+        return img_src;
+    }
+
+</script>
+</body>
+</html>
