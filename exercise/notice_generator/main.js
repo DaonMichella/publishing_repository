@@ -56,7 +56,6 @@ var app = http.createServer(function(request,response){
       } else {
         response.writeHead(200);
         fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
-          console.log("typeof content "+  fileContent)
           var html = templateContent.structure(queryData.id, fileContent,`
           <div class="btn-group">
             <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
@@ -75,23 +74,31 @@ var app = http.createServer(function(request,response){
     } else if(pathname === '/create'){
       fs.readdir('./data', function(error, filelist){
         var title = '공지사항 등록';
-        var html = templateNew.structure(title);
+        var html = templateNew.structure(title,2);
         response.writeHead(200);//성공
         response.end(html);
       });
     } else if(pathname === '/create_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
       var body = '';
       request.on('data',function(data){//
-          body += data;
+        body += data;
       })//node js로 접속 들어올때마다 콜백 함수로 node 호출
 
       request.on('end',function(){
           var post = qs.parse(body);
-          // console.log("qs",post)
+          //onsole.log("qs",post)
           var resultObj= {
           }
-          resultObj = JSON.stringify(post)
-
+          resultObj.fileName = post.fileName
+          resultObj.imgSrc = post.imgSrc
+          resultObj.description = post.description
+          resultObj.taskCount = post.taskCount
+          resultObj.codeType = [post.codeType1,post.codeType2]
+          resultObj.codeBefore = [post.codeBefore1,post.codeBefore2]
+          resultObj.codeAfter = [post.codeAfter1,post.codeAfter2]
+          
+          //console.log(resultObj)
+          resultObj = JSON.stringify(resultObj)
           fs.writeFile(`data/${post.fileName}`, resultObj ,'utf8',
           function(err) {
             if (err) throw err;

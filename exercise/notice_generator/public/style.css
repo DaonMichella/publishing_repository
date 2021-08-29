@@ -79,8 +79,8 @@ textarea::placeholder {color:#aaa;}
 .inp-txt + .inp-txt,
 .inp-txt + textarea,
 textarea + .inp-chk,
-.inp-chk + .inp-txt {margin-top:10px}
-
+.inp-chk + .inp-txt {margin-top:10px;}
+textarea {margin-bottom:10px}
 .inp-chk {position:relative;}
 .inp-chk input.check {-webkit-appearance:none; -moz-appearance: none; appearance: none;}
 .inp-chk input.check {position:relative; display:inline-block; width:20px; height:20px; border:1px solid #aaa; vertical-align: middle;
@@ -114,10 +114,11 @@ margin:0 5px 0 0; border-radius:3px}
 pre {white-space: normal;}
 
 .task-content {padding:10px 20px}
-.task-title { margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
+.task-title {margin-top:5px; margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
 .task-item { display:flex; flex-direction:column; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
-.task-item .task { padding:10px; width:100%; border-radius:10px; background:#edf2f4; color:#222}
-.task-item .task:first-child:last-child {width:100%}
+.task-item .task { padding:10px; width:100%; border-radius:10px; background:#edf2f4; color:#222; box-sizing:Border-box}
+.task-item .task.before,
+.task-item .task.after {width:49%}
 .task-list {margin-bottom:20px}
 
 .ui {margin-bottom:20px; padding:10px; background-color:yellow; }
@@ -126,8 +127,9 @@ pre {white-space: normal;}
 border-radius: 50%; content:''}
 .task-item pre[class*=language-] {padding:10px; border:1px solid #ddd;}
 
+.code-wrap {margin-top:10px; }
 .code-box {display:flex; margin-top:10px; gap:10px}
-.code-box > div {flex:1}
+.code-box > div {flex: 1 1 0;}
 
 select {-webkit-appearance: none;-moz-appearance: none;appearance: none;border-radius: 0px; font-family: inherit;}
 select.select {width:100%; padding:10px 30px 10px 10px; border-radius:2px; border:1px solid #ddd; background:url(../../images/ico_select.png) no-repeat right 20px top 50%/ 10px auto; line-height:20px; font-size:16px; }

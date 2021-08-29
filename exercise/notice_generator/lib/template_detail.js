@@ -21,20 +21,8 @@ module.exports = {
                 <p>${data.description}</p> 
                 ${data.imgSrc == ''|| data.imgSrc == 'undefined'?' ':`<img src="../images/${title}.jpg"/>`}
               </div>
-              <div class="code-box">
-                <div class="task before">
-                  <h3 class="task-title">변경 전 화면</h3>
-                  ${data.codeBefore} 
-                  <h3 class="task-title">코드</h3>
-                  <pre class="language-${data.codeType}" tabindex="0"><code class= language-${data.codeType}">${this.ConvertSystemSourcetoHtml(data.codeBefore)}</code></pre>
-                </div>
-                <div class="task after">
-                  <h3 class="task-title">변경 후 화면</h3>
-                  ${data.codeAfter} 
-                  <h3 class="task-title">코드</h3>
-                  <pre class="language-${data.codeType}" tabindex="0"><code class= language-${data.codeType}">${this.ConvertSystemSourcetoHtml(data.codeAfter)}</code></pre>
-                </div>
-              </div>
+              ${this.taskCount(body)}
+              
           </section>
                 
           ${control}
@@ -48,7 +36,31 @@ module.exports = {
       </html>
         `
     },
+    taskCount : function (body) {
+      var data = JSON.parse(body)
+      var html = '';
+      for (var i = 0; i < data.taskCount; i++) {
+        html += `
+        <div class="code-box">
+          <div class="task before">
+            <h3 class="task-title">변경 전 화면</h3>
+            ${data.codeBefore[i]}
+            <h3 class="task-title">코드</h3>
+            <pre class="language-${data.codeType[i]}" tabindex="0"><code class= language-${data.codeType[i]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[i])}</code></pre>
+          </div>
+          <div class="task after">
+            <h3 class="task-title">변경 후 화면</h3>
+            ${data.codeAfter[i]} 
+            <h3 class="task-title">코드</h3>
+            <pre class="language-${data.codeType[i]}" tabindex="0"><code class= language-${data.codeType[i]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[i])}</code></pre>
+          </div>
+        </div>`
+      }
+      return html;
+    },
     ConvertSystemSourcetoHtml :function (str){
+      if(str == undefined)  return
+      var str = JSON.stringify(str)
       str = str.replace(/</g,"&lt;");
       str = str.replace(/>/g,"&gt;");
       str = str.replace(/\"/g,"&quot;");
