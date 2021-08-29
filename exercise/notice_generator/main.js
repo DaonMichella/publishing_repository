@@ -4,6 +4,7 @@ var url = require('url');
 var qs = require('querystring');
 var template = require('./lib/template.js')
 var templateContent = require('./lib/template_detail.js')
+var templateNew = require('./lib/template_new.js')
 var path = require('path')
 
 var mimeType = {//확장자에 따라서 content-type header 값을 동적으로 생성
@@ -41,6 +42,7 @@ var app = http.createServer(function(request,response){
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/'){//목록
       var pageTitle = "Main"//페이지 타이틀
+      response.writeHead(200);
       if(queryData.id == undefined) {
         fs.readdir('./data', function(error, filelist){
           var list = template.list(filelist, queryData.id);
@@ -49,13 +51,13 @@ var app = http.createServer(function(request,response){
               <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
             </div>
             `);
-            response.writeHead(200);
             response.end(html);
         })          
       } else {
+        response.writeHead(200);
         fs.readFile(`data/${queryData.id}`,'utf8',function(err,fileContent){
-          var data = JSON.parse(fileContent)
-          var html = templateContent.structure(queryData.id, data,`
+          console.log("typeof content "+  fileContent)
+          var html = templateContent.structure(queryData.id, fileContent,`
           <div class="btn-group">
             <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
             <form action="delete_process" method="post" style="display:inline-block">
@@ -65,7 +67,6 @@ var app = http.createServer(function(request,response){
               <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
           </div>
           `);
-          response.writeHead(200);
           response.end(html);
         })        
       }
@@ -74,32 +75,7 @@ var app = http.createServer(function(request,response){
     } else if(pathname === '/create'){
       fs.readdir('./data', function(error, filelist){
         var title = '공지사항 등록';
-        var html = template.structure(title, '', `
-            <form action="/create_process" method="post">
-            <div id="wrap">
-              <div class="input-area">
-                <div class="inp-txt">
-                  <input type="text" name="fileName" placeholder="fileName : 예) 20210822">
-                </div>
-                <textarea name="description" placeholder="description" class="textarea" title="글 내용"></textarea>        
-                <div class="code-box">
-                  <div class="before">
-                    <textarea name="codeBefore" placeholder="변경 전 code here" class="textarea" title="글 내용"></textarea>                  
-                  </div>
-                  <div class="after">
-                    <textarea name="codeAfter" placeholder="변경 후 code here" class="textarea" title="글 내용"></textarea>   
-                  </div>
-                </div>
-        
-              </div>
-              <div class="btn-group">
-                <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
-                <input type="submit" class="btn blue">
-              </div>
-              
-            </div>           
-            </form>
-          `,``);
+        var html = templateNew.structure(title);
         response.writeHead(200);//성공
         response.end(html);
       });
@@ -111,18 +87,17 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
           var post = qs.parse(body);
-          var fileName = post.fileName;
-          var collection = {
-            fileName : post.fileName,
-            description : post.description,
-            codeBefore : post.codeBefore,
-            codeAfter : post.codeAfter
+          // console.log("qs",post)
+          var resultObj= {
           }
-          
-          fs.writeFile(`data/${fileName}`, `${JSON.stringify(collection)}`,'utf8',
-          function(err){
-            var data = JSON.parse(collection)
-            var html = templateContent.structure(queryData.id,`${data}`,`
+          resultObj = JSON.stringify(post)
+
+          fs.writeFile(`data/${post.fileName}`, resultObj ,'utf8',
+          function(err) {
+            if (err) throw err;
+            console.log('The file has been saved!');
+
+            var html = templateContent.structure(queryData.id,resultObj,`
             <div class="btn-group">
               <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
               <form action="delete_process" method="post" style="display:inline-block">
@@ -132,7 +107,7 @@ var app = http.createServer(function(request,response){
                 <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
             </div>
             `);
-            response.writeHead(302, {Location:`/?id=${fileName}`});
+            response.writeHead(302, {Location: encodeURI(`/?id=${post.fileName}`)});
             response.end(html);
           })      
       })
@@ -215,3 +190,6 @@ var app = http.createServer(function(request,response){
 
 });
 app.listen(3000);
+//https://velog.io/@jing07161/fs%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EC%84%9C%EB%B2%84%EC%97%90-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0
+// Cannot convert object to primitive value https://hayjo.tistory.com/37
+//Invalid character in header content ["Location"] https://developer-kelvin.tistory.com/5 

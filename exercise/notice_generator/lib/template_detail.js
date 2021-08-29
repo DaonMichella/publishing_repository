@@ -1,5 +1,6 @@
 module.exports = {
     structure: function (title, body , control){
+      var data = JSON.parse(body)
       return `
       <!DOCTYPE html>
       <html lang="ko">
@@ -16,19 +17,22 @@ module.exports = {
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
               <h3 class="task-title">안내사항</h3>
-              ${body.description} 
+              <div class="task">
+                <p>${data.description}</p> 
+                ${data.imgSrc == ''|| data.imgSrc == 'undefined'?' ':`<img src="../images/${title}.jpg"/>`}
+              </div>
               <div class="code-box">
                 <div class="task before">
                   <h3 class="task-title">변경 전 화면</h3>
-                  ${body.codeBefore} 
+                  ${data.codeBefore} 
                   <h3 class="task-title">코드</h3>
-                  ${body.codeBefore} 
+                  <pre class="language-${data.codeType}" tabindex="0"><code class= language-${data.codeType}">${this.ConvertSystemSourcetoHtml(data.codeBefore)}</code></pre>
                 </div>
                 <div class="task after">
                   <h3 class="task-title">변경 후 화면</h3>
-                  ${body.codeAfter} 
+                  ${data.codeAfter} 
                   <h3 class="task-title">코드</h3>
-                  ${body.codeAfter}
+                  <pre class="language-${data.codeType}" tabindex="0"><code class= language-${data.codeType}">${this.ConvertSystemSourcetoHtml(data.codeAfter)}</code></pre>
                 </div>
               </div>
           </section>
@@ -43,8 +47,15 @@ module.exports = {
       </body>
       </html>
         `
+    },
+    ConvertSystemSourcetoHtml :function (str){
+      str = str.replace(/</g,"&lt;");
+      str = str.replace(/>/g,"&gt;");
+      str = str.replace(/\"/g,"&quot;");
+      str = str.replace(/\'/g,"&#39;");
+      str = str.replace(/\n/g,"<br />");
+      return str;
     }
   
-    
   }
   

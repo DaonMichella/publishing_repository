@@ -116,8 +116,8 @@ pre {white-space: normal;}
 .task-content {padding:10px 20px}
 .task-title { margin-bottom:10px; font-size:18px; font-weight:bold; color:#333; }
 .task-item { display:flex; flex-direction:column; justify-content: space-between; gap:30px; color:#fff; box-sizing:border-box}
-.task-item .task { padding:10px; width:50%; border-radius:10px; background:#edf2f4; color:#222}
-
+.task-item .task { padding:10px; width:100%; border-radius:10px; background:#edf2f4; color:#222}
+.task-item .task:first-child:last-child {width:100%}
 .task-list {margin-bottom:20px}
 
 .ui {margin-bottom:20px; padding:10px; background-color:yellow; }
@@ -128,3 +128,8 @@ border-radius: 50%; content:''}
 
 .code-box {display:flex; margin-top:10px; gap:10px}
 .code-box > div {flex:1}
+
+select {-webkit-appearance: none;-moz-appearance: none;appearance: none;border-radius: 0px; font-family: inherit;}
+select.select {width:100%; padding:10px 30px 10px 10px; border-radius:2px; border:1px solid #ddd; background:url(../../images/ico_select.png) no-repeat right 20px top 50%/ 10px auto; line-height:20px; font-size:16px; }
+
+#wrap {width:1000px; margin:0 auto}
