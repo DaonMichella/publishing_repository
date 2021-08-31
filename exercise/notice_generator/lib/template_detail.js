@@ -1,3 +1,5 @@
+var sanitizeHtml = require('sanitize-html');
+
 module.exports = {
     structure: function (title, body , control){
       var data = JSON.parse(body)
@@ -17,9 +19,9 @@ module.exports = {
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
               <h3 class="task-title">안내사항</h3>
+              ${data.imgSrc == ''|| data.imgSrc == 'undefined'?' ':`<img src="../images/${title}.jpg"/>`}
               <div class="task">
                 <p>${data.description}</p> 
-                ${data.imgSrc == ''|| data.imgSrc == 'undefined'?' ':`<img src="../images/${title}.jpg"/>`}
               </div>
               ${this.taskCount(body)}
               
@@ -60,12 +62,17 @@ module.exports = {
     },
     ConvertSystemSourcetoHtml :function (str){
       if(str == undefined)  return
-      var str = JSON.stringify(str)
-      str = str.replace(/</g,"&lt;");
-      str = str.replace(/>/g,"&gt;");
-      str = str.replace(/\"/g,"&quot;");
-      str = str.replace(/\'/g,"&#39;");
-      str = str.replace(/\n/g,"<br />");
+      var str = str.toString()
+      str = str.replace(/</gi,"&lt;");
+      str = str.replace(/>/gi,"&gt;");
+      str = str.replace(/\"/gi,"&quot;");
+      str = str.replace(/\'/gi,"&#39;");
+      str = str.replace(/\n/gi,"<br />");
+      str = str.replace(/\$/gi,"&#36;");
+      str = str.replace(/{/gi,"&#123;");
+      str = str.replace(/}/gi,"&#125;");
+      str = str.replace(/\[/gi,"&#91;");
+      str = str.replace(/]/gi,"&#93;");
       return str;
     }
   
