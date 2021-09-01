@@ -64,7 +64,7 @@ var app = http.createServer(function(request,response){
               <input type="submit" class="btn blue" value="삭제">
             </form>
               <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
-              <input type="text" value="">
+              <input type="text" placeholder="" value="">
           </div>
           `);
           response.end(html);
