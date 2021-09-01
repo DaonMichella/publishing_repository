@@ -60,7 +60,7 @@ module.exports = {
       }
       return html;
     },
-    ConvertSystemSourcetoHtml :function (str){
+    ConvertSystemSourcetoHtml :function (str){  
       if(str == undefined)  return
       var str = str.toString() //JSON.stringfy가 아니라 toString으로 변경
       str = str.replace(/</gi,"&lt;"); 
