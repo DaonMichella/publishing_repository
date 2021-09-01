@@ -48,7 +48,10 @@ var app = http.createServer(function(request,response){
           var list = template.list(filelist, queryData.id);
           var html = template.structure(pageTitle, list, ``,`
             <div class="btn-group">
-              <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+            <form action="create" method="post" style="display:inline-block">
+              <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
+              <input type="text" name="num" placeholder="" value="">
+            </form>
             </div>
             `);
             response.end(html);
@@ -63,8 +66,10 @@ var app = http.createServer(function(request,response){
               <input type="hidden" name="id" value="${queryData.id}">
               <input type="submit" class="btn blue" value="삭제">
             </form>
-              <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+            <form action="create" method="post" style="display:inline-block">
+              <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
               <input type="text" name="num" placeholder="" value="">
+            </form>
           </div>
           `);
           response.end(html);
@@ -74,10 +79,17 @@ var app = http.createServer(function(request,response){
 
     } else if(pathname === '/create'){
       fs.readdir('./data', function(error, filelist){
-        var title = '공지사항 등록';
-        var html = templateNew.structure(title,2);
-        response.writeHead(200);//성공
-        response.end(html);
+        var body = '';
+        request.on('data',function(data){//
+          body += data;
+        })//node js로 접속 들어올때마다 콜백 함수로 node 호출
+        request.on('end',function(){
+          var post = qs.parse(body);
+          var title = '공지사항 등록';
+          var html = templateNew.structure(title,post.num);
+          response.writeHead(200);//성공
+          response.end(html);
+        })
       });
     } else if(pathname === '/create_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
       var body = '';
