@@ -48,10 +48,10 @@ var app = http.createServer(function(request,response){
           var list = template.list(filelist, queryData.id);
           var html = template.structure(pageTitle, list, ``,`
             <div class="btn-group">
-            <form action="create" method="post" style="display:inline-block">
-              <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
-              <input type="text" name="num" placeholder="" value="">
-            </form>
+              <form action="create" method="post" style="display:inline-block">
+                <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
+                <input type="text" name="num" placeholder="" value="">
+              </form>
             </div>
             `);
             response.end(html);
