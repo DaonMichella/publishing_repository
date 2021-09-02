@@ -91,6 +91,13 @@ margin:0 5px 0 0; border-radius:3px}
 .inp-chk input.check:checked:after {width:4px; height:2px; top:9px; left:4px;}
 .inp-chk input.check + label {vertical-align:middle;}
 
+.inp-txt {position:relative;}
+.inp-txt.on input {border-color:red}
+.inp-txt input {padding:11px 10px; border:1px solid #ddd; font-family:inherit; color:#222; box-sizing:border-box}
+.inp-txt label {display:inline-block; width:100px; font-size:14px; margin-right:4px;}
+span.inp-txt {display: inline-block;}
+span.inp-txt input {width:auto; max-width:100%}
+span.inp-txt label {vertical-align: middle;}
 /* content */
 .main-box{margin: 0 auto; padding:50px 0; width:1200px; background:#fff }
 .input-area div.inp-txt,

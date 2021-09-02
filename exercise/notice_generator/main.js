@@ -5,6 +5,7 @@ var qs = require('querystring');
 var template = require('./lib/template.js')
 var templateContent = require('./lib/template_detail.js')
 var templateNew = require('./lib/template_new.js')
+var templateMiddle = require('./lib/template_new_middle.js')
 var path = require('path')
 
 var mimeType = {//확장자에 따라서 content-type header 값을 동적으로 생성
@@ -48,9 +49,12 @@ var app = http.createServer(function(request,response){
           var list = template.list(filelist, queryData.id);
           var html = template.structure(pageTitle, list, ``,`
             <div class="btn-group">
-              <form action="create" method="post" style="display:inline-block">
-                <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
-                <input type="text" name="num" placeholder="" value="">
+              <form action="create_middle_process" method="post" style="display:inline-block">
+                <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></button>
+                <span class="inp-txt">
+                  <label for="pageNum" style="width:80px">수정<br> 페이지 수</label>
+                  <input type="text" id="pageNum" name="pageNum" style="width:80px" placeholder="수정할 페이지 수" value="3">         
+                </span>
               </form>
             </div>
             `);
@@ -66,9 +70,12 @@ var app = http.createServer(function(request,response){
               <input type="hidden" name="id" value="${queryData.id}">
               <input type="submit" class="btn blue" value="삭제">
             </form>
-            <form action="create" method="post" style="display:inline-block">
-              <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></a>
-              <input type="text" name="num" placeholder="" value="">
+            <form action="create_middle_process" method="post" style="display:inline-block">
+              <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></button>
+              <span class="inp-txt">
+                <label for="pageNum" style="width:80px">수정<br> 페이지 수</label>
+                <input type="text" id="pageNum" name="pageNum" style="width:80px" placeholder="수정할 페이지 수" value="3">
+              </span>
             </form>
           </div>
           `);
@@ -78,7 +85,6 @@ var app = http.createServer(function(request,response){
       
 
     } else if(pathname === '/create'){
-      fs.readdir('./data', function(error, filelist){
         var body = '';
         request.on('data',function(data){//
           body += data;
@@ -86,11 +92,29 @@ var app = http.createServer(function(request,response){
         request.on('end',function(){
           var post = qs.parse(body);
           var title = '공지사항 등록';
-          var html = templateNew.structure(title,post.num);
+          var html = templateContent.structure(title,post.pageNum);
           response.writeHead(200);//성공
           response.end(html);
         })
-      });
+    } else if(pathname === '/create_middle_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
+      var body = '';
+      request.on('data',function(data){//
+        body += data;
+      })//node js로 접속 들어올때마다 콜백 함수로 node 호출
+
+      request.on('end',function(){
+        var post = qs.parse(body);
+        //onsole.log("qs",post)
+        var title = '공지사항 등록';
+        var html = templateMiddle.structure(title,post.pageNum);
+
+        var resultObj= {
+        }
+        response.writeHead(200);//성공
+        response.end(html);
+      })
+  
+    } else if(pathname === '/update'){//업데이트 했을 때 보여지는 화면
     } else if(pathname === '/create_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
       var body = '';
       request.on('data',function(data){//
