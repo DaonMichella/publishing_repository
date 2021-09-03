@@ -55,10 +55,10 @@ module.exports = {
           html += `
           <div class="code-wrap">
             <div class="inp-txt" style="display:inline-block; width:89%">
-              <input type="text" name="pageTitle${i}" placeholder="pageTitle">
+              <input type="text" name="pageTask${i}" placeholder="pageTask" value="">
             </div>            
             <div class="inp-txt" style="display:inline-block; width:10%">
-              <input type="tel" name="taskNum${i}" maxlength="1" placeholder="taskNum">
+              <input type="tel" name="taskNum${i}" maxlength="1" placeholder="taskNum" value="2">
             </div>            
           </div>`
         }

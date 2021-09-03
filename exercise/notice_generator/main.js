@@ -104,7 +104,7 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
         var post = qs.parse(body);
-        //onsole.log("qs",post)
+        console.log("qs",post)
         var title = '공지사항 등록';
         var html = templateMiddle.structure(title,post.pageNum);
 
@@ -123,13 +123,15 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
           var post = qs.parse(body);
-          //onsole.log("qs",post)
+         // console.log("qs",post) {pageNum : 3}
           var resultObj= {
           }
           resultObj.fileName = post.fileName
           resultObj.imgSrc = post.imgSrc
           resultObj.description = post.description
           resultObj.taskCount = post.taskCount
+          resultObj.pageTask = [post.pageTitle1,post.pageTitle2,post.pageTitle3]
+          resultObj.taskNum = [post.pageTitle1,post.pageTitle2,post.pageTitle3]
           resultObj.codeType = [post.codeType1,post.codeType2]
           resultObj.codeBefore = [post.codeBefore1,post.codeBefore2]
           resultObj.codeAfter = [post.codeAfter1,post.codeAfter2]

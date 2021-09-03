@@ -1,1 +1,23 @@
-{"fileName":"20210826","imgSrc":"20210826","description":"20210826","taskCount":"2","codeType":["html","html"],"codeBefore":["<div class=\"btn-group\">\r\n    <a href=\"/\" class=\"btn blue\"><span class=\"txt\">목록으로 돌아가기</span></a>\r\n    <input type=\"submit\" class=\"btn blue\">\r\n</div>",""],"codeAfter":["",""]}
+[{
+  fileBasicInfo : {
+    "fileName":"20210826",
+    "imgSrc":"20210826",
+    "description":"20210826"
+    }
+    taskPerPage : [
+      {taskCount":"2",
+      "codeType":["html","html"],
+      "codeBefore":["<div class=\"btn-group\">\r\n    <a href=\"/\" class=\"btn blue\"><span class=\"txt\">목록으로 돌아가기1</span></a>\r\n    <input type=\"submit\" class=\"btn blue\">\r\n</div>",""],
+      "codeAfter":["",""]},
+      {taskCount":"2",
+      "codeType":["html","html"],
+      "codeBefore":["<div class=\"btn-group\">\r\n    <a href=\"/\" class=\"btn blue\"><span class=\"txt\">목록으로 돌아가기2</span></a>\r\n    <input type=\"submit\" class=\"btn blue\">\r\n</div>",""],
+      "codeAfter":["",""]},
+      {taskCount":"2",
+      "codeType":["html","html"],
+      "codeBefore":["<div class=\"btn-group\">\r\n    <a href=\"/\" class=\"btn blue\"><span class=\"txt\">목록으로 돌아가기3</span></a>\r\n    <input type=\"submit\" class=\"btn blue\">\r\n</div>",""],
+      "codeAfter":["",""]}
+    ]
+}]
+
+
