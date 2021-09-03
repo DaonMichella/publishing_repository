@@ -19,7 +19,8 @@
 .inp-txt.on .btn-del {display:block;}
 .inp-txt input {padding:11px 10px; border:1px solid #ddd; font-family:inherit; color:inherit; box-sizing:border-box}
 .inp-txt label {display:inline-block; width:100px; font-size:14px; margin-right:4px;}
-
+span.inp-txt {display: inline-block;}
+span.inp-txt input {width:auto;}
 /* select */
 select {-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 

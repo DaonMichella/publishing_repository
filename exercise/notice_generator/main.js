@@ -123,7 +123,7 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
           var post = qs.parse(body);
-         // console.log("qs",post) {pageNum : 3}
+         // console.log("qs",post) {pageNum}
           var resultObj= {
           }
           resultObj.fileName = post.fileName
