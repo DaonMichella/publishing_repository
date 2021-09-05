@@ -1,7 +1,8 @@
-var sanitizeHtml = require('sanitize-html');
+
 
 module.exports = {
     structure: function (title, body , control){
+      
       var data = JSON.parse(body)
       return `
       <!DOCTYPE html>
@@ -41,22 +42,32 @@ module.exports = {
     taskCount : function (body) {
       var data = JSON.parse(body)
       var html = '';
-      for (var i = 0; i < data.taskCount; i++) {
-        html += `
-        <div class="code-box">
-          <div class="task before">
-            <h3 class="task-title">변경 전 화면</h3>
-            ${data.codeBefore[i]}
-            <h3 class="task-title">코드</h3>
-            <pre class="language-${data.codeType[i]}" tabindex="0"><code class= language-${data.codeType[i]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[i])}</code></pre>
-          </div>
-          <div class="task after">
-            <h3 class="task-title">변경 후 화면</h3>
-            ${data.codeAfter[i]} 
-            <h3 class="task-title">코드</h3>
-            <pre class="language-${data.codeType[i]}" tabindex="0"><code class= language-${data.codeType[i]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[i])}</code></pre>
-          </div>
-        </div>`
+      for (var page_i = 0; page_i < data.pageTask.length; page_i++) {    
+        var taskNum = Number(data.taskNum[page_i])
+        taskNum == 0? html += '' : html += `<h2>${data.pageTask[page_i]}</h2>`
+        
+        for (var task_i = 0; task_i < taskNum; task_i++) {
+          if(taskNum == 0) {
+            html += '' 
+          } else {
+            html += `
+            <div class="code-box">
+              <div class="task before">
+                <h3 class="task-title">변경 전 화면</h3>
+                ${data.codeBefore[task_i]}
+                <h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[task_i]}" tabindex="0"><code class= language-${data.codeType[task_i]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[task_i])}</code></pre>
+              </div>
+              <div class="task after">
+                <h3 class="task-title">변경 후 화면</h3>
+                ${data.codeAfter[task_i]} 
+                <h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[task_i]}" tabindex="0"><code class= language-${data.codeType[task_i]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[task_i])}</code></pre>
+              </div>
+            </div>`
+
+          }
+        }
       }
       return html;
     },

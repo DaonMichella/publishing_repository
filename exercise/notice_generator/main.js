@@ -84,18 +84,6 @@ var app = http.createServer(function(request,response){
       }
       
 
-    } else if(pathname === '/create'){
-        var body = '';
-        request.on('data',function(data){//
-          body += data;
-        })//node js로 접속 들어올때마다 콜백 함수로 node 호출
-        request.on('end',function(){
-          var post = qs.parse(body);
-          var title = '공지사항 등록';
-          var html = templateContent.structure(title,post.pageNum);
-          response.writeHead(200);//성공
-          response.end(html);
-        })
     } else if(pathname === '/create_middle_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
       var body = '';
       request.on('data',function(data){//
@@ -103,18 +91,26 @@ var app = http.createServer(function(request,response){
       })//node js로 접속 들어올때마다 콜백 함수로 node 호출
 
       request.on('end',function(){
-        var post = qs.parse(body);
-        console.log("qs",post)
-        var title = '공지사항 등록';
-        var html = templateMiddle.structure(title,post.pageNum);
-
-        var resultObj= {
-        }
+        var post = qs.parse(body);//pageNum
+        var title = '공지사항 페이지 정보 등록';
+        var html = templateMiddle.structure(title,post);
         response.writeHead(200);//성공
         response.end(html);
       })
-  
-    } else if(pathname === '/update'){//업데이트 했을 때 보여지는 화면
+      
+    } else if(pathname === '/create'){
+      var body = '';
+      request.on('data',function(data){//
+        body += data;
+      })//node js로 접속 들어올때마다 콜백 함수로 node 호출
+      request.on('end',function(){
+          console.log(body)
+          var post = qs.parse(body);
+          var title = '공지사항 등록';
+          var html = templateNew.structure(title,post);
+          response.writeHead(200);//성공
+          response.end(html);
+        })
     } else if(pathname === '/create_process'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
       var body = '';
       request.on('data',function(data){//
@@ -123,20 +119,16 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
           var post = qs.parse(body);
-         // console.log("qs",post) {pageNum}
           var resultObj= {
           }
           resultObj.fileName = post.fileName
           resultObj.imgSrc = post.imgSrc
           resultObj.description = post.description
-          resultObj.taskCount = post.taskCount
-          resultObj.pageTask = [post.pageTitle1,post.pageTitle2,post.pageTitle3]
-          resultObj.taskNum = [post.pageTitle1,post.pageTitle2,post.pageTitle3]
-          resultObj.codeType = [post.codeType1,post.codeType2]
-          resultObj.codeBefore = [post.codeBefore1,post.codeBefore2]
-          resultObj.codeAfter = [post.codeAfter1,post.codeAfter2]
-          
-          //console.log(resultObj)
+          resultObj.pageTask =JSON.parse(post.pageTask)
+          resultObj.taskNum = JSON.parse(post.taskNum)
+          resultObj.codeType = post.codeType
+          resultObj.codeBefore = post.codeBefore
+          resultObj.codeAfter = post.codeAfter
           resultObj = JSON.stringify(resultObj)
           fs.writeFile(`data/${post.fileName}`, resultObj ,'utf8',
           function(err) {

@@ -1,5 +1,5 @@
 module.exports = {
-    structure: function (title,num){
+    structure: function (title,body){
       
       return `
       <!DOCTYPE html>
@@ -18,8 +18,9 @@ module.exports = {
             <section class="task-item">
               <form action="/create" method="post">
               <div id="wrap">
-
-                ${this.taskCountFunc(num)}
+                <input type="hidden" value="${body.pageTask}">
+                <input type="hidden" value="${body.taskNum}">
+                ${this.taskCountFunc(body.pageNum)}
 
                 <div class="btn-group">
                   <a href="/" class="btn blue"><span class="txt">목록으로 돌아가기</span></a>
@@ -50,15 +51,15 @@ module.exports = {
         `
     },
     taskCountFunc :function (num){
-        var html = '';
+      var html = ''
         for (var i = 1; i <= num; i++) {    
           html += `
           <div class="code-wrap">
             <div class="inp-txt" style="display:inline-block; width:89%">
-              <input type="text" name="pageTask${i}" placeholder="pageTask" value="">
+              <input type="text" name="pageTask" placeholder="pageTask" value="메인">
             </div>            
             <div class="inp-txt" style="display:inline-block; width:10%">
-              <input type="tel" name="taskNum${i}" maxlength="1" placeholder="taskNum" value="2">
+              <input type="tel" name="taskNum" maxlength="1" placeholder="taskNum" value="2">
             </div>            
           </div>`
         }
