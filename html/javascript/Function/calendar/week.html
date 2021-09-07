@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weekend</title>
+</head>
+<body>
+  <script>
+    var weekendDateChk = function  (d) {
+      var year = d.getFullYear();
+      var month = d.getMonth() + 1;
+      var day = d.getDate();
+      var afterWeek = d.getTime() + (6*24*60*60*1000)
+      d.setTime(afterWeek)
+      
+      var weekYear = d.getFullYear();
+      var weekMonth = d.getMonth() + 1;
+      var weekDay = d.getDate();
+
+      weekMonth < 10 ? weekMonth = "0" + weekMonth : weekMonth
+      weekDay < 10 ? weekDay = "0" + weekDay : weekDay
+      return weekYear + "." + weekMonth + "." + weekDay
+    }
+    weekendDateChk (new Date(2021,5,30))//20210623
+    console.log(weekendDateChk(new Date(2021,5,30)))//7.7
+  </script>
+</body>
+</html>
