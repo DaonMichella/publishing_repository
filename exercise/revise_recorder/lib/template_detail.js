@@ -54,13 +54,13 @@ module.exports = {
             <div class="code-box">
               <div class="task before">
                 <h3 class="task-title">변경 전 화면</h3>
-                ${data.codeBefore[task_i]}
+                
                 <h3 class="task-title">코드</h3>
                 <pre class="language-${data.codeType[task_i]}" tabindex="0"><code class= language-${data.codeType[task_i]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[task_i])}</code></pre>
               </div>
               <div class="task after">
                 <h3 class="task-title">변경 후 화면</h3>
-                ${data.codeAfter[task_i]} 
+                
                 <h3 class="task-title">코드</h3>
                 <pre class="language-${data.codeType[task_i]}" tabindex="0"><code class= language-${data.codeType[task_i]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[task_i])}</code></pre>
               </div>
