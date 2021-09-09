@@ -104,7 +104,6 @@ var app = http.createServer(function(request,response){
         body += data;
       })//node js로 접속 들어올때마다 콜백 함수로 node 호출
       request.on('end',function(){
-          console.log(body)
           var post = qs.parse(body);
           var title = '공지사항 등록';
           var html = templateNew.structure(title,post);
