@@ -57,7 +57,7 @@ module.exports = {
       for (var page_i = 0; page_i < body.pageTask.length; page_i++) {    
           var taskNum = Number(body.taskNum[page_i])
           taskNum == 0? html += '' : html += `<h2>${body.pageTask[page_i]}</h2>`
-          
+          console.log(taskNum);//pageTask의 길이 만큼 돌아가기 때문에 
           for (var task_i = 0; task_i < taskNum; task_i++) {
             if(taskNum == 0) {
               html += '' 

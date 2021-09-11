@@ -42,32 +42,35 @@ module.exports = {
     taskCount : function (body) {
       var data = JSON.parse(body)
       var html = '';
+      var count = 0;
 
-      for (var page_i = 0; page_i < data.pageTask.length; page_i++) { 
-        Number(data.taskNum[page_i] == 0)? html += '' : html += `<h2>${data.pageTask[page_i]}</h2>`
-
-      }
-      for (var task_i = 0; task_i < data.taskNum.length ; task_i++) {
-        if(Number(data.taskNum[page_i]) == 0) {
-          html += '' 
-        } else {
-          var index = task_i
-          html += `
-          <div class="code-box">
-            <div class="task before">
-              <h3 class="task-title">변경 전 화면</h3>
-              
-              <h3 class="task-title">코드</h3>
-              <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[index])}</code></pre>
-            </div>
-            <div class="task after">
-              <h3 class="task-title">변경 후 화면</h3>
-              
-              <h3 class="task-title">코드</h3>
-              <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[index])}</code></pre>
-            </div>
-          </div>`
-
+      for (var page_i = 0; page_i < data.pageTask.length; page_i++) { //pageTask는 기본 3으로 고정되어 있음 `-54
+        var taskNumb = Number(data.taskNum[page_i])//* 입력한 요청 갯수 값
+        taskNumb== 0? html += '' : html += `<h2>${data.pageTask[page_i]}</h2>`
+        
+        for (var task_i = 0; task_i < taskNumb ; task_i++) {
+          if(taskNumb == 0) {
+            html += '' 
+          } else {
+            var index = count;
+            
+            html += `
+            <div class="code-box">
+              <div class="task before">
+                <h3 class="task-title">변경 전 화면</h3>
+                
+                <h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[index])}</code></pre>
+              </div>
+              <div class="task after">
+                <h3 class="task-title">변경 후 화면</h3>
+                
+                <h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[index])}</code></pre>
+              </div>
+            </div>`
+            count ++;
+          }
         }
       }
       return html;
