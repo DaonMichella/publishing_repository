@@ -23,7 +23,7 @@ module.exports = {
                     <input type="text" name="fileName" placeholder="fileName : 예) 20210822" value="20210901">
                   </div>
                   <div class="inp-txt">
-                    <input type="text" name="imgSrc" placeholder="imgSrc : 예) 20210822" value="20210901">
+                    <input type="text" name="imgSrc" placeholder="imgSrc : 예) 20210822" value="">
                   </div>
                   <textarea name="description" placeholder="description" class="textarea" title="글 내용">예시</textarea>
                 </div>
