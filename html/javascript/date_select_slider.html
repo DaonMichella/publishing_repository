@@ -26,13 +26,14 @@
     }
     ul.tabs li{
       background: none;
-      color: #222;
       display: inline-block;
-      padding: 10px 15px;
       cursor: pointer;
     }
 
-    ul.tabs li.active{
+    ul.tabs li .tab-link{
+      padding: 10px 15px;
+    }
+    ul.tabs li .tab-link.active{
       background: #ededed;
       color: #222;
     }
@@ -44,15 +45,15 @@
   <div class="container">
 
     <ul class="tabs">
-      <li class="tab-link"><a href="#">09.13(월)</a></li>
-      <li class="tab-link"><a href="#">09.14(화)</a></li>
-      <li class="tab-link"><a href="#">09.15(수)</a></li>      
-      <li class="tab-link active"><a href="#">09.16(목)</a></li>
-      <li class="tab-link"><a href="#">09.17(금)</a></li>
-      <li class="tab-link"><a href="#">09.18(토)</a></li>
-      <li class="tab-link"><a href="#">09.19(일)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.13">09.13(월)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.14">09.14(화)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.15">09.15(수)</a></li>
+      <li><a href="#" class="tab-link active" data-date="2021.09.16">09.16(목)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.17">09.17(금)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.18">09.18(토)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.19">09.19(일)</a></li>
     </ul>
-    <span><input type="text" value="2021.09.16"></span>
+    <span><input type="text" value="2021.09.17"></span>
   
   </div>
   <script>
@@ -60,6 +61,16 @@
       var inp = document.querySelector("input")
       inpValue = inp.value.slice(-5)
       var tabBtn = document.querySelectorAll(".tab-link")
+      tabBtn.forEach(function(tab){
+        tab.addEventListener("click",function (e) {
+          tabBtn.forEach(function(btn){
+            btn.classList.remove("active")
+          })
+          e.currentTarget.classList.add("active")
+          tabText = tab.getAttribute("data-date")          
+          inp.value = tabText
+        })
+      })
       
     }
     handleCalChange()
