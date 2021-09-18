@@ -70,6 +70,9 @@ var app = http.createServer(function(request,response){
               <input type="hidden" name="id" value="${queryData.id}">
               <input type="submit" class="btn blue" value="삭제">
             </form>
+            <form action="file_new" method="post" style="display:inline-block">
+              <button type="submit" class="btn blue"><span class="txt">HTML 생성</span></button>
+            </form>
             <form action="create_middle_process" method="post" style="display:inline-block">
               <button type="submit" class="btn blue"><span class="txt">새 공지사항</span></button>
               <span class="inp-txt">
@@ -118,10 +121,10 @@ var app = http.createServer(function(request,response){
 
       request.on('end',function(){
           var post = qs.parse(body);
-          var resultObj= {
-          }
+          var resultObj= {}
           resultObj.fileName = post.fileName
-          resultObj.imgSrc = post.imgSrc
+          resultObj.imgSErc = post.imgSrc
+          resultObj.stylesheetSrc = post.stylesheetSrc
           resultObj.description = post.description
           resultObj.pageTask =JSON.parse(post.pageTask)
           resultObj.taskNum = JSON.parse(post.taskNum)
@@ -140,11 +143,33 @@ var app = http.createServer(function(request,response){
               <form action="delete_process" method="post" style="display:inline-block">
                 <input type="hidden" name="id" value="${queryData.id}">
                 <input type="submit" class="btn blue" value="삭제">
+                <input type="submit" class="btn blue" value="삭제">
               </form>
-                <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
+              
+              <a href="/create" class="btn blue"><span class="txt">새 공지사항</span></a>
             </div>
             `);
             response.writeHead(302, {Location: encodeURI(`/?id=${post.fileName}`)});
+            response.end(html);
+          })      
+      })
+  
+    } else if(pathname === '/file_new'){//Post 방식으로 보낸 데이터를 Node js에서 불러오기!!
+      var body = '';
+      request.on('data',function(data){//
+        body += data;
+      })//node js로 접속 들어올때마다 콜백 함수로 node 호출
+
+      request.on('end',function(){
+          var post = qs.parse(body);
+
+          fs.writeFile(`data/${post.fileName}.html`, resultObj ,'utf8',
+          function(err) {
+            if (err) throw err;
+            console.log('The HTML file has been saved!');
+
+            var html = templateContent.structure(queryData.id,resultObj,'');
+            response.writeHead(302);
             response.end(html);
           })      
       })

@@ -2,8 +2,18 @@
 
 module.exports = {
     structure: function (title, body , control){
+      var data = JSON.parse(body)// 데이터 받아오기
       
-      var data = JSON.parse(body)
+      var styleIsTrue = function () {//외부 스타일 시트 추가
+        var projectStyleSheet = data.stylesheetSrc,
+        txt = '';
+
+        for (var style_index = 0; style_index < projectStyleSheet.length; style_index++) {
+          txt += `<link type="text/css" rel="stylesheet" href="${projectStyleSheet[style_index]}.css"/>`
+        }
+        return txt;
+      }
+
       return `
       <!DOCTYPE html>
       <html lang="ko">
@@ -13,7 +23,8 @@ module.exports = {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>${title}</title>
           <link type="text/css" rel="stylesheet" href="style.css"/>
-
+          <!-- 외부 스타일 시트 추가 -->
+          ${styleIsTrue()}
       </head>
       <body>
           <div id="wrap">
@@ -57,16 +68,20 @@ module.exports = {
             html += `
             <div class="code-box">
               <div class="task before">
-                <h3 class="task-title">변경 전 화면</h3>
-                
-                <h3 class="task-title">코드</h3>
-                <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[index])}</code></pre>
+                <h3 class="task-title">변경 전 화면</h3>`
+                if(data.codeType[index]=='html'){// ** 코드 타입이 html 이라면 화면을 보여줌
+                  html+=data.codeBefore[index]
+                } 
+                html += `<h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[index]}" tabindex="0"><code class="language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeBefore[index])}</code></pre>
               </div>
               <div class="task after">
-                <h3 class="task-title">변경 후 화면</h3>
-                
-                <h3 class="task-title">코드</h3>
-                <pre class="language-${data.codeType[index]}" tabindex="0"><code class= language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[index])}</code></pre>
+                <h3 class="task-title">변경 후 화면</h3>`
+                if(data.codeType[index]=='html'){// ** 코드 타입이 html 이라면 화면을 보여줌
+                  html+=data.codeAfter[index]
+                } 
+                html += `<h3 class="task-title">코드</h3>
+                <pre class="language-${data.codeType[index]}" tabindex="0"><code class="language-${data.codeType[index]}">${this.ConvertSystemSourcetoHtml(data.codeAfter[index])}</code></pre>
               </div>
             </div>`
             count ++;

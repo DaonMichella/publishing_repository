@@ -47,3 +47,9 @@ select {-webkit-appearance: none;-moz-appearance: none;appearance: none;}
 .tab-box li {width:100%; }
 .tab-box li a { display:block; padding:11px 0; background:#3B8DBD; text-align:center; color:#fff}
 .tab-box li.on a {background-color:#33363B}
+
+
+.token.keyword-hightlight {
+	/* Set the color to a nice red. */
+	color: red ;
+}
