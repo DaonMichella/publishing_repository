@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin-top: 100px;
+      font-family: 'Trebuchet MS', serif;
+      line-height: 1.6
+    }
+    .container{
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+
+
+    ul.tabs{
+      display:inline-block;
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+    ul.tabs li{
+      background: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    ul.tabs li .tab-link{
+      padding: 10px 15px;
+    }
+    ul.tabs li .tab-link.active{
+      background: #ededed;
+      color: #222;
+    }
+    a {text-decoration: none; color:inherit}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <ul class="tabs">
+      <li><a href="#" class="tab-link" data-date="2021.09.13">09.13(월)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.14">09.14(화)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.15">09.15(수)</a></li>
+      <li><a href="#" class="tab-link active" data-date="2021.09.16">09.16(목)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.17">09.17(금)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.18">09.18(토)</a></li>
+      <li><a href="#" class="tab-link" data-date="2021.09.19">09.19(일)</a></li>
+    </ul>
+    <span><input type="text" value="2021.09.17"></span>
+  
+  </div>
+  <script>
+    function handleCalChange(e) {
+      var inp = document.querySelector("input")
+      inpValue = inp.value.slice(-5)
+      var tabBtn = document.querySelectorAll(".tab-link")
+      tabBtn.forEach(function(tab){
+        tab.addEventListener("click",function (e) {
+          tabBtn.forEach(function(btn){
+            btn.classList.remove("active")
+          })
+          e.currentTarget.classList.add("active")
+          tabText = tab.getAttribute("data-date")          
+          inp.value = tabText
+        })
+      })
+      
+    }
+    handleCalChange()
+  </script>
+  <!-- https://hianna.tistory.com/437 -->
+</body>
+</html>

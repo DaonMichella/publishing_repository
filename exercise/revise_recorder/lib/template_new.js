@@ -20,14 +20,17 @@ module.exports = {
               <div id="wrap">
                 <div class="input-area">
                   <div class="inp-txt">
-                    <input type="text" name="fileName" placeholder="fileName : 예) 20210822" value="20210901">
+                    <input type="text" name="fileName" placeholder="fileName : 예) 20210822" value="20210914">
                   </div>
                   <div class="inp-txt">
                     <input type="text" name="imgSrc" placeholder="imgSrc : 예) 20210822" value="">
+<<<<<<< HEAD
                   </div>
                   <div class="inp-txt">
                     <input type="text" name="stylesheetSrc" placeholder="stylesheetSrc : 예) 20210822" value="web/css/layout.css">
                     <input type="text" name="stylesheetSrc" placeholder="stylesheetSrc : 예) 20210822" value="web/css/contents.css">
+=======
+>>>>>>> e5e13968dcfe4866300f56a34e9c733ca6cb4a0a
                   </div>
                   <textarea name="description" placeholder="description" class="textarea" title="글 내용">예시</textarea>
                 </div>
@@ -61,7 +64,6 @@ module.exports = {
       for (var page_i = 0; page_i < body.pageTask.length; page_i++) {    
           var taskNum = Number(body.taskNum[page_i])
           taskNum == 0? html += '' : html += `<h2>${body.pageTask[page_i]}</h2>`
-          console.log(taskNum);//pageTask의 길이 만큼 돌아가기 때문에 
           for (var task_i = 0; task_i < taskNum; task_i++) {
             if(taskNum == 0) {
               html += '' 
