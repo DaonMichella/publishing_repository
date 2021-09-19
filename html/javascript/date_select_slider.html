@@ -1,49 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>date_select_slider</title>
   <style>
-    body{
-      margin-top: 100px;
-      font-family: 'Trebuchet MS', serif;
-      line-height: 1.6
-    }
-    .container{
-      width: 1200px;
-      margin: 0 auto;
-    }
-
-
-
-    ul.tabs{
-      display:inline-block;
-      margin: 0px;
-      padding: 0px;
-      list-style: none;
-    }
-    ul.tabs li{
-      background: none;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    ul.tabs li .tab-link{
-      padding: 10px 15px;
-    }
-    ul.tabs li .tab-link.active{
-      background: #ededed;
-      color: #222;
-    }
+    body{margin-top: 100px;font-family: 'Trebuchet MS', serif;line-height: 1.6}
+    .container{width: 1200px;margin: 0 auto;}
+    ul.tabs{display:inline-block; margin: 0px; padding: 0px; list-style: none;}
+    ul.tabs li{background: none;display: inline-block;cursor: pointer;}
+    ul.tabs li .tab-link{padding: 10px 15px;}
+    ul.tabs li .tab-link.active{background: #ededed;color: #222;}
     a {text-decoration: none; color:inherit}
-
   </style>
 </head>
 <body>
   <div class="container">
-
     <ul class="tabs">
       <li><a href="#" class="tab-link" data-date="2021.09.13">09.13(월)</a></li>
       <li><a href="#" class="tab-link" data-date="2021.09.14">09.14(화)</a></li>
@@ -53,7 +26,7 @@
       <li><a href="#" class="tab-link" data-date="2021.09.18">09.18(토)</a></li>
       <li><a href="#" class="tab-link" data-date="2021.09.19">09.19(일)</a></li>
     </ul>
-    <span><input type="text" value="2021.09.17"></span>
+    <span><input type="text" value="2021.09.18"></span>
   
   </div>
   <script>
@@ -73,8 +46,19 @@
       })
       
     }
+    textInputChk()
+    function textInputChk () {//초기 인풋값 세팅
+      var inp = document.querySelector("input")
+      var tabBtn = document.querySelectorAll(".tab-link")
+      tabBtn.forEach(function(tab){
+        if(tab.getAttribute("data-date")==inp.value) tab.classList.add("active")
+        else tab.classList.remove("active")
+      })
+      
+
+    }
+
     handleCalChange()
   </script>
-  <!-- https://hianna.tistory.com/437 -->
 </body>
 </html>
