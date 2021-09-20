@@ -17,6 +17,7 @@
 </head>
 <body>
   <div class="container">
+    <button type="button" class="btn-prev"><span class="txt">이전</span></button>
     <ul class="tabs">
       <li><a href="#" class="tab-link" data-date="2021.09.13">09.13(월)</a></li>
       <li><a href="#" class="tab-link" data-date="2021.09.14">09.14(화)</a></li>
@@ -27,26 +28,49 @@
       <li><a href="#" class="tab-link" data-date="2021.09.19">09.19(일)</a></li>
     </ul>
     <span><input type="text" value="2021.09.18"></span>
-  
+    <button type="button" class="btn-next"><span class="txt">다음</span></button>
   </div>
   <script>
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+
     function handleCalChange(e) {
       var inp = document.querySelector("input")
-      inpValue = inp.value.slice(-5)
       var tabBtn = document.querySelectorAll(".tab-link")
+      var btnPrev = document.querySelector(".btn-prev")
+      var btnNext = document.querySelector(".btn-next")
+      var limitday = ''
+      
+      //inpValue = inp.value.slice(-5)//연도 빼고 요일만
+      //클릭 이벤트 추가
       tabBtn.forEach(function(tab){
         tab.addEventListener("click",function (e) {
           tabBtn.forEach(function(btn){
             btn.classList.remove("active")
           })
           e.currentTarget.classList.add("active")
-          tabText = tab.getAttribute("data-date")          
-          inp.value = tabText
+          //클릭한 버튼의 data-date 값을 input에 적용
+          inp.value = tab.getAttribute("data-date")
         })
+      })
+
+      //이전
+      btnPrev.addEventListener("click",function (e) {
+        //이전 날짜에 active 클래스 추가
+        inp.value= reConvertDate(convertDate(inp.value,-1))
+        inp.dispatchEvent(evt)
+        inpValueSyynchronize()
+
+      })
+      //다음
+      btnNext.addEventListener("click",function (e) {
+        //다음 날짜에 active 클래스 추가
+        inp.value= reConvertDate(convertDate(inp.value,1))
+        inp.dispatchEvent(evt)
+        inpValueSyynchronize()
       })
       
     }
-    textInputChk()
     function textInputChk () {//초기 인풋값 세팅
       var inp = document.querySelector("input")
       var tabBtn = document.querySelectorAll(".tab-link")
@@ -54,11 +78,56 @@
         if(tab.getAttribute("data-date")==inp.value) tab.classList.add("active")
         else tab.classList.remove("active")
       })
+    }
+    
+    function init () {
+      //초기 input의 value값을 button의 active 클래스 추가
+      textInputChk()
+      //버튼 클릭 시 동작
+      handleCalChange()
       
-
     }
 
-    handleCalChange()
+    init()
+
+
+    /* function 모음 */
+
+    function convertDate(date,gap) {
+      var year = Number(date.split(".")[0])
+      var month = Number(date.split(".")[1])
+      var day = Number(date.split(".")[2])
+      var gap = Number(gap)
+
+      if(gap == null) var newDate = new Date(year,month,day)
+      else var newDate = new Date(year,month,day + gap)
+    
+      return newDate
+    }
+
+    function reConvertDate (date) {
+      var year = date.getFullYear()
+      var month = date.getMonth() 
+      var day = date.getDate()
+
+      month < 10 ? month= '0'+month : month 
+      day < 10 ? day= '0'+day : day 
+
+      return (year + '.' +month +'.'+day)
+    }
+
+    function inpValueSyynchronize () {
+      var inp = document.querySelector("input")
+      var tabBtn = document.querySelectorAll(".tab-link")
+      tabBtn.forEach(function(btn){
+        btn.classList.remove("active")
+        if(inp.value == btn.getAttribute("data-date") ){
+          btn.classList.add("active")
+        }
+      })
+
+    }
+    
   </script>
 </body>
 </html>
