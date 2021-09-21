@@ -39,7 +39,7 @@
       var tabBtn = document.querySelectorAll(".tab-link")
       var btnPrev = document.querySelector(".btn-prev")
       var btnNext = document.querySelector(".btn-next")
-      var limitday = ''
+      var limitday = ['2021.09.13','2021.09.19']
       
       //inpValue = inp.value.slice(-5)//연도 빼고 요일만
       //클릭 이벤트 추가
@@ -57,17 +57,22 @@
       //이전
       btnPrev.addEventListener("click",function (e) {
         //이전 날짜에 active 클래스 추가
-        inp.value= reConvertDate(convertDate(inp.value,-1))
-        inp.dispatchEvent(evt)
-        inpValueSyynchronize()
-
+        
+        if(limitday[0] != inp.value) {
+          inp.value= reConvertDate(convertDate(inp.value,-1))
+          inp.dispatchEvent(evt)
+          inpValueSyynchronize()
+        }
       })
       //다음
       btnNext.addEventListener("click",function (e) {
         //다음 날짜에 active 클래스 추가
-        inp.value= reConvertDate(convertDate(inp.value,1))
-        inp.dispatchEvent(evt)
-        inpValueSyynchronize()
+        if(limitday[1] != inp.value) {
+          inp.value= reConvertDate(convertDate(inp.value,1))
+          inp.dispatchEvent(evt)
+          inpValueSyynchronize()
+        }
+        
       })
       
     }
