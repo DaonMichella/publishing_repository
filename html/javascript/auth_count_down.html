@@ -66,9 +66,10 @@
 		AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 		AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 		AuthTimer.domId = document.getElementById("timer");
-
-		document.querySelector(".auth-box.tel .btn-inp").addEventListener("click",function(){
-			document.querySelector(".auth-box.auth").style.display ="block"
+    var btn = document.querySelector(".auth-box.tel .btn-inp")
+    var inp = document.querySelector("#inp1")
+		btn.addEventListener("click",function(){
+      if(inp.value != '')	document.querySelector(".auth-box.auth").style.display ="block"
 		})
     }
 	</script>
