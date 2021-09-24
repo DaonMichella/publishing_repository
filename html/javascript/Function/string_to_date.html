@@ -17,6 +17,16 @@
 		return `${y}-${m}-${d}`
 	}
 	console.log(stringToDateForm("20210829"))
+  
+  function stringToDateForm02 (str) {
+		var y = str.split(".")[0],
+		m = str.split(".")[1],
+		d = str.split(".")[2];
+		return new Date(y,m,d)
+	}
+	console.log(stringToDateForm02("2021.08.29"))
+
+
  	function dateToString (str) {
 		var y = str.getFullYear().toString(),
 		m = (str.getMonth() + 1).toString(),
