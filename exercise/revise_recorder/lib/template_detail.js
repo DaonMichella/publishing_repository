@@ -27,7 +27,7 @@ module.exports = {
           ${styleIsTrue()}
       </head>
       <body>
-          <div id="wrap">
+          <div class="task-list-wrap">
             <h1 class="main-title">${title}</h1>
             <section class="task-item">
               <h3 class="task-title">안내사항</h3>
