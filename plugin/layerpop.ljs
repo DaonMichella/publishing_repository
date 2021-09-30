@@ -1,0 +1,42 @@
+var app = (function(wrap) {//즉시실행함수 - 초기화 코드에 많이 사용, 전역 변수 사용 배제를 통해 코드 충돌을 피할 수 있어 보편적인 플러그인 개발에 사용
+  console.log("레이어팝업 플러그인 작성")
+  //변수 선언 
+  var layerpop = document.querySelector(wrap)
+  // 함수 선언
+  // 접근성
+  //페이지 스크롤 락
+  var pageScrollOff = function () {
+    var html = document.documentElement || document.body
+  }  //버튼 오픈 
+  //팝업 포지션 
+
+
+  // dim
+  var dimShow = function (){
+    
+  }
+  var dimHide = function (){
+  
+  }
+  // 열림함수
+  var openLayer = function (){
+    wrap.style.display = 'block'
+    dimShow()  
+  }
+  // 닫기 함수
+  var closeLayer = function (){
+    wrap.style.display = 'none'
+    dimHide()  
+  }
+  
+  //실행함수
+  document.querySelector(".open-layer").forEach(function(btn){
+    btn.addEventListener("click",openLayer)
+  })
+  document.querySelector(".close-layer").forEach(function(btn){
+    btn.addEventListener("click",closeLayer)
+  })
+  document.querySelector(".dim").forEach(function(btn){
+    btn.addEventListener("click",closeLayer)
+  })
+}) ()
