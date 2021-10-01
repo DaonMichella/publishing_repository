@@ -1,100 +1,89 @@
 <!DOCTYPE html>
 <html lang="ko">
  <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>휴대폰 인증 Count down</title>
-	<link rel="stylesheet" href="../css/reset.css">
-	<style>
-		input {-webkit-appearance: none; -moz-appearance: none; appearance: none;}
-		.inp-auth input {border:1px solid #ddd;}
-		
-		#wrap {width:500px; margin:0 auto;}
-		.tx-red {color:#f00}
-		label {display:block; margin-bottom:3px; font-size:14px; color:#777; }
-		.inp-txt {position:relative;}
-		.inp-txt input {width:100%; padding:8px 10px; line-height:18px; font-size:14px; border:1px solid #ddd;}
-		.inp-txt + .inp-txt {margin-top:8px;}
-		.auth-time {position:absolute; right:10px; top:50%; margin-top:-9px; line-height:18px; font-weight:bold; }
+  <meta charset="utf-8" />
+  <title> scroll active button </title>
+  <style type="text/css">
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);	
+	body, ul, h1{margin:0px;padding:0px}
+	body{font-family:"Nanum Gothic";font-size:12px}
+    body, html {-webkit-overflow-scrolling:touch}
+	ul{list-style:none}
+	a{text-decoration:none}
 
-		.title {margin-bottom:20px;}
-		.title .sub {font-size:12px; color:#ccc; }
-		.title .txt {display:block; font-size:28px; font-weight:600; color:#f00}
+	.area{width:100%;height:100%}
+	#header{position:fixed;left:0px;right:0px;top:0px;height:50px;background:#aaa}
+	
+	#header h1, #header #gnb, #header #gnb ul li{display:inline-block;}
+    #header {font-size:0}
+	#header h1{width:20%; font-size:32px; margin-top:8px; vertical-align: middle;}
+	#header #gnb{width:80%; vertical-align: middle;}
+	#header #gnb ul {font-size:0}
+	#header #gnb ul li{display:inline-block; width:25%; vertical-align: middle;}
+	#header #gnb ul li a{display:inline-block; text-align:center; font-size:14px;}
 
-		.inp-auth {position:relative; margin-bottom:20px; }
-		.inp-auth input {display:inline-block; width:calc(100% - 100px); padding:8px 10px; border-bottom:1px solid #ddd; }
-		.inp-auth input:focus {border-color:#111}
-		
-		.btn-inp {display:inline-block; padding:8px 0; border-radius:4px; width:100%; border:1px solid #111; }
-		.inp-auth .btn-inp {width:70px}
-	</style>
-	<script>
-	function $ComTimer(){
-		//prototype extend
-	}
 
-	$ComTimer.prototype = {
-		comSecond : "",
-		min:"",
-		sec:"",
-		fnCallback : function(){},
-		timer : ""	,
-		domId : "",
-		fnTimer : function(){
-			min = this.comSecond / 60
-			sec = (this.comSecond < 10 || this.comSecond % 60 == 0? "0" + this.comSecond % 60 : this.comSecond % 60)
-			var m = Math.floor(min)+ ":" +sec;	// 남은 시간 계산
-			this.comSecond--;	// 1초씩 감소				
-			this.domId.innerText = m;
+	#content{padding-top:50px}
+	#content article{min-height:500px;font-size:100px;text-align:center}
+  button {background-color: none; border:none; }
+  .button {padding:10px; background:teal; color:#fff;}
+  .button:disabled{background-color: #ddd;}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>  
 
-			if (this.comSecond < 0) {
-				// 시간이 종료 되었으면..
-				clearInterval(this.timer);// 타이머 해제
-			}
-		},
-		fnStop : function(){
-			clearInterval(this.timer);
-		}
-	}
-
-	window.onload = function(){
-    	var AuthTimer = new $ComTimer()
-		AuthTimer.comSecond = 180;
-		AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
-		AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
-		AuthTimer.domId = document.getElementById("timer");
-    var btn = document.querySelector(".auth-box.tel .btn-inp")
-    var inp = document.querySelector("#inp1")
-		btn.addEventListener("click",function(){
-      if(inp.value != '')	document.querySelector(".auth-box.auth").style.display ="block"
-		})
-    }
-	</script>
  </head>
+
  <body>
 	<div id="wrap">
-		<h2 class="title">
-			<span class="sub">Welcome to</span>
-			<strong class="txt">homepage</strong>
-		</h2>
-		<div class="auth-box tel">
-			<label for="inp1">휴대폰번호 인증</label>
-			<div class="inp-auth">
-				<input type="tel" name="" id="inp1" placeholder="휴대폰 번호 인증"/>
-				<button type="button" class="btn-inp">확인</button>
+		<header id="header">
+			<div class="area">
+				<h1>로고</h1>
+				<nav id="gnb">
+					<ul>
+						<li><a href="#">주메뉴1</a></li>
+						<li><a href="#">주메뉴2</a></li>
+						<li><a href="#">주메뉴3</a></li>
+						<li><a href="#">주메뉴4</a></li>
+					</ul>
+				</nav>
 			</div>
-		</div>
-		<div class="auth-box auth" style="display:none">
-			<label for="inp2">인증번호 입력</label>
-			<div class="inp-auth">
-				<input type="tel" name="" id="inp2" placeholder="인증번호 6자리 입력"/>
-				<span class="auth-time tx-red" id="timer"></span>
-			</div>
-			<button type="button" class="btn-inp confirm">확인</button>
-		</div>
+		</header>
+		<section id="content">
+			<article id="cnt0">본문내용0</article>
+			<article id="cnt1">본문내용1</article>
+			<article id="cnt2">본문내용2</article>
+			<article id="cnt3">본문내용3</article>
+			<article id="cnt4">본문내용4</article>
+			<article id="cnt5">본문내용5</article>
+			<article id="cnt6">
+        <button type="button" class="button" disabled>확인하기</button>
+      </article>
+		</section>
+		<footer id="footer"></footer>
 	</div>
+    <script>
+      window.addEventListener("wheel", scrollMove);
+      function scrollMove () {
+          var scrollY=window.scrollY,
+          height = getHeight ()
+          
+          if (window.scrollY+window.innerHeight >= height -300 ) document.querySelector(".button").disabled = false
+          else document.querySelector(".button").disabled = true 
+        }
+        function getHeight() {
+          var body = document.body,
+          html = document.documentElement;
+
+          var scrollLocation = html.scrollTop, //현재 스크롤바 위치 
+          windowHeight = window.innerHeight, //스크린 창
+          fullHeight = body.scrollHeight;
+  
+          var height = Math.max( body.scrollHeight, body.offsetHeight, 
+          html.clientHeight, html.scrollHeight, html.offsetHeight );
+          
+          return height
+        }
+  
+    </script>
  </body>
 </html>
