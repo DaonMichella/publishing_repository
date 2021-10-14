@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8" />
+  <title> indicator가 세로방향인 onePage </title>
+  <style type="text/css">
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);	
+	body, ul, h1{margin:0px;padding:0px}
+	body{font-family:"Nanum Gothic";font-size:12px}
+    body, html {-webkit-overflow-scrolling:touch}
+	ul{list-style:none}
+	a{text-decoration:none}
+
+	.area{width:100%;height:100%}
+	#header{position:fixed;left:0px;right:0px;top:0px;height:50px;background:#aaa}
+	
+	#header h1, #header #gnb, #header #gnb ul li{display:inline-block;}
+    #header {font-size:0}
+	#header h1{width:20%; font-size:32px; margin-top:8px; vertical-align: middle;}
+	#header #gnb{width:80%; vertical-align: middle;}
+	#header #gnb ul {font-size:0}
+	#header #gnb ul li{display:inline-block; width:25%; vertical-align: middle;}
+	#header #gnb ul li a{display:inline-block; text-align:center; font-size:14px;}
+
+	#snb{position:fixed;right:30px;top:50%;margin-top:-110px;width:100px;background:#aaa;}
+	#snb ul{padding-top:10px}
+	#snb ul li{height:20px;line-height:20px;padding-bottom:10px}
+	#snb ul li a{display:block;}
+	#snb ul li a span{display:inline-block;vertical-align:middle}
+	#snb ul li a .txt{width:75px;padding-right:5px;text-align:right;color:#000}
+	#snb ul li.on a .txt{color:red}
+	#snb ul li a .icon{width:18px;height:18px;border:1px solid #000;background:#000}
+	#snb ul li.on a .icon{background:yellow}
+
+	#content{padding-top:50px}
+	#content article{min-height:500px;font-size:100px;text-align:center}
+	#content #cnt0{background:aqua}
+	#content #cnt1{background:pink}
+	#content #cnt2{background:yellow}
+	#content #cnt3{background:coral}
+	#content #cnt4{background:skyblue}
+	#content #cnt5{background:green}
+	#content #cnt6{background:blue}
+	#footer{height:100px;background:black}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>  
+
+ </head>
+
+ <body>
+	<div id="wrap">
+		<header id="header">
+			<div class="area">
+				<h1>로고</h1>
+				<nav id="gnb">
+					<ul>
+						<li><a href="#">주메뉴1</a></li>
+						<li><a href="#">주메뉴2</a></li>
+						<li><a href="#">주메뉴3</a></li>
+						<li><a href="#">주메뉴4</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<section id="content">
+			<article id="cnt0">본문내용0</article>
+			<article id="cnt1">본문내용1</article>
+			<article id="cnt2">본문내용2</article>
+			<article id="cnt3">본문내용3</article>
+			<article id="cnt4">본문내용4</article>
+			<article id="cnt5">본문내용5</article>
+			<article id="cnt6">본문내용6</article>
+		</section>
+		<footer id="footer"></footer>
+	</div>
+    <script>
+    function scrollingEvent () {
+      var menu = document.querySelectorAll("#content article")
+
+      window.addEventListener("scroll", scrollMove);
+
+      function getElementHeight () {
+        var heightArray = []
+        Array.prototype.forEach.call(menu, function(article,index,array){
+          heightArray.push(article.getBoundingClientRect().top)
+        })
+        return heightArray
+      }
+
+      var elementHeight = getElementHeight()
+
+      function scrollMove () {
+          var scrollY=document.documentElement.scrollTop
+          for (let article_index = 0; article_index < menu.length; article_index++) {
+            if(scrollY > elementHeight[article_index] -300 ) menu[article_index].classList.add("on")
+            else menu[article_index].classList.remove("on")
+            
+          }
+          
+      }
+
+  
+    }
+    scrollingEvent ()
+  
+    </script>
+ </body>
+</html>
