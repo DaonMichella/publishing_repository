@@ -1,0 +1,8 @@
+
+/* img badge */
+.badge.benefit {position: relative;}
+.badge.benefit:before,
+.badge.benefit:after {content: "";	position: absolute;	top: 5px;	color: #232323;	font-weight: bold;	height: 0px;
+	border: 13px solid #fc2142;	line-height: 0px;	box-shadow: -0px 5px 5px -5px #000;	z-index: 1;}
+.badge.benefit:before {right: -8px;	padding-left: 10px;	border-left-color: transparent;	}
+.badge.benefit:after {	border-right-color: transparent;}
