@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">  <meta name="Author" content="">
+	<title>calender</title>
+	<link rel="stylesheet" href="../resource/css/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="  crossorigin="anonymous"></script>
+	<script>
+	$(function() {
+		var rangeDate = 31; // set limit day
+		var setSdate, setEdate;
+		$("#startDate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			minDate: 0,
+			onSelect: function(selectDate){
+				var stxt = selectDate.split("-");
+					stxt[1] = stxt[1] - 1;
+				var sdate = new Date(stxt[0], stxt[1], stxt[2]);
+				var edate = new Date(stxt[0], stxt[1], stxt[2]);
+					edate.setDate(sdate.getDate() + rangeDate);
+		 
+				$('#endDate').datepicker('option', {
+					minDate: selectDate,
+					beforeShow : function () {						
+						$(this).datepicker( "option", "maxDate", edate );
+						setSdate = selectDate;						
+						console.log(setSdate)
+					
+				}});
+				$(this).closest(".inp-calender").addClass("selected");
+				//to 설정
+			}
+			//from 선택되었을 때
+		});
+		 
+		$('#endDate').datepicker({
+			dateFormat: 'yy-mm-dd',
+			onSelect : function(selectDate){
+				setEdate = selectDate;
+				console.log(setEdate)
+				$(this).closest(".inp-calender").addClass("selected");
+			}
+		});
+		/*
+		$( 'input[name="s_sthinsdate"]' ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			showButtonPanel: true,
+			dateFormat: "yy-mm-dd",
+			numberOfMonths : 2,
+			minDate: 0,
+			onClose : function ( selectedDate ){
+				$( 'input[name="s_sthinedate"]' ).datepicker( 'option', 'minDate', selectedDate );
+				}
+			});
+		
+		$( 'input[name="s_sthinedate"]' ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			showButtonPanel: true,
+			dateFormat: "yy-mm-dd",
+			numberOfMonths : 2,
+			onClose : function ( selectedDate ){
+				$( 'input[name="s_sthinsdate"]' ).datepicker( 'option', 'maxDate', selectedDate );
+				}
+			});
+			*/
+
+			$( '.inp-calender input' ).each(function(){
+				if(!$(this).attr("value") == " ") $(this).next("label").hide();
+				else $(this).next("label").show();
+			})
+
+	});
+	</script>
+	<style type="text/css">
+	body {min-width:320px;}
+	.inp-calender-wrap {font-size:0; }
+	.inp-calender-box {display:inline-block; width:calc(100% - 120px); vertical-align:middle; border:1px solid #ddd; box-sizing:border-box}
+	.inp-calender-box .inp-calender {position: relative;display: inline-block; width: 48%;vertical-align: bottom;font-size:14px; vertical-align:middle;}
+	.inp-calender-box .txt-form {position:relative; display:inline-block; width:4%; font-size:14px; vertical-align:middle;text-align:center; font-size:20px; text-indent:-9999px;}
+	.inp-calender-box .txt-form:after {display:block; position:absolute; top:50%; max-width:30px; transform:translateY(-50%); width:100%; height:1px; background:#000; content:'';}
+	.inp-calender input {padding:14px;border: none;width:100%;text-align: center;z-index: 1; box-sizing:border-box; transition: all .25s;}
+	.inp-calender input + label {position: absolute;top: 0;left: 0;width: 100%;margin: 0;font-weight: 400;font-size: 16px;color: #aaa;padding: 0 5px; height:44px; line-height:44px; text-align: center;}
+	.inp-calender input + label .txt {transition: all .25s;}
+	.inp-calender-wrap .btn-orange {padding: 14px; width: 120px; border:none; border-radius:4px;background-color: #ff7300; font-size:14px; font-weight: 500; line-height:1.5; color: #fff; text-align: center; vertical-align:middle;}
+	.inp-calender.selected input {padding:22px 0 6px}
+	.inp-calender.selected input + label .txt {position:absolute; left:20px; top:-10px; font-size:12px; }
+
+	@media screen and (max-width:480px){
+		.inp-calender-box {width:100%; margin-bottom:10px;}
+		.inp-calender-wrap .btn-orange {display:block; width:100%}
+	}
+	</style>
+ </head>
+ <body>
+  	<h2>calender</h2>
+	<div class="inp-calender-wrap">
+		<div class="inp-calender-box">
+			<div class="inp-calender ">
+			  <input class="big_0" name="s_sthinsdate" id="startDate" type="text" value="" />
+			  <label for="startDate"><span class="txt">체크인</span></label>
+			</div>
+			<span class="txt-form">-</span>
+			<div class="inp-calender">
+			  <input class="big_0" name="s_sthinedate" id="endDate" type="text" value="" />
+			   <label for="endDate"><span class="txt">체크아웃</span></label>
+			</div>
+		</div>
+	  <button type="button" class="btn-orange">검색</button>
+	</div>
+ </body>
+</html>

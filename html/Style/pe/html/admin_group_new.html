@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta property="og:title" content="">
+	<meta property="og:type" content="website">
+	<meta name="naver-site-verification" content="">
+	<meta property="og:image" content="">
+	<meta http-equiv="Cache-Control" content="No-Cache">
+	<meta http-equiv="Pragma" content="No-Cache">
+	<meta name="language" content="ko">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<title>그룹 추가 : 관리자 그룹</title>
+
+	<!-- css, js 연결 -->
+	<link rel="stylesheet" href="../resource/css/normalize.css">
+	<link rel="stylesheet" href="../resource/css/style.css">
+	<script src="../resource/js/jquery-2.1.1.min.js"></script>
+	<script src="../resource/js/common.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+	})
+	</script>
+</head>
+ <body>
+	<div id="wrap">
+		<div id="content">
+			<!-- 탭 -->
+			<ul class="tab-type">
+				<li><a href="#">관리자 계정</a></li>
+				<li class="on"><a href="#">관리자 그룹</a></li>
+			</ul>
+			<!-- //탭 -->
+
+
+			<div class="tbl-top">
+				<p class="title">관리자 그룹 추가</p>
+			</div>
+			<div class="tab-cnt">
+				<!-- 관리자 그룹 상세 정보 테이블 -->
+				<div class="tbl-row-type">
+					<table>
+						<caption>그룹명, 상위 그룹명, 설명, 관리자 등록 추가 정보 입력 테이블</caption>
+						<colgroup>
+							<col style="width:30%"/>
+							<col style="width:auto"/>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">그룹명</th>
+								<td>
+									<span class="input-txt">
+										<input type="text" id="admin_ip1" placeholder="롯데 백화점 개설 오픈" />
+									</span>
+									<span class="input-check">
+										<input type="checkbox" id="group_name" class="input-check" />
+										<label for="group_name">본사여부</label>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">상위 관리자 그룹</th>
+								<td>									
+									<div class="option-wrap">
+										<a href="#" class="btn">선택해주세요</a>
+										<div class="option-box" style="display:none">
+											<ul>
+												<li><a href="#">사이트_롯데백화점</a></li>
+												<li><a href="#">본사_롯데백화점</a></li>
+												<li><a href="#">노원점_롯데백화점</a></li>
+												<li><a href="#">분당점_롯데백화점</a></li>
+												<li><a href="#">센텀점_롯데백화점</a></li>
+												<li><a href="#">구리점_롯데백화점</a></li>
+												<li><a href="#">건대스타시티점_롯데백화점</a></li>
+												<li><a href="#">안전실_노원점_롯데백화점</a></li>
+												<li><a href="#">마케팅_노원점_롯데백화점</a></li>
+												<li><a href="#">방제실_노원점_롯데백화점</a></li>
+												<li><a href="#">안전실_분당점_롯데백화점</a></li>
+												<li><a href="#">마케팅_분당점_롯데백화점</a></li>
+												<li><a href="#">방제실_분당점_롯데백화점</a></li>
+												<li><a href="#">안전실_센텀점_롯데백화점</a></li>
+												<li><a href="#">마케팅_센텀점_롯데백화점</a></li>
+												<li><a href="#">방제실_센텀점_롯데백화점</a></li>
+												<li><a href="#">안전실_구리점_롯데백화점</a></li>
+												<li><a href="#">마케팅_구리점_롯데백화점</a></li>
+												<li><a href="#">방제실_구리점_롯데백화점</a></li>
+												<li><a href="#">안전실_건대스타점_롯데백화점</a></li>
+												<li><a href="#">마케팅_건대스타점_롯데백화점</a></li>
+												<li><a href="#">방제실_건대스타점_롯데백화점</a></li>
+											</ul>
+										</div>
+									</div>
+									<p class="">선택 변경 시 선택한 그룹의 메뉴 접근 권한으로 반영 됩니다.</p>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="group_desc">그룹 설명</label>
+									<p>(0/100)</p>
+								</th>
+								<td>
+									<textarea name="" id="group_desc">
+										
+									</textarea>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">관리자 등록</th>
+								<td>
+									<div class="input-txt">
+										<input type="text" id="admin_ip1" placeholder="이름을 입력해주세요." />
+									</div>
+									<ul class="admin-regbox">
+										<li><button type="button">홍길동</button></li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>※ 관리자 사이트의 접근 권한과 메뉴, 기능 권한을 정의합니다. <br>
+					관리자 그룹의 본사 여부, 그룹명의 선택 버튼을 눌러주세요(*본점 지점과 사용 권한이 다릅니다.)</p>
+				</div>
+				<!-- //관리자 그룹 상세 정보 테이블 -->
+			</div>
+
+
+			<!-- 관리자 테이블 -->
+			<div class="tbl-top">
+				<p class="title">그룹에 포함된 관리자 1명</p>
+			</div>
+			<!-- 관리자가 있는 경우 -->
+			<div class="tbl-type1">
+				<table>
+					<caption>관리자 이름,ID,전화번호,IP,이메일,최근 접속일 정보 테이블</caption>
+					<colgroup>
+						<col style="width:10%" />
+						<col style="width:10%" />
+						<col style="width:auto" />
+						<col style="width:auto" />
+						<col style="width:auto" />
+						<col style="width:auto" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">이름</th>
+							<th scope="col">ID</th>
+							<th scope="col">전화번호</th>
+							<th scope="col">IP</th>
+							<th scope="col">이메일</th>
+							<th scope="col">최근 접속일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>김*대</td>
+							<td><a href="#">abcde</a></td>
+							<td>010****1234</td>
+							<td>123.456.78.90</td>
+							<td>ab****@nate.com</td>
+							<td>2019/08/01 13:48</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- //관리자가 있는 경우 -->
+
+				<!-- 관리자가 없는 경우 -->
+				<div class="no-data">
+					<p>그룹에 포함된 관리자가 없습니다.</p>
+				</div>
+				<!-- //관리자가 없는 경우 -->
+				<p>관리 그룹 삭제 시, 그룹에 포함된 관리자가 없는 경우에 삭제가 가능합니다.</p>
+			</div>
+			<!-- //관리자 테이블 -->
+
+
+			<!-- 그룹별 메뉴 사용 권한 -->
+			<div class="tbl-top">
+				<p class="title">그룹별 메뉴 사용 권한</p>
+			</div>
+			<div class="tbl-type1">
+				<table>
+					<caption>관리자 그룹, 계정 상태, 검색어 검색 결과에 대한 이름,관리자 그룹,ID,전화번호,계정 상태 결과 수정 테이블</caption>
+					<colgroup>
+						<col style="width:20%"/>
+						<col style="width:auto"/>
+						<col style="width:20%"/>
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">메뉴</th>
+							<th scope="col">메뉴 항목</th>
+							<th scope="col">사용 권한</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 출입통제 -->
+						<tr>
+							<td rowspan="3">출입통제</td>
+							<td>사용현황</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="사용현황 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>원격제어</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="원격제어 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>스케줄링</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="스케줄링 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //출입통제 -->
+
+						<!-- 모니터링 -->
+						<tr>
+							<td rowspan="3">모니터링</td>
+							<td>출입문</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="출입문 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>에스컬레이터</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="에스컬레이터 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>SMS알림</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="SMS알림 메뉴 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //모니터링 -->
+
+						<!-- 사용자 -->
+						<tr>
+							<td rowspan="3">사용자</td>
+							<td>지점관리자 그룹/계정 관리</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="지점관리자 그룹/계정 관리 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>운영관리자 그룹/계정 관리</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="운영관리자 그룹/계정 관리 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>출입자 관리</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="출입자 관리 메뉴 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //사용자 -->
+
+						<!-- 장치 -->
+						<tr>
+							<td rowspan="2">장치</td>
+							<td>출입문</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="출입문 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>카메라</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="카메라 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //장치 -->
+
+						<!-- 방문 통계 -->
+						<tr>
+							<td rowspan="4">방문 통계</td>
+							<td>지점비교</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="지점비교 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>방문자 수</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="방문자 수 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>연령통계</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="연령통계 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>성별통계</td>
+							<td>
+								<div class="input-switch">
+									<input type="checkbox" id="" title="성별통계 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //방문 통계 -->
+					</tbody>
+				</table>
+			</div>
+			<!-- //그룹별 메뉴 사용 권한 -->
+			<p class="">관리자 사이트 접근 권한과 메뉴, 기능 권한은 정의합니다.</p>
+			<!-- //그룹별 메뉴 사용 권한 -->
+			<div class="btn-box">
+				<button type="submit">저장하기</button>
+			</div>
+			<!--table>(caption+(colgroup>col[style="width:16.6%"]*6)+(thead>tr>th*6)+(tbody>tr*5>td*6))-->
+		</div>
+	</div>
+ </body>
+</html>

@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta property="og:title" content="">
+	<meta property="og:type" content="website">
+	<meta name="naver-site-verification" content="">
+	<meta property="og:image" content="">
+	<meta http-equiv="Cache-Control" content="No-Cache">
+	<meta http-equiv="Pragma" content="No-Cache">
+	<meta name="language" content="ko">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<title>신규 계정 추가 : 관리자 계정</title>
+
+	<!-- css, js 연결 -->
+	<link rel="stylesheet" href="../resource/css/normalize.css">
+	<link rel="stylesheet" href="../resource/css/style.css">
+	<script src="../resource/js/jquery-2.1.1.min.js"></script>
+	<script src="../resource/js/common.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+	})
+	</script>
+</head>
+ <body>
+	<div id="wrap">
+		<div id="content">
+			<!-- 탭 -->
+			<ul class="tab-type">
+				<li class="on"><a href="#">관리자 계정</a></li>
+				<li><a href="#">관리자 그룹</a></li>
+			</ul>
+			<!-- //탭 -->
+
+			<!-- 상단 검색어 테이블 -->
+			<div class="tab-cnt">
+				<div class="tbl-top">
+					<p class="title">관리자 계정 추가</p>
+				</div>
+				<div class="tbl-row-type">
+					<table>
+						<caption>관리자 계정 추가 ID,이름,전화번호,이메일, 관리자 그룹 추가 테이블</caption>
+						<colgroup>
+							<col style="width:30%"/>
+							<col style="width:auto"/>
+							<col style="width:30%"/>
+							<col style="width:auto"/>
+						</colgroup>
+						<tbody>
+							<!-- ID -->
+							<tr>
+								<th scope="row">
+									<label for="admin_id">ID</label>
+								</th>
+								<td colspan="3">								
+									<div class="input-txt">
+										<input type="text" id="admin_id" placeholder="띄어쓰기 없이 영어/숫자 6~10자" />
+									</div>
+									<p class="">사용 가능한 아이디입니다.</p>
+								</td>
+							</tr>
+							<!-- //ID -->
+
+							<!-- 이름/사원 번호 -->
+							<tr>
+								<th scope="row">
+									<label for="admin_name">이름</label>
+								</th>
+								<td>
+									<div class="input-txt">
+										<input type="text" id="admin_name" placeholder="이름을 입력하세요." />
+									</div>
+								</td>
+								<th scope="row">
+									<label for="admin_num">사원 번호</label>
+								</th>
+								<td>
+									<div class="input-txt">
+										<input type="text" id="admin_num" placeholder="사원번호를 입력하세요." />
+									</div>
+								</td>
+							</tr>
+							<!-- //이름/사원 번호 -->
+
+							<!-- 전화번호/전화번호 인증 -->
+							<tr>
+								<th scope="col">
+									<label for="admin_phone">전화번호</label>
+								</th>
+								<td>
+									<div class="input-txt">
+										<input type="tel" id="admin_phone" placeholder="-없이 숫자만 입력을 입력하세요." />
+									</div>
+								</td>
+								<th scope="col">
+									로그인 시, 전화번호 인증
+								</th>
+								<td>
+									<span class="input-radio">
+										<input type="radio" name="admin_phone" id="admin_phone_auth1"/>
+										<label for="admin_phone_auth1">사용</label>
+									</span>
+									<span class="input-radio">
+										<input type="radio" name="admin_phone" id="admin_phone_auth2"/>
+										<label for="admin_phone_auth2">미 사용</label>
+									</span>
+								</td>
+							</tr>
+							<!-- //전화번호/전화번호 인증 -->
+
+							<!-- 이메일 -->
+							<tr>
+								<th scope="col">
+									<label for="admin_email">이메일</label>
+								</th>
+								<td colspan="3">
+									<div class="input-txt">
+										<input type="text" id="admin_email" placeholder="이메일" />
+										<span class="txt-form">@</span>
+										<select name="" id="" class="btn-select">
+											<option value="naver">naver.com</a></option>
+											<option value="hanmail">hanmail.net</option>
+											<option value="nate">nate.com</option>
+											<option value="gmail">gmail.com</option>
+											<option value="Hotmail">Hotmail.com</option>
+											<option value="self">직접 입력</option>
+										</select>
+										<!-- 직접 입력 input -->
+										<input type="text" placeholder="직접입력" />
+										<!-- //직접 입력 input -->
+									</div>
+									<p class="">사용 가능한 이메일입니다.</p>
+								</td>
+							</tr>
+							<!-- //이메일 -->
+
+							<!-- 관리자 그룹 -->
+							<tr>
+								<th scope="col">관리자 그룹</th>
+								<td colspan="3">
+									<div class="option-wrap">
+										<a href="#" class="btn">선택해주세요</a>
+										<div class="option-box" style="display:none">
+											<ul>
+												<li><a href="#">사이트_롯데백화점</a></li>
+												<li><a href="#">본사_롯데백화점</a></li>
+												<li><a href="#">노원점_롯데백화점</a></li>
+												<li><a href="#">분당점_롯데백화점</a></li>
+												<li><a href="#">센텀점_롯데백화점</a></li>
+												<li><a href="#">구리점_롯데백화점</a></li>
+												<li><a href="#">건대스타시티점_롯데백화점</a></li>
+												<li><a href="#">안전실_노원점_롯데백화점</a></li>
+												<li><a href="#">마케팅_노원점_롯데백화점</a></li>
+												<li><a href="#">방제실_노원점_롯데백화점</a></li>
+												<li><a href="#">안전실_분당점_롯데백화점</a></li>
+												<li><a href="#">마케팅_분당점_롯데백화점</a></li>
+												<li><a href="#">방제실_분당점_롯데백화점</a></li>
+												<li><a href="#">안전실_센텀점_롯데백화점</a></li>
+												<li><a href="#">마케팅_센텀점_롯데백화점</a></li>
+												<li><a href="#">방제실_센텀점_롯데백화점</a></li>
+												<li><a href="#">안전실_구리점_롯데백화점</a></li>
+												<li><a href="#">마케팅_구리점_롯데백화점</a></li>
+												<li><a href="#">방제실_구리점_롯데백화점</a></li>
+												<li><a href="#">안전실_건대스타점_롯데백화점</a></li>
+												<li><a href="#">마케팅_건대스타점_롯데백화점</a></li>
+												<li><a href="#">방제실_건대스타점_롯데백화점</a></li>
+											</ul>
+										</div>
+									</div>
+									<p class="">선택된 그룹을 변경 시, 메뉴 사용 권한이 변경됩니다.</p>
+								</td>
+							</tr>
+							<!-- //관리자 그룹 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- //상단 검색어 테이블 -->
+
+			<!-- 그룹별 메뉴 사용 권한 -->
+			<div class="tbl-top">
+				<p class="title">그룹별 메뉴 사용 권한</p>
+			</div>
+			<div class="tbl-type1">
+				<table>
+					<caption>관리자 그룹, 계정 상태, 검색어 검색 결과에 대한 이름,관리자 그룹,ID,전화번호,계정 상태 결과 테이블</caption>
+					<colgroup>
+						<col style="width:20%"/>
+						<col style="width:auto"/>
+						<col style="width:20%"/>
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">메뉴</th>
+							<th scope="col">메뉴 항목</th>
+							<th scope="col">사용 권한</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 출입통제 -->
+						<tr>
+							<td rowspan="3">출입통제</td>
+							<td>사용현황</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="사용현황 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>원격제어</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="원격제어 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>스케줄링</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="스케줄링 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //출입통제 -->
+
+						<!-- 모니터링 -->
+						<tr>
+							<td rowspan="3">모니터링</td>
+							<td>출입문</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="출입문 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>에스컬레이터</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="에스컬레이터 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>SMS알림</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="SMS알림 메뉴 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //모니터링 -->
+
+						<!-- 사용자 -->
+						<tr>
+							<td rowspan="3">사용자</td>
+							<td>지점관리자 그룹/계정 관리</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="지점관리자 그룹/계정 관리 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>운영관리자 그룹/계정 관리</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="운영관리자 그룹/계정 관리 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>출입자 관리</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="출입자 관리 메뉴 권한 on/off 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //사용자 -->
+
+						<!-- 장치 -->
+						<tr>
+							<td rowspan="2">장치</td>
+							<td>출입문</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="출입문 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>카메라</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="카메라 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //장치 -->
+
+						<!-- 방문 통계 -->
+						<tr>
+							<td rowspan="4">방문 통계</td>
+							<td>지점비교</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="지점비교 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>방문자 수</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="방문자 수 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>연령통계</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="연령통계 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>성별통계</td>
+							<td>
+								<div class="input-check-onoff">
+									<input type="checkbox" id="" title="성별통계 메뉴 권한 활성화 여부"/>
+								</div>
+							</td>
+						</tr>
+						<!-- //방문 통계 -->
+					</tbody>
+				</table>
+			</div>
+			<!-- //그룹별 메뉴 사용 권한 -->
+
+			<!-- 로그인 IP 관련 테이블 -->
+			<div class="tbl-row-type">
+				<table>
+					<caption>로그인 IP 인증, 허용 IP, 로그인 MAC 인증, 허용 MAC</caption>
+					<colgroup>
+						<col style="width:30%"/>
+						<col style="width:auto"/>
+					</colgroup>
+					<tbody>
+						<!-- 로그인 IP 인증 -->
+						<tr>
+							<th scope="row">로그인 IP 인증</th>
+							<td>
+								<span class="input-radio">
+									<input type="radio" name="admin_ip_auth" id="admin_ip_ok"/>
+									<label for="admin_ip_ok">사용</label>
+								</span>
+								<span class="input-radio">
+									<input type="radio" name="admin_ip_auth" id="admin_ip_no"/>
+									<label for="admin_ip_no">미 사용</label>
+								</span>
+							</td>
+						</tr>
+						<!-- //로그인 IP 인증 -->
+
+						<!-- 허용 IP -->
+						<tr>
+							<th scope="row">
+								<label for="admin_ip1">허용 IP</label>
+							</th>
+							<td>
+								<div class="input-txt">
+									<input type="text" id="admin_ip1" placeholder="IP를 입력하세요." />									
+								</div>
+								<button class="btn-new">추가</button>
+								<p class="">IP를 입력해 주세요.</p><!-- 미입력 후 저장 시 -->
+								<p class="">유효하지 않은 IP 주소입니다. 확인 후, 다시 입력해주세요.</p><!-- 유효한 주소 아닐 경우 -->
+							</td>
+						</tr>
+						<!-- //허용 IP -->
+
+						<!-- 로그인 MAC 인증 -->
+						<tr>
+							<th scope="row">로그인 MAC 인증</th>
+							<td>
+								<span class="input-radio">
+									<input type="radio" name="admin_mac_auth" id="admin_mac_ok"/>
+									<label for="admin_mac_ok">사용</label>
+								</span>
+								<span class="input-radio">
+									<input type="radio" name="admin_mac_auth" id="admin_mac_no"/>
+									<label for="admin_mac_no">미 사용</label>
+								</span>
+							</td>
+						</tr>
+						<!-- //로그인 MAC 인증 -->
+
+						<!-- 허용 MAC -->
+						<tr>
+							<th scope="row">
+								<label for="admin_mac1">허용 IP</label>
+							</th>
+							<td>
+								<div class="input-txt">
+									<input type="text" id="admin_mac1" placeholder="MAC주소를 입력하세요." />									
+								</div>
+								<button class="btn-new">추가</button>
+								<p class="">MAC 주소를 입력해 주세요.</p><!-- 미입력 후 저장 시 -->
+								<p class="">유효하지 않은 MAC 주소입니다. 확인 후, 다시 입력해주세요.</p><!-- 유효한 주소 아닐 경우 -->
+							</td>
+						</tr>
+						<!-- //허용 MAC -->
+						
+					</tbody>
+				</table>
+			</div>
+			<div class="tbl-btm">
+				<p>*필수 입력 정보입니다.</p>
+			</div>
+			<!-- //로그인 IP 관련 테이블 -->
+			<a href="#" class="go_link">관리자 그룹 목록 돌아가기</a>
+			<!--table>(caption+(colgroup>col[style="width:16.6%"]*6)+(thead>tr>th*6)+(tbody>tr*5>td*6))-->
+		</div>
+	</div>
+ </body>
+</html>

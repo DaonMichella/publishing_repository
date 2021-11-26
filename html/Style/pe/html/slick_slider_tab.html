@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">  <meta name="Author" content="">
+	<title>calender</title>
+	<link rel="stylesheet" href="../resource/css/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="  crossorigin="anonymous"></script>
+
+	<!-- slick -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"> 
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script>
+	$(function() {
+		$(".tab_wrap > ul > li > a").on("click",function(){
+			$(this).parent("li").addClass("active").siblings().removeClass("active");
+			return false; 
+		})
+		$(".slider").slick({});
+	});
+	</script>
+	<style type="text/css">
+	a {text-decoration:none;}
+	body {min-width:320px;}
+	.tab_wrap > ul > li {display: inline-block;}
+	.tab_wrap > ul > li a {display: inline-block;cursor: pointer;margin: 0 60px 0 0;padding: 10px 10px;color: #484848;font-size: 18px;font-weight: 300;}
+	.tab_wrap > ul > li a:hover {background-color: #f3f3f3;border-radius: 4px;}
+	.tab_wrap > ul > li.active a {color: #ff7300;font-weight: 500;}
+
+	@media screen and (max-width:480px){
+		
+	}
+	</style>
+ </head>
+ <body>
+  	<h2>tab_slider</h2>
+	<div class="title_box">
+		<h2 class="sub_title">제목</h2>
+		<div class="tab_wrap">
+			<ul>
+				<li><a href="#slider_tab1">타입1</a></li>
+				<li><a href="#slider_tab2">타입2</a></li>
+				<li><a href="#slider_tab3">타입3</a></li>
+			</ul>
+			<div id="slider_tab1" class="tab_content">
+				<div class="slider">
+				  <div><h3>1</h3></div>
+				  <div><h3>2</h3></div>
+				  <div><h3>3</h3></div>
+				  <div><h3>4</h3></div>
+				  <div><h3>5</h3></div>
+				  <div><h3>6</h3></div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+ </body>
+</html>
